@@ -3,7 +3,8 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier"],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.json",
+    "createDefaultProgram": true
   },
   "env": {
     "browser": true,
@@ -15,8 +16,8 @@
     "airbnb",
     "airbnb-typescript",
     "airbnb/hooks",
+    // "eslint:recommended",
     "next/core-web-vitals",
-    "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "prettier"
@@ -25,6 +26,7 @@
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": 0,
     "@typescript-eslint/semi": "off",
-    "react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }]
+    "react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
+    "no-useless-catch": "off"
   }
 }
