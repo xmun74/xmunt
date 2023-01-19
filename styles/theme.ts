@@ -15,3 +15,25 @@ export const darkTheme: DefaultTheme = {
   text: '#ffffff',
   bg1: '#121212',
 }
+
+// CSS Variable, 선언 => body{ --text:black; --bg1:white; }  // 개별사용 => background: var(--bg1);
+type ThemeRecordType = Record<keyof DefaultTheme, string>
+
+const convertCssVar = (variable: DefaultTheme) => {
+  const keys = Object.keys(variable) as (keyof DefaultTheme)[]
+  return keys.reduce(
+    (acc, key) => acc.concat(`--${key}: ${variable[key]};`, '\n'),
+    '',
+  )
+}
+export const themes = {
+  light: convertCssVar(lightTheme),
+  dark: convertCssVar(darkTheme),
+}
+
+const cssVar = (name: string) => `var(--${name})`
+
+// export const themePalette: Record<keyof DefaultTheme, string> = {
+//   text: cssVar('text'),
+//   background: cssVar('background'),
+// }
