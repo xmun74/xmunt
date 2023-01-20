@@ -16,9 +16,14 @@ export const darkTheme: DefaultTheme = {
   bg1: '#121212',
 }
 
-// CSS Variable, 선언 => body{ --text:black; --bg1:white; }  // 개별사용 => background: var(--bg1);
-type ThemeRecordType = Record<keyof DefaultTheme, string>
+type VariableKey = keyof DefaultTheme
+type ThemeRecordType = Record<VariableKey, string>
 
+/**
+ * Theme 객체 key에 --붙여서 변환하기 (body 최상위에서 선언)
+ * @param variable
+ * @returns "--text1: #212529; --text2: #495057; ... "
+ */
 const convertCssVar = (variable: DefaultTheme) => {
   const keys = Object.keys(variable) as (keyof DefaultTheme)[]
   return keys.reduce(
@@ -31,9 +36,12 @@ export const themes = {
   dark: convertCssVar(darkTheme),
 }
 
+// themeColor = {"text": "var(--text)", ...} 이렇게 객체만들어야 themeColor.text로 자동완성 사용가능
+/** 객체 키를 keyName => var(--keyName)로 변환하기 */
 const cssVar = (name: string) => `var(--${name})`
 
-// export const themePalette: Record<keyof DefaultTheme, string> = {
-//   text: cssVar('text'),
-//   background: cssVar('background'),
-// }
+const varKeys = Object.keys(lightTheme) as VariableKey[]
+export const themeColor: ThemeRecordType = varKeys.reduce((acc, current) => {
+  acc[current] = cssVar(current)
+  return acc
+}, {} as ThemeRecordType)

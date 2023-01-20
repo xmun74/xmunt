@@ -1,14 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
-
-const lightTheme = `
-  --text: black;
-  --background: white;
-`
-const darkTheme = `
-  --color-text: white;
-  --color-background: black;
-`
+import { themeColor, themes } from './theme'
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -17,29 +9,34 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
   }
-
-  /* body {
-    ${lightTheme};
+  body {
+    background-color: ${themeColor.bg1};
+    color: ${themeColor.text};
   }
-  @media (prefers-color-scheme: dark) {
-    body {
-      ${darkTheme};
-    }
-  }
-  body[data-theme='light']{
-    ${lightTheme};
-  }
-  body[data-theme='dark']{
-    ${darkTheme};
-  } */
 
   body {
-    background-color: ${({ theme }) => theme.bg1};
-    color:${({ theme }) => theme.text}
+    ${themes.light}
   }
+  
+  @media (prefers-color-scheme: dark) {
+    body {
+      ${themes.dark}
+    }
+  }
+  
+  body[data-theme='light'] {
+    ${themes.light};
+  }
+  
+  body[data-theme='dark'] {
+    ${themes.dark};
+  }
+  
+  
   button {
     cursor: pointer;
     background-color: inherit;
+    color: ${themeColor.text};
   }
   a {
     text-decoration:none;
