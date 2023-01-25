@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${themeColor.bg1};
     color: ${themeColor.text};
+    height: 100%;
   }
 
   body {
@@ -31,7 +32,6 @@ const GlobalStyle = createGlobalStyle`
   body[data-theme='dark'] {
     ${themes.dark};
   }
-  
   
   button {
     cursor: pointer;

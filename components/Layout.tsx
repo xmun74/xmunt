@@ -4,8 +4,13 @@ import Header from './Header'
 import Footer from './Footer'
 
 const Content = styled.main`
-  margin: 70px 400px;
   border: 1px solid gray;
+  margin: 60px auto 0 auto;
+  max-width: 850px;
+  padding-top: 4rem;
+  @media screen and (max-width: 767px) {
+    width: 90%;
+  }
 `
 
 export default function Layout({ children }: PropsWithChildren) {
