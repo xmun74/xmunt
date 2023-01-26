@@ -1,9 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import styled from 'styled-components'
+import { useRecoilValue } from 'recoil'
 import { themeColor } from '../styles/theme'
 import ThemeToggleBtn from './button/ThemeToggleBtn'
 import Logo from '../public/static/Logo.svg'
+import themeState from '../states/atoms/theme'
 
 const Container = styled.header`
   position: fixed;
@@ -46,12 +48,13 @@ const LinkContainer = styled.div`
   }
 `
 export default function Header() {
+  const theme = useRecoilValue(themeState)
   return (
     <Container>
       <HeaderContent>
         <LogoBtn>
           <Link href="/">
-            <Image src={Logo} alt="로고" />
+            {theme === 'light' ? <Image src={Logo} alt="로고" /> : <div />}
           </Link>
         </LogoBtn>
         <LinkContainer>

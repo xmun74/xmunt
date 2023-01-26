@@ -1,8 +1,10 @@
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 import Moon from '../../public/static/Moon.svg'
 import Sun from '../../public/static/Sun.svg'
+import themeState from '../../states/atoms/theme'
 
 const ToggleBtn = styled.button`
   cursor: pointer;
@@ -14,16 +16,16 @@ const ToggleBtn = styled.button`
 `
 
 export default function ThemeToggleBtn() {
-  const [themeMode, setThemeMode] = useState<'dark' | 'light'>('light')
+  const [theme, setTheme] = useRecoilState(themeState)
   const handleThemeMode = () => {
-    setThemeMode(themeMode === 'light' ? 'dark' : 'light')
+    setTheme(theme === 'light' ? 'dark' : 'light')
   }
   useEffect(() => {
-    document.body.dataset.theme = themeMode
-  }, [themeMode])
+    document.body.dataset.theme = theme
+  }, [theme])
   return (
     <div>
-      {themeMode === 'light' ? (
+      {theme === 'light' ? (
         <ToggleBtn onClick={handleThemeMode}>
           <Image width={42} height={42} src={Sun} alt="해 로고" />
         </ToggleBtn>

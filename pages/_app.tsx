@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import { useState } from 'react'
+import { RecoilRoot } from 'recoil'
 import { ThemeProvider } from 'styled-components'
 import GlobalStyle from '../styles/GlobalStyle'
 import Layout from '../components/Layout'
@@ -10,11 +11,13 @@ export default function App({ Component, pageProps }: AppProps) {
   const isDarkMode = theme === 'dark'
 
   return (
-    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-      <GlobalStyle />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ThemeProvider>
+    <RecoilRoot>
+      <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+        <GlobalStyle />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
+    </RecoilRoot>
   )
 }
