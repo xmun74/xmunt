@@ -5,6 +5,7 @@ import { useRecoilValue } from 'recoil'
 import { themeColor } from '../styles/theme'
 import ThemeToggleBtn from './button/ThemeToggleBtn'
 import Logo from '../public/static/Logo.svg'
+import LogoDarkMode from '../public/static/LogoDarkMode.svg'
 import themeState from '../states/atoms/theme'
 
 const Container = styled.header`
@@ -54,7 +55,11 @@ export default function Header() {
       <HeaderContent>
         <LogoBtn>
           <Link href="/">
-            {theme === 'light' ? <Image src={Logo} alt="로고" /> : <div />}
+            {theme === 'light' ? (
+              <Image src={Logo} alt="라이트모드 로고" />
+            ) : (
+              <Image src={LogoDarkMode} alt="다크모드 로고" />
+            )}
           </Link>
         </LogoBtn>
         <LinkContainer>
