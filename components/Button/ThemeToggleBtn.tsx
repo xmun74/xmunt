@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import Moon from '../../static/Moon.svg'
-import Sun from '../../static/Sun.svg'
+import Moon from '../../public/static/Moon.svg'
+import Sun from '../../public/static/Sun.svg'
 
 const ToggleBtn = styled.button`
   cursor: pointer;

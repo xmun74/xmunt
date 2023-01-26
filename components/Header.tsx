@@ -2,8 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { themeColor } from '../styles/theme'
-import ThemeToggleBtn from './Button/ThemeToggleBtn'
-import Logo from '../static/Logo.svg'
+import ThemeToggleBtn from './button/ThemeToggleBtn'
+import Logo from '../public/static/Logo.svg'
 
 const Container = styled.header`
   position: fixed;
