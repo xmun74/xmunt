@@ -55,11 +55,12 @@ export default function Header() {
       <HeaderContent>
         <LogoBtn>
           <Link href="/">
-            {theme === 'light' ? (
-              <Image src={Logo} alt="라이트모드 로고" />
-            ) : (
-              <Image src={LogoDarkMode} alt="다크모드 로고" />
-            )}
+            <Image
+              src={theme === 'light' ? Logo : LogoDarkMode}
+              alt="사이트 로고"
+              width={70}
+              height={60}
+            />
           </Link>
         </LogoBtn>
         <LinkContainer>

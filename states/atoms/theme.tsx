@@ -1,6 +1,6 @@
 import { atom } from 'recoil'
 
-type ThemeMode = 'light' | 'dark'
+export type ThemeMode = 'light' | 'dark'
 
 const themeState = atom<ThemeMode>({
   key: 'themeState',
