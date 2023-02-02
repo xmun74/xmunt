@@ -7,14 +7,22 @@ import { getLocalStorage } from '../../lib/localStorage'
 import Moon from '../../public/static/Moon.svg'
 import Sun from '../../public/static/Sun.svg'
 import themeState from '../../states/atoms/theme'
+import { themeColor } from '../../styles/theme'
 
 const ToggleBtn = styled.button`
   cursor: pointer;
   border: none;
-  width: 4rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    background-color: ${themeColor.accent3};
+    transition: 0.2s ease-in-out;
+  }
 `
 
 export default function ThemeToggleBtn() {
@@ -39,15 +47,13 @@ export default function ThemeToggleBtn() {
 
   return (
     <div>
-      {theme === 'light' ? (
-        <ToggleBtn onClick={toggleThemeMode}>
-          <Image width={42} height={42} src={Sun} alt="해 로고" />
-        </ToggleBtn>
-      ) : (
-        <ToggleBtn onClick={toggleThemeMode}>
-          <Image width={34} height={34} src={Moon} alt="달 로고" />
-        </ToggleBtn>
-      )}
+      <ToggleBtn onClick={toggleThemeMode}>
+        {theme === 'light' ? (
+          <Image width={30} height={30} src={Sun} alt="해 로고" />
+        ) : (
+          <Image width={28} height={28} src={Moon} alt="달 로고" />
+        )}
+      </ToggleBtn>
     </div>
   )
 }

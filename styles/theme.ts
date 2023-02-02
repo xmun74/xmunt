@@ -3,7 +3,7 @@ import { DefaultTheme } from 'styled-components'
 export const lightTheme: DefaultTheme = {
   accent1: '#f5fbfc',
   accent2: '#f8c291',
-  accent3: '#d35400',
+  accent3: '#f8c291',
   text: '#000000',
   bg1: '#ffffff',
 }
