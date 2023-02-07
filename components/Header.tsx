@@ -7,6 +7,7 @@ import ThemeToggleBtn from './button/ThemeToggleBtn'
 import Logo from '../public/static/Logo.svg'
 import LogoDarkMode from '../public/static/LogoDarkMode.svg'
 import themeState from '../states/atoms/theme'
+import Nav from './Nav'
 
 const Container = styled.header`
   position: fixed;
@@ -38,16 +39,6 @@ const LogoBtn = styled.button`
   border: none;
   width: 5rem;
 `
-const LinkContainer = styled.div`
-  width: 250px;
-  display: flex;
-  justify-content: space-between;
-  font-weight: 300;
-  font-size: 20px;
-  @media screen and (max-width: 767px) {
-    font-size: 16px;
-  }
-`
 export default function Header() {
   const theme = useRecoilValue(themeState)
   return (
@@ -63,11 +54,7 @@ export default function Header() {
             />
           </Link>
         </LogoBtn>
-        <LinkContainer>
-          <Link href="/about">ABOUT</Link>
-          <Link href="/projects">PROJECTS</Link>
-          <Link href="/blog">BLOG</Link>
-        </LinkContainer>
+        <Nav />
         <ThemeToggleBtn />
       </HeaderContent>
     </Container>
