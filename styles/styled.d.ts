@@ -5,7 +5,9 @@ declare module 'styled-components' {
     accent1: string
     accent2: string
     accent3: string
-    text: string
+    text1: string
+    text2: string
     bg1: string
+    bg2: string
   }
 }

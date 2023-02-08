@@ -4,16 +4,20 @@ export const lightTheme: DefaultTheme = {
   accent1: '#f5fbfc',
   accent2: '#f8c291',
   accent3: '#f8c291',
-  text: '#000000',
+  text1: '#000000',
+  text2: '#000000',
   bg1: '#ffffff',
+  bg2: 'rgba(248,194,145,0.3)',
 }
 
 export const darkTheme: DefaultTheme = {
   accent1: '#121212',
   accent2: '#bdc3c7',
   accent3: '#2c3e50',
-  text: '#ffffff',
+  text1: '#ffffff',
+  text2: '#bdc3c7',
   bg1: '#121212',
+  bg2: 'rgba(223, 181, 28, 0.15);',
 }
 
 type VariableKey = keyof DefaultTheme

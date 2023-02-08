@@ -3,8 +3,8 @@ import styled from 'styled-components'
 
 const navLinks: { title: string; link: string }[] = [
   { title: 'ABOUT', link: '/about' },
-  { title: 'PROJECT', link: '/project' },
-  { title: 'BLOG', link: '/' },
+  { title: 'PROJECT', link: '/projects' },
+  { title: 'BLOG', link: '/blog' },
 ]
 
 const NavItem = styled.nav`

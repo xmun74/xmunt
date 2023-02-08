@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     background-color: ${themeColor.bg1};
-    color: ${themeColor.text};
+    color: ${themeColor.text1};
     height: 100%;
   }
 
@@ -36,7 +36,7 @@ const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
     background-color: inherit;
-    color: ${themeColor.text};
+    color: ${themeColor.text1};
   }
   a {
     text-decoration:none;

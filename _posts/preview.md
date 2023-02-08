@@ -1,8 +1,8 @@
 ---
-title: 'Nest.js + TS 초기 셋팅 - eslint, prettier, styled-components (husky, lint-staged, airbnb)'
+title: 'Next.js + TS 초기 셋팅 - eslint, prettier, styled-components (husky, lint-staged, airbnb)'
 description: 'NextJS 초기 셋팅 설정하기'
 coverImage: '/assets/blog/hello-world/cover.jpg'
-date: '2023/02/07'
+date: '2023-02-07'
 path: 'nextjs-setting-ts'
 ---
 
