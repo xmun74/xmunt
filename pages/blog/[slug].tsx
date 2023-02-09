@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import PostBody from '../../components/PostBody'
 import Seo from '../../components/Seo'
 import { getAllPosts, getPostBySlug } from '../../lib/api'
 import markdownToHtml from '../../lib/markdownToHtml'
@@ -13,9 +14,7 @@ export default function Detail({ post }: { post: any }) {
       <Seo title={post.title} />
       <h1>{post.title}&</h1>
       <h4>{post.date}</h4>
-      <div dangerouslySetInnerHTML={{ __html: post.content }}>
-        {/* {post.content} */}
-      </div>
+      <PostBody content={post.content} />
     </div>
   )
 }
@@ -47,8 +46,7 @@ export async function getStaticProps({ params }: Params) {
 }
 
 export async function getStaticPaths() {
-  const posts = getAllPosts(['slug']) //  [ { slug: 'pre-rendering' }, { slug: 'preview' } ]
-
+  const posts = getAllPosts(['slug'])
   return {
     paths: posts.map((post) => {
       return {
