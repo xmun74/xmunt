@@ -2,7 +2,6 @@ import { useRouter } from 'next/router'
 import PostBody from '../../components/PostBody'
 import Seo from '../../components/Seo'
 import { getAllPosts, getPostBySlug } from '../../lib/api'
-import markdownToHtml from '../../lib/markdownToHtml'
 
 export default function Detail({ post }: { post: any }) {
   const router = useRouter()
@@ -34,12 +33,12 @@ export async function getStaticProps({ params }: Params) {
     'date',
     'content',
   ])
-  const content = await markdownToHtml(postData.content || '')
+  // const content = await markdownToHtml(postData.content || '')
   return {
     props: {
       post: {
         ...postData,
-        content,
+        // content,
       },
     },
   }
