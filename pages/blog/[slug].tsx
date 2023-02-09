@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
-import PostBody from '../../components/PostBody'
-import Seo from '../../components/Seo'
 import { getAllPosts, getPostBySlug } from '../../lib/api'
+import Seo from '../../components/Seo'
+import PostBody from '../../components/PostBody'
 
 export default function Detail({ post }: { post: any }) {
   const router = useRouter()
