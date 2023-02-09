@@ -112,5 +112,6 @@ export const getStaticProps = async () => {
 
   return {
     props: { allPosts },
+    revalidate: 10, // 10초 후 새 요청오면 페이지 새로 생성
   }
 }
