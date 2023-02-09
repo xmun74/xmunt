@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import Seo from '../../components/Seo'
 import { getAllPosts, getPostBySlug } from '../../lib/api'
+import markdownToHtml from '../../lib/markdownToHtml'
 
 export default function Detail({ post }: { post: any }) {
   const router = useRouter()
@@ -10,9 +11,11 @@ export default function Detail({ post }: { post: any }) {
   return (
     <div>
       <Seo title={post.title} />
-      <h1>{post.title}</h1>
+      <h1>{post.title}&</h1>
       <h4>{post.date}</h4>
-      {post.content}
+      <div dangerouslySetInnerHTML={{ __html: post.content }}>
+        {/* {post.content} */}
+      </div>
     </div>
   )
 }
@@ -24,7 +27,7 @@ type Params = {
 }
 
 export async function getStaticProps({ params }: Params) {
-  const allPostsData = getPostBySlug(params.slug, [
+  const postData = getPostBySlug(params.slug, [
     'slug',
     'title',
     'description',
@@ -32,12 +35,12 @@ export async function getStaticProps({ params }: Params) {
     'date',
     'content',
   ])
-  // const content = await
+  const content = await markdownToHtml(postData.content || '')
   return {
     props: {
       post: {
-        ...allPostsData,
-        // content,
+        ...postData,
+        content,
       },
     },
   }
