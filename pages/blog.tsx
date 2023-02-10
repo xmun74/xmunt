@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import styled from 'styled-components'
+import PostDate from '../components/PostDate'
 import { getAllPosts } from '../lib/api'
 import { themeColor } from '../styles/theme'
 
@@ -60,12 +61,6 @@ const PostTitle = styled.h1`
 const PostDesc = styled.div`
   color: ${themeColor.text2};
 `
-const PostDate = styled.div`
-  text-align: end;
-  font-size: 12px;
-  font-weight: 400;
-  color: ${themeColor.text2};
-`
 
 type PostType = {
   slug: string
@@ -92,7 +87,7 @@ export default function Blog({ allPosts }: Props) {
                 <PostTitle>{title}</PostTitle>
                 <PostDesc>{description}</PostDesc>
               </div>
-              <PostDate>{date}</PostDate>
+              <PostDate date={date} />
             </PostItem>
           </Link>
         ))}
