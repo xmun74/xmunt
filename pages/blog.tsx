@@ -34,16 +34,16 @@ const PostItem = styled.div`
     position: absolute;
     content: '';
     width: 0;
-    height: 100%;
+    height: 5%;
     top: 0;
     right: 0;
     z-index: -1;
     background-color: ${themeColor.bg2};
     border-radius: 5px;
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
   }
   &:hover {
-    transition: 0.3s ease-in-out;
+    transition: 0.1s ease-in-out;
   }
   &:hover:after {
     left: 0;
@@ -54,7 +54,7 @@ const PostItem = styled.div`
   }
 `
 const PostTitle = styled.h1`
-  font-weight: 600;
+  font-weight: 700;
   font-size: 24px;
   padding-bottom: 10px;
 `

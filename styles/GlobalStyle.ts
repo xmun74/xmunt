@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${themeColor.bg1};
     color: ${themeColor.text1};
     height: 100%;
+    font-family: 'Inter', sans-serif;
   }
 
   body {

@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
+import styled from 'styled-components'
 import { getAllPosts, getPostBySlug } from '../../lib/api'
 import Seo from '../../components/Seo'
 import PostBody from '../../components/PostBody'
@@ -14,6 +15,14 @@ interface PostType {
   date: string
   content: string
 }
+const HeaderContainer = styled.div`
+  margin-bottom: 70px;
+`
+const PostTitle = styled.div`
+  font-weight: 800;
+  font-size: 36px;
+  margin-bottom: 20px;
+`
 
 export default function Detail({
   post,
@@ -29,8 +38,10 @@ export default function Detail({
   return (
     <main>
       <Seo title={post.title} />
-      <h1>{post.title}&</h1>
-      <PostDate date={post.date} />
+      <HeaderContainer>
+        <PostTitle>{post.title}</PostTitle>
+        <PostDate date={post.date} />
+      </HeaderContainer>
       <PostBody mdx={mdx} />
     </main>
   )
