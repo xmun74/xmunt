@@ -12,6 +12,22 @@ const Content = styled.article`
   h3,
   h4 {
     margin-bottom: 5px;
+    scroll-margin-top: 5rem;
+    &:hover {
+      .anchor {
+        position: absolute;
+        margin-left: -1em;
+        padding-right: 0.5em;
+        cursor: pointer;
+        &::after {
+          content: '#';
+          font-weight: 200;
+        }
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
   }
   h1 {
     font-size: 36px;
@@ -35,7 +51,6 @@ const Content = styled.article`
   }
   p {
     font-size: 16px;
-    line-height: 1.8;
   }
   img {
     width: 100%;
@@ -54,6 +69,9 @@ const Content = styled.article`
     &::marker {
       color: ${themeColor.accent2};
     }
+  }
+  a {
+    color: #fa620a;
   }
 `
 
