@@ -4,7 +4,7 @@ import { getAllPosts, getPostBySlug } from '../../lib/api'
 import Seo from '../../components/Seo'
 import PostBody from '../../components/PostBody'
 import PostDate from '../../components/PostDate'
-import { serializedMdx } from '../../lib/mdx'
+import serializedMdx from '../../lib/mdx'
 
 interface PostType {
   slug: string
