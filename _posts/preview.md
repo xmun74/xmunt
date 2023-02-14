@@ -18,7 +18,7 @@ path: 'nextjs-setting-ts'
 - lint-staged - 13.1.0
 - styled-components - 5.3.6
 
-<br><br><br><br><br><br>
+<br/><br/><br/><br/><br/><br/>
 
 # Next.js + TS 설치
 
@@ -62,7 +62,7 @@ pnpm create next-app --ts 프로젝트명
 
 ```
 
-<br><br>
+<br/><br/>
 
 ### 2. 기존 프로젝트(Next.js )에서 Next.ts로 생성하는 방법 2
 
@@ -72,7 +72,7 @@ npm install --save-dev @types/react @types/node
 npm run dev  # 잘 실행되면 됨 tsconfig.json에 자동 설정됨
 ```
 
-<br><br><br><br>
+<br/><br/><br/><br/>
 
 # 1. ESLint 설정
 
@@ -83,7 +83,7 @@ ESLint를 추가 설치하거나 `.eslintrc.json`을 따로 생성하지 않아�
 
 - airbnb, google, next 등 다양한 규칙들이 있다. 그 중에 대표적인 airbnb 규칙을 사용해서 설치하고자 한다.
 
-<br>
+<br/>
 
 ## Airbnb 규칙 설정
 
@@ -121,7 +121,7 @@ npm install -D eslint eslint-plugin-import eslint-plugin-react eslint-plugin-rea
 npm install -D eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ```
 
-<br><br><br>
+<br/><br/><br/>
 
 ### 2. `eslint-config-airbnb-base` - 리액트 제외 규칙
 
@@ -141,16 +141,16 @@ npx install-peerdeps --dev eslint-config-airbnb-base
 
 ```js
 "env": {
-    "browser": true,
+    "br/owser": true,
     "node": true,
   },
   "extends": "airbnb-base",
   "rules": {
-    "linebreak-style": 0,
+    "linebr/eak-style": 0,
   },
 ```
 
-<br><br><br>
+<br/><br/><br/>
 
 # 2. Prettier 설치
 
@@ -181,7 +181,7 @@ npm install -D prettier eslint-plugin-prettier eslint-config-prettier
 - `"tabWidth": 2,` - 탭 너비 설정
 - `"trailingComma": "all"` - 여러 줄일때 마지막에 후행 콤마 사용
 
-<br><br><br>
+<br/><br/><br/>
 
 ### `.eslintrc.json` 설정
 
@@ -197,7 +197,7 @@ npm install -D prettier eslint-plugin-prettier eslint-config-prettier
     "createDefaultProgram": true
   },
   "env": { // 전역객체를 eslint가 인식하는 구간
-    "browser": true, // document나 window 인식되게 함
+    "br/owser": true, // document나 window 인식되게 함
     "node": true,
     "es6": true
   },
@@ -260,7 +260,7 @@ eslint-config-prettier 버전 8부터
       "createDefaultProgram": true
     },
     "env": {
-      "browser": true,
+      "br/owser": true,
       "node": true,
       "es6": true
     },
@@ -284,7 +284,7 @@ eslint-config-prettier 버전 8부터
   }
   ```
 
-<br><br><br><br>
+<br/><br/><br/><br/>
 
 # 실행하기
 
@@ -305,11 +305,11 @@ eslint-config-prettier 버전 8부터
 - (난 위에 `.eslintrc.json`에서 해당 속성들을 설정해뒀다)
   ![](https://velog.velcdn.com/images/xmun74/post/e4dedd9f-8ba4-403d-8aa7-bf4c646779c2/image.png)
 
-<br><br>
+<br/><br/>
 
 ---
 
-<br><br>
+<br/><br/>
 
 # 3. husky와 lint-staged로 편리하게 사용하기
 
@@ -375,7 +375,7 @@ npx lint-staged # 추가
 
 ```
 
-<br><br><br><br>
+<br/><br/><br/><br/>
 
 # 4. styled-components 설정
 
@@ -437,7 +437,7 @@ const nextConfig = {
 module.exports = nextConfig
 ```
 
-<br>
+<br/>
 
 2. `pages/_document.tsx` 수정
 
@@ -499,14 +499,14 @@ class MyDocument extends Document {
 export default MyDocument
 ```
 
-<br><br>
+<br/><br/>
 
 - ssr 적용 전 소스코드에 css 없음
   ![](https://velog.velcdn.com/images/xmun74/post/24654ab4-de3a-4ae6-a2d0-b00f6a27bcc7/image.png)
 - ssr 적용 후 소스코드에 css가 포함됨
   ![](https://velog.velcdn.com/images/xmun74/post/614e5b02-77d1-4173-b3a2-87e4786a347a/image.png)
 
-<br><br>
+<br/><br/>
 
 ### 2. GlobalStyle, Theme 적용하기
 
@@ -616,11 +616,11 @@ declare module 'styled-components' {
 }
 ```
 
-<br><br>
+<br/><br/>
 
 ---
 
-<br><br><br><br><br>
+<br/><br/><br/><br/><br/>
 
 # 참고
 

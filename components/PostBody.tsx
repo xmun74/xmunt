@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 const Content = styled.article`
   position: relative;
@@ -42,14 +43,10 @@ const Content = styled.article`
   }
 `
 
-const BodyH1 = styled.h1``
-const BodyH2 = styled.h2``
-const BodyImg = styled.img``
-
-export default function PostBody({ content }: { content: string }) {
+export default function PostBody({ mdx }: { mdx: MDXRemoteSerializeResult }) {
   return (
     <Content>
-      <div>{content}</div>
+      <MDXRemote {...mdx} />
     </Content>
   )
 }
