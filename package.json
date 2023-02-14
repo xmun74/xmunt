@@ -41,7 +41,11 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.1.0",
-    "prettier": "^2.8.2"
+    "prettier": "^2.8.2",
+    "rehype-autolink-headings": "^6.1.1",
+    "rehype-prism-plus": "^1.5.1",
+    "rehype-slug": "^5.1.0",
+    "remark-gfm": "^3.0.1"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

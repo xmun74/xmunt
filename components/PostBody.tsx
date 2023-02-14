@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import { themeColor } from '../styles/theme'
 
 const Content = styled.article`
   position: relative;
@@ -40,6 +41,20 @@ const Content = styled.article`
     width: 100%;
     margin-bottom: auto 10px;
     pointer-events: none;
+  }
+  blockquote {
+    padding-left: 10px;
+    border-left: 10px solid;
+    border-left-color: ${themeColor.accent2};
+    font-weight: 500;
+    height: 50px;
+  }
+  li {
+    list-style: inside;
+    padding-left: 10px;
+    &::marker {
+      color: ${themeColor.accent2};
+    }
   }
 `
 

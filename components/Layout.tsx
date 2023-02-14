@@ -4,7 +4,6 @@ import Header from './Header'
 import Footer from './Footer'
 
 const Content = styled.main`
-  border: 1px solid gray;
   margin: 60px auto 0 auto;
   max-width: 850px;
   padding-top: 4rem;

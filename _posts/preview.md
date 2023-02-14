@@ -10,6 +10,8 @@ path: 'nextjs-setting-ts'
 
 #### 개발환경
 
+> blockquote다
+
 - next.js - 13.1.1
 - typescript - 4.9.4
 - eslint (+ airbnb규칙) - 8.31.0
@@ -17,8 +19,6 @@ path: 'nextjs-setting-ts'
 - husky - 8.0.0
 - lint-staged - 13.1.0
 - styled-components - 5.3.6
-
-<br/><br/><br/><br/><br/><br/>
 
 # Next.js + TS 설치
 

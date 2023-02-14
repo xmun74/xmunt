@@ -27,12 +27,12 @@ export default function Detail({
     return <div>Loading...</div>
   }
   return (
-    <div>
+    <main>
       <Seo title={post.title} />
       <h1>{post.title}&</h1>
       <PostDate date={post.date} />
       <PostBody mdx={mdx} />
-    </div>
+    </main>
   )
 }
 
