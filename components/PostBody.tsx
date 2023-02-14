@@ -47,7 +47,6 @@ const Content = styled.article`
     border-left: 10px solid;
     border-left-color: ${themeColor.accent2};
     font-weight: 500;
-    height: 50px;
   }
   li {
     list-style: inside;
