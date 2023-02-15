@@ -6,13 +6,15 @@ const Content = styled.article`
   position: relative;
   width: 100%;
   margin-bottom: 100px;
-  white-space: pre-line;
+  line-height: 1.7;
+  /* white-space: pre; */
   h1,
   h2,
   h3,
   h4 {
     margin-bottom: 5px;
     scroll-margin-top: 5rem;
+    /* rehype-autolink-headings */
     &:hover {
       .anchor {
         position: absolute;
@@ -25,6 +27,7 @@ const Content = styled.article`
         }
         &:hover {
           opacity: 0.7;
+          border: none;
         }
       }
     }
@@ -32,22 +35,22 @@ const Content = styled.article`
   h1 {
     font-size: 36px;
     font-weight: 800;
-    margin-top: 30px;
+    margin-top: 50px;
   }
   h2 {
     font-size: 28px;
     font-weight: 800;
-    margin-top: 25px;
+    margin-top: 26px;
   }
   h3 {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 800;
-    margin-top: 20px;
+    margin-top: 22px;
   }
   h4 {
     font-size: 18px;
     font-weight: 800;
-    margin-top: 15px;
+    margin-top: 20px;
   }
   p {
     font-size: 16px;
@@ -66,12 +69,16 @@ const Content = styled.article`
   li {
     list-style: inside;
     padding-left: 10px;
+    margin-top: 5px;
     &::marker {
       color: ${themeColor.accent2};
     }
   }
   a {
     color: #fa620a;
+    &:hover {
+      border-bottom: 1px solid;
+    }
   }
 `
 

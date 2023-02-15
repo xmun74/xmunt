@@ -34,7 +34,7 @@ const PostItem = styled.div`
     position: absolute;
     content: '';
     width: 0;
-    height: 5%;
+    height: 3%;
     top: 0;
     right: 0;
     z-index: -1;

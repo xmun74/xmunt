@@ -7,7 +7,7 @@ export const lightTheme: DefaultTheme = {
   text1: '#000000',
   text2: '#000000',
   bg1: '#ffffff',
-  bg2: 'rgba(248,194,145,0.3)',
+  bg2: 'rgba(248,194,145,0.7)',
 }
 
 export const darkTheme: DefaultTheme = {
@@ -17,7 +17,7 @@ export const darkTheme: DefaultTheme = {
   text1: '#ffffff',
   text2: '#bdc3c7',
   bg1: '#121212',
-  bg2: 'rgba(223, 181, 28, 0.15);',
+  bg2: 'rgba(223, 181, 28, 0.7);',
 }
 
 type VariableKey = keyof DefaultTheme
