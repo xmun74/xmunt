@@ -34,8 +34,7 @@ pnpm create next-app --ts 프로젝트명
 # eslint 설치하겠냐는 질문에 yes 선택
 ```
 
-```js
-// package.json
+```json:package.json
 {
   "name": "xmunt",
   "version": "0.1.0",
@@ -139,7 +138,7 @@ npx install-peerdeps --dev eslint-config-airbnb-base
 
 - `.eslintrc.json`에 설정 추가
 
-```js
+```js:.eslintrc.json
 "env": {
     "br/owser": true,
     "node": true,
@@ -167,7 +166,7 @@ npm install -D prettier eslint-plugin-prettier eslint-config-prettier
 
 #### 2. `.prettierrc` 파일 생성
 
-```js
+```js:.prettierrc
 {
   "semi": false,
   "singleQuote": true,
@@ -187,7 +186,7 @@ npm install -D prettier eslint-plugin-prettier eslint-config-prettier
 
 - 주석설명있는 버전
 
-```js
+```js:.eslintrc.json
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
@@ -250,7 +249,7 @@ eslint-config-prettier 버전 8부터
 ## `.eslintrc.json`
 
 - 주석 없는 버전
-  ```js
+  ```js:.eslintrc.json
   {
     "root": true,
     "parser": "@typescript-eslint/parser",
@@ -339,7 +338,7 @@ pnpm dlx husky-init && pnpm install # pnpm
 - 설치하면 package.json 수정됨, husky 설치됨, .husky/pre-commit 생성
 - 설치 후 package.json에 추가된 부분
 
-  ```js
+  ```js:package.json
     "scripts": {
       //
       "prepare": "husky install"
@@ -356,7 +355,7 @@ npm i -D lint-staged
 
 변경된 js,jsx,ts,tsx 파일만 밑 명령어 실행하게 함
 
-```js
+```js:package.json
 "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --write",
@@ -424,7 +423,7 @@ https://nextjs.org/docs/advanced-features/compiler#styled-components
 
 1. `next.config.js` 에 추가 설정하기
 
-```js
+```js:next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -443,7 +442,7 @@ module.exports = nextConfig
 
 - 참고 - [next 공식문서](https://nextjs.org/docs/advanced-features/custom-document#customizing-renderpage), [dev글](https://dev.to/sumukhakb210/using-styled-components-with-nextjs-12-and-typescript-in-2021-3439), [참고블로그](https://been.tistory.com/m/56)
 
-```tsx
+```tsx:pages/_document.tsx
 import Document, {
   Html,
   Head,
@@ -520,7 +519,7 @@ npm i styled-reset
 
 - `styles/GlobalStyle.ts` 생성 예시
 
-```ts
+```ts:styles/GlobalStyle.ts
 import { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
 
@@ -602,7 +601,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
 테마 변수들의 타입을 선언하는 파일
 
-```ts
+```ts:styles/styled.d.ts
 import 'styled-components'
 
 declare module 'styled-components' {

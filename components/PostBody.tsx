@@ -80,6 +80,19 @@ const Content = styled.article`
       border-bottom: 1px solid;
     }
   }
+  .rehype-code-title {
+    margin-bottom: -0.7rem;
+    padding: 0.4em 0.8em;
+    font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console',
+      'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
+      'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier,
+      monospace;
+    background-color: #50525c;
+    color: white;
+    z-index: 0;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+  }
 `
 
 export default function PostBody({ mdx }: { mdx: MDXRemoteSerializeResult }) {
