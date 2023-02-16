@@ -43,5 +43,10 @@ const GlobalStyle = createGlobalStyle`
     text-decoration:none;
     color:inherit;
   }
+  :not(pre) > code {
+  padding: 0.2em 0.5em;
+  border-radius: 3px;
+  background-color: ${themeColor.inlineCode};
+}
 `
 export default GlobalStyle

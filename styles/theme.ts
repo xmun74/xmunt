@@ -8,6 +8,7 @@ export const lightTheme: DefaultTheme = {
   text2: '#000000',
   bg1: '#ffffff',
   bg2: 'rgba(248,194,145,0.7)',
+  inlineCode: '#E9ECEF',
 }
 
 export const darkTheme: DefaultTheme = {
@@ -18,6 +19,7 @@ export const darkTheme: DefaultTheme = {
   text2: '#bdc3c7',
   bg1: '#121212',
   bg2: 'rgba(223, 181, 28, 0.7);',
+  inlineCode: '#363636',
 }
 
 type VariableKey = keyof DefaultTheme
