@@ -34,10 +34,10 @@ pnpm create next-app --ts 프로젝트명
 # eslint 설치하겠냐는 질문에 yes 선택
 ```
 
-```json:package.json
+```diff-json:package.json {1} showLineNumbers
 {
-  "name": "xmunt",
-  "version": "0.1.0",
++  "name": "xmunt",
+-  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
