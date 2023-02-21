@@ -1,3 +1,3 @@
 export default function Projects() {
-  return <>Projects다</>
+  return <>Projects에요</>
 }

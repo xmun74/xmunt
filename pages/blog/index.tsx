@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import styled from 'styled-components'
-import PostDate from '../components/PostDate'
-import { getAllPosts } from '../lib/api'
-import { themeColor } from '../styles/theme'
+import PostDate from '../../components/PostDate'
+import { getAllPosts } from '../../lib/api'
+import { themeColor } from '../../styles/theme'
 
 const PostContainer = styled.div`
   padding-top: 50px;
