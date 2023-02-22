@@ -10,5 +10,6 @@ declare module 'styled-components' {
     bg1: string
     bg2: string
     inlineCode: string
+    box1: string
   }
 }

@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 
 const AboutContainer = styled.div`
@@ -16,10 +15,12 @@ const Content = styled.div`
 export default function About() {
   return (
     <AboutContainer>
-      <AboutTitle>taegyeong</AboutTitle>
+      <AboutTitle>taegyeong mun</AboutTitle>
       <Content>
-        Frontend Developer 입니다
-        <br /> using React, Typescript, styled-components
+        I am interested in solving problems and helping others. <br />
+        and my heart beats when I do creative work. <br />
+        also mainly use React, Typescript, styled-components for front-end
+        development.
       </Content>
     </AboutContainer>
   )

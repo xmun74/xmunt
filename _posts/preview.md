@@ -4,6 +4,7 @@ description: 'NextJS 초기 셋팅 설정하기'
 coverImage: '/assets/blog/hello-world/cover.jpg'
 date: '2023-02-07'
 path: 'nextjs-setting-ts'
+category: 'NextJS'
 ---
 
 [Next.js 공식문서](https://nextjs.org/docs/basic-features/typescript)
