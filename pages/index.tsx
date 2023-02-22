@@ -11,6 +11,26 @@ const SubHeading = styled.h1`
 `
 
 export default function Home() {
+  const previewPosts = [
+    {
+      href: '/blog/preview',
+      title: 'Next.js + TS 초기 셋팅',
+      date: '2023-02-07',
+      imgUrl: '',
+    },
+    {
+      href: '/blog/preview',
+      title: 'Next.js + TS 초기 셋팅',
+      date: '2023-02-07',
+      imgUrl: '',
+    },
+    {
+      href: '/blog/preview',
+      title: 'Next.js + TS 초기 셋팅',
+      date: '2023-02-07',
+      imgUrl: '',
+    },
+  ]
   return (
     <>
       <Head>
@@ -18,7 +38,7 @@ export default function Home() {
       </Head>
       <HomeContainer>
         <SubHeading>Featured Posts</SubHeading>
-        <PreviewContent />
+        <PreviewContent previewPosts={previewPosts} />
       </HomeContainer>
     </>
   )
