@@ -3,8 +3,8 @@ title: 'lage-page-data warning'
 description: '로드되는 페이지 데이터 용량이 클 경우 나타나는 경고문'
 coverImage: ''
 image: ''
-date: 2023-03-06 10:47:15
-path: large-page-data
+date: '2023-03-06'
+path: 'large-page-data'
 category: 'NextJS'
 tags:
   - next.js
