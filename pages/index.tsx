@@ -14,9 +14,10 @@ export default function Home() {
   const previewPosts = [
     {
       href: '/blog/preview',
-      title: 'Next.js + TS 초기 셋팅',
+      title:
+        'NextJs + TS 셋팅 - eslint, prettier, styled-components (husky, lint-staged, airbnb)',
       date: '2023-02-07',
-      imgUrl: '',
+      imgUrl: '/images/defaultImg.jpeg',
     },
     {
       href: '/blog/preview',
