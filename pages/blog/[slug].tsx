@@ -6,6 +6,7 @@ import Seo from '../../components/Seo'
 import PostBody from '../../components/PostBody'
 import PostDate from '../../components/PostDate'
 import serializedMdx from '../../lib/mdx'
+import Giscus from '../../components/Giscus'
 
 interface PostType {
   slug: string
@@ -43,6 +44,7 @@ export default function Detail({
         <PostDate date={post.date} />
       </HeaderContainer>
       <PostBody mdx={mdx} />
+      <Giscus />
     </main>
   )
 }

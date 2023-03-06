@@ -21,13 +21,13 @@ export default function Home() {
     },
     {
       href: '/blog/preview',
-      title: 'Next.js + TS 초기 셋팅',
+      title: 'Next.js + TS 초기 셋팅1',
       date: '2023-02-07',
       imgUrl: '',
     },
     {
       href: '/blog/preview',
-      title: 'Next.js + TS 초기 셋팅',
+      title: 'Next.js + TS 초기 셋팅2',
       date: '2023-02-07',
       imgUrl: '',
     },

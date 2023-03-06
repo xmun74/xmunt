@@ -86,6 +86,7 @@ export default function PreviewContent({
                     width={300}
                     height={300}
                     draggable={false}
+                    priority
                   />
                 </PreviewImg>
               ) : (

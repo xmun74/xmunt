@@ -4,8 +4,6 @@ import styled from 'styled-components'
 import { useRecoilValue } from 'recoil'
 import { themeColor } from '../styles/theme'
 import ThemeToggleBtn from './button/ThemeToggleBtn'
-import Logo from '../public/static/Logo.svg'
-import LogoDarkMode from '../public/static/LogoDarkMode.svg'
 import themeState from '../states/atoms/theme'
 import Nav from './Nav'
 
@@ -41,17 +39,15 @@ const LogoBtn = styled.button`
 `
 export default function Header() {
   const theme = useRecoilValue(themeState)
+  const curTheme =
+    theme === 'light' ? '/static/Logo.svg' : '/static/LogoDarkMode.svg'
+
   return (
     <Container>
       <HeaderContent>
         <LogoBtn>
           <Link href="/">
-            <Image
-              src={theme === 'light' ? Logo : LogoDarkMode}
-              alt="사이트 로고"
-              width={70}
-              height={60}
-            />
+            <Image src={curTheme} alt="사이트 로고" width={70} height={60} />
           </Link>
         </LogoBtn>
         <Nav />
