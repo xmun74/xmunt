@@ -50,9 +50,10 @@ const PreviewDate = styled.div`
   text-align: end;
 `
 const PreviewImg = styled.div`
+  position: relative;
+  width: 100%;
+  height: 300px;
   img {
-    width: 100%;
-    max-height: 300px;
     object-fit: cover;
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
@@ -83,10 +84,10 @@ export default function PreviewContent({
                   <Image
                     src={el.imgUrl}
                     alt={el.title}
-                    width={300}
-                    height={300}
                     draggable={false}
                     priority
+                    fill
+                    sizes="320 640 750"
                   />
                 </PreviewImg>
               ) : (
