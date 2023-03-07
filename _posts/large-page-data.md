@@ -17,6 +17,7 @@ NextJS로 블로그를 개발하던 중
 - 경고창
   ![230306-104933](/images/posts/large-page-data/230306-104933.png)
 
-- LightHouse를 측정해본 결과
-  ![230306-105027](/images/posts/large-page-data/230306-105027.png)
-  ![230306-105021](/images/posts/large-page-data/230306-105021.png)
+#### LightHouse를 측정해본 결과
+
+![230307-141940](/images/posts/large-page-data/230307-141940.png)
+![230307-142155](/images/posts/large-page-data/230307-142155.png)
