@@ -93,6 +93,10 @@ const Content = styled.article`
     border-top-left-radius: 0.5em;
     border-top-right-radius: 0.5em;
   }
+  img {
+    width: 100%;
+    height: auto;
+  }
 `
 
 export default function PostBody({ mdx }: { mdx: MDXRemoteSerializeResult }) {

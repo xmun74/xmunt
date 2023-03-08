@@ -1,0 +1,44 @@
+---
+title: 'NextJS로 만든 블로그 글 검색되게 하자! - sitemap, 검색엔진'
+description: '블로그 글이 사이트에서 검색되게 만들기'
+coverImage: ''
+image: ''
+date: '2023-03-08'
+path: 'sitemap-seo'
+category: 'NextJS'
+tags:
+  - '검색엔진'
+---
+
+작성한 블로그 글이 네이버, 구글 등에서 검색되게 하고 싶다면?
+각 사이트 검색엔진에 블로그 주소를 등록하고 sitemap을 생성해야한다!
+
+# 검색엔진
+
+- 구글 서치 콘솔 - [Google Search Console](https://search.google.com/search-console/welcome?utm_source=about-page)
+- 네이버 서치 어드바이저- [Naver Search Advisor](https://searchadvisor.naver.com/)
+
+## [Google Search Console](https://search.google.com/search-console/welcome?utm_source=about-page)
+
+- 도메인이 있다면 도메인을 등록하고 URL접두어를 등록해도 된다.
+
+![230308-123054](/images/posts/sitemap-seo/230308-123054.png)
+
+![230308-123528](/images/posts/sitemap-seo/230308-123528.png)
+
+- `_document.tsx`에 위에서 복사한 HTML `meta` 태그를 붙여넣는다.
+
+```js:_document.tsx {4-7} showLineNumbers
+    return (
+      <Html>
+        <Head>
+          <meta
+            name="google-site-verification"
+            content="복붙"
+          />
+          {/*  */}
+        </Head>
+          {/*  */}
+      </Html>
+    )
+```
