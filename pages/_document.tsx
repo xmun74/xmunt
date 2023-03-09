@@ -45,6 +45,10 @@ class MyDocument extends Document {
             name="google-site-verification"
             content="YMNzmqVkQF9Jl8DEiOpcVdm3_s1qrjGyvlkftqWyXIs"
           />
+          <meta
+            name="naver-site-verification"
+            content="886ea33410ff08e87a821b62d4754e453e38d8cd"
+          />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
