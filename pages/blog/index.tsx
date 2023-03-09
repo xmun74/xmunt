@@ -2,6 +2,7 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import PostDate from '../../components/PostDate'
 import { getAllPosts } from '../../lib/api'
+import { PostType } from '../../lib/types'
 import { themeColor } from '../../styles/theme'
 
 const PostContainer = styled.div`
@@ -62,15 +63,6 @@ const PostDesc = styled.div`
   color: ${themeColor.text2};
 `
 
-type PostType = {
-  slug: string
-  title: string
-  date: string
-  description: string
-  coverImage: string
-  excerpt: string
-  content: string
-}
 type Props = {
   allPosts: PostType[]
 }
@@ -80,7 +72,7 @@ export default function Blog({ allPosts }: Props) {
     <>
       <AllPostsTitle>Posts {allPosts.length}</AllPostsTitle>
       <PostContainer>
-        {allPosts.map(({ slug, title, description, coverImage, date }) => (
+        {allPosts.map(({ slug, title, description, date }) => (
           <Link as={`/blog/${slug}`} href={`/blog/${slug}`} key={title}>
             <PostItem>
               <div>
@@ -103,6 +95,8 @@ export const getStaticProps = async () => {
     'description',
     'coverImage',
     'date',
+    'category',
+    'tags',
   ])
 
   return {

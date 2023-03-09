@@ -7,15 +7,8 @@ import PostBody from '../../components/PostBody'
 import PostDate from '../../components/PostDate'
 import serializedMdx from '../../lib/mdx'
 import Giscus from '../../components/Giscus'
+import { PostType } from '../../lib/types'
 
-interface PostType {
-  slug: string
-  title: string
-  description: string
-  coverImage: string
-  date: string
-  content: string
-}
 const HeaderContainer = styled.div`
   margin-bottom: 70px;
 `
@@ -38,7 +31,7 @@ export default function Detail({
   }
   return (
     <main>
-      <Seo title={post.title} />
+      <Seo post={post} mode="post" />
       <HeaderContainer>
         <PostTitle>{post.title}</PostTitle>
         <PostDate date={post.date} />
@@ -63,6 +56,10 @@ export async function getStaticProps({ params }: Params) {
     'coverImage',
     'date',
     'content',
+    'image',
+    'content',
+    'category',
+    'tags',
   ])
   const mdx = await serializedMdx(postData.content)
   return {
