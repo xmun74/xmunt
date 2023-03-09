@@ -39,6 +39,7 @@ npm i -D next-sitemap
 
 - 구글 서치 콘솔 - [Google Search Console](https://search.google.com/search-console/welcome?utm_source=about-page)
 - 네이버 서치 어드바이저- [Naver Search Advisor](https://searchadvisor.naver.com/)
+- [다음 검색등록](https://register.search.daum.net/index.daum)
 
 ## [Google Search Console](https://search.google.com/search-console/welcome?utm_source=about-page)
 
@@ -75,4 +76,6 @@ npm i -D next-sitemap
 1. 사이트 등록
 2. `_document.tsx`에 HTML `meta` 태그 추가
 3. 배포 후 `소유확인` 클릭
-4. 요청 - 사이트맵 제출 `sitemap.xml` 입력
+4. 요청 - 사이트맵 제출 `본인 url/sitemap.xml` 입력
+5. 검증 - robots.txt - 수집요청 클릭, 검증 확인받기
+6. 설정 - 수집주기설정 - `빠르게`
