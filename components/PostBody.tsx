@@ -6,7 +6,7 @@ const Content = styled.article`
   position: relative;
   width: 100%;
   margin-bottom: 100px;
-  line-height: 1.7;
+  line-height: 2;
   /* white-space: pre; */
   h1,
   h2,
@@ -66,10 +66,14 @@ const Content = styled.article`
     border-left-color: ${themeColor.accent2};
     font-weight: 500;
   }
+  ul,
+  ol {
+    list-style-position: inline;
+    line-height: 2.2;
+    padding-inline-start: 1.5em;
+    list-style-type: disc;
+  }
   li {
-    list-style: inside;
-    padding-left: 10px;
-    margin-top: 5px;
     &::marker {
       color: ${themeColor.accent2};
     }
@@ -82,7 +86,7 @@ const Content = styled.article`
   }
   .rehype-code-title {
     margin-bottom: -0.7rem;
-    padding: 0.4em 0.8em;
+    padding: 0.3em 0.7em;
     font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console',
       'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
       'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier,

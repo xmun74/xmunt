@@ -8,19 +8,28 @@ path: 'google-analytics'
 category: 'Google Analytics'
 tags:
   - 'GA'
+  - 'NextJS'
 ---
 
 # [Google Analytics](https://analytics.google.com/analytics)
+
+구글에서 무료로 제공하는 도구로 사이트에 들어오는 사용자 유입, 조회수, 사용자 유형 등을 분석하여 통계를 내준다
 
 1. 관리 - 데이터스트림 - 스트림 추가 - 내사이트 입력
 2. 태그 안내보기 - `직접 설치`
 3. 파일 설정 [nextjs예시](https://github.com/vercel/next.js/tree/canary/examples/with-google-analytics)
 
 - `.env` 추가
-  `NEXT_PUBLIC_GA_ID='G-로 시작하는 id복붙'`
+
+  ```js
+  NEXT_PUBLIC_GA_ID = 'G-로 시작하는 id복붙'
+  ```
 
 - 공식예시가 gtag.js여서 ts 타입 정의를 위해 설치
-  `npm i -D @types/gtag.js`
+
+  ```bash
+  npm i -D @types/gtag.js
+  ```
 
 - `lib/gtag.tsx` 생성
 
@@ -112,3 +121,19 @@ export default function App({ Component, pageProps }: AppProps) {
 
 - `{!isDev && ( ... ) }` 배포 모드일때만 해당 script를 추가하게 함
 - `id="gtag-init"`으로 html에 추가됐는지 확인할 수 있게 함
+
+- 구글 애널리틱스에 표시되기까지 24-48시간 정도 걸림
+
+# Google Search Console과 연결
+
+- 관리자 - Search Console 링크 - 연결
+  ![230309-161524](/images/posts/google-analytics/230309-161524.png)
+
+- 구글 콘솔에서 사이트 통계보기
+  [구글 콘솔](https://search.google.com/search-console) - 개요 - 오른쪽 상단 Search Console Insights 클릭
+
+#### 참고
+
+- [nextjs예시](https://github.com/vercel/next.js/tree/canary/examples/with-google-analytics)
+- https://kimyanglogging.tistory.com/3
+- https://velog.io/@yunsungyang-omc/Next.js-Google-Analystics-%EC%9D%B4%EC%8B%9D%ED%95%98%EA%B8%B0
