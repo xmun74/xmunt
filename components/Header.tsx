@@ -16,8 +16,9 @@ const Container = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${themeColor.accent1};
+  background-color: ${themeColor.bg1};
   margin: 0 auto;
+  box-shadow: 0px 3px 20px -10px #6666664b;
 `
 const HeaderContent = styled.div`
   min-width: 590px;
@@ -32,6 +33,9 @@ const HeaderContent = styled.div`
     top: 0;
     justify-content: space-between;
   }
+`
+const HeaderWrap = styled.div`
+  display: flex;
 `
 const LogoBtn = styled.button`
   border: none;
@@ -50,8 +54,10 @@ export default function Header() {
             <Image src={curTheme} alt="사이트 로고" width={70} height={60} />
           </Link>
         </LogoBtn>
-        <Nav />
-        <ThemeToggleBtn />
+        <HeaderWrap>
+          <Nav />
+          <ThemeToggleBtn />
+        </HeaderWrap>
       </HeaderContent>
     </Container>
   )
