@@ -8,6 +8,7 @@ import PostDate from '../../components/PostDate'
 import serializedMdx from '../../lib/mdx'
 import Giscus from '../../components/Giscus'
 import { PostType } from '../../lib/types'
+import AuthorInfo from '../../components/common/AuthorInfo'
 
 const HeaderContainer = styled.div`
   margin-bottom: 70px;
@@ -37,6 +38,7 @@ export default function Detail({
         <PostDate date={post.date} />
       </HeaderContainer>
       <PostBody mdx={mdx} />
+      <AuthorInfo />
       <Giscus />
     </main>
   )

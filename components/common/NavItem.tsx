@@ -28,7 +28,7 @@ const NavHoverLabel = styled.div`
   text-align: center;
   background-color: ${themeColor.navGuideBg};
   color: ${themeColor.text1};
-  font-weight: 600;
+  font-weight: 300;
   font-size: 0.9rem;
   top: 50px;
 `
