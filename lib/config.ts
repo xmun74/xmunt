@@ -7,7 +7,6 @@ const pageConfig = {
     img: '/images/defaultImg.jpeg',
     bio: 'Frontend Developer',
     contacts: {
-      email: '',
       github: 'https://github.com/xmun74',
       velog: 'https://velog.io/@xmun74',
     },
