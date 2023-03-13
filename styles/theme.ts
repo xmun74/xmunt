@@ -10,6 +10,23 @@ export const lightTheme: DefaultTheme = {
   bg2: 'rgba(248,194,145,0.7)',
   inlineCode: '#E9ECEF',
   box1: '#EFFBF5',
+  navBgHoverImg: `linear-gradient(
+      to right bottom,
+      #ff6802,
+      #ff7b1a,
+      #ff8b2d,
+      #ff9b3f,
+      #ffa952,
+      #ffa952,
+      #ffa952,
+      #ffa952,
+      #ff9a3f,
+      #ff8a2c,
+      #ff7919,
+      #ff6600
+    )`,
+  navBgClickImg: `linear-gradient(120deg, #f093fb 0%, #f5576c 100%)`,
+  navGuideBg: `#f6d1e8`,
 }
 
 export const darkTheme: DefaultTheme = {
@@ -22,6 +39,23 @@ export const darkTheme: DefaultTheme = {
   bg2: 'rgba(223, 181, 28, 0.7);',
   inlineCode: '#363636',
   box1: '#424242',
+  navBgHoverImg: `linear-gradient(
+      to right bottom,
+      #ff6802,
+      #ff7b1a,
+      #ff8b2d,
+      #ff9b3f,
+      #ffa952,
+      #ffa952,
+      #ffa952,
+      #ffa952,
+      #ff9a3f,
+      #ff8a2c,
+      #ff7919,
+      #ff6600
+    )`,
+  navBgClickImg: `linear-gradient(120deg, #f093fb 0%, #f5576c 100%)`,
+  navGuideBg: `#ef7ccc8f`,
 }
 
 type VariableKey = keyof DefaultTheme

@@ -11,5 +11,8 @@ declare module 'styled-components' {
     bg2: string
     inlineCode: string
     box1: string
+    navBgHoverImg: string
+    navBgClickImg: string
+    navGuideBg: string
   }
 }
