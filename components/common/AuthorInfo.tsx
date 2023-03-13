@@ -31,22 +31,32 @@ const AuthorBio = styled.div`
   margin-bottom: 1rem;
 `
 
+const Hr = styled.hr`
+  border: none;
+  border-top: thin dashed gray;
+  margin-bottom: 5rem;
+`
+
 export default function AuthorInfo() {
   return (
-    <InfoContainer>
-      <ImgWrap>
-        <Image
-          src={pageConfig.author.img}
-          alt="프로필 이미지"
-          fill
-          sizes="320 640 750"
-        />
-      </ImgWrap>
-      <InfoWrapper>
-        <AuthorName>{pageConfig.author.name}</AuthorName>
-        <AuthorBio>{pageConfig.author.bio}</AuthorBio>
-        <AuthorContacts />
-      </InfoWrapper>
-    </InfoContainer>
+    <>
+      <InfoContainer>
+        <ImgWrap>
+          <Image
+            src={pageConfig.author.img}
+            alt="프로필 이미지"
+            fill
+            priority
+            sizes="320 640 750"
+          />
+        </ImgWrap>
+        <InfoWrapper>
+          <AuthorName>{pageConfig.author.name}</AuthorName>
+          <AuthorBio>{pageConfig.author.bio}</AuthorBio>
+          <AuthorContacts />
+        </InfoWrapper>
+      </InfoContainer>
+      <Hr />
+    </>
   )
 }
