@@ -9,6 +9,7 @@ import serializedMdx from '../../lib/mdx'
 import Giscus from '../../components/Giscus'
 import { PostType } from '../../lib/types'
 import AuthorInfo from '../../components/common/AuthorInfo'
+import RecentPost, { RecentPostProps } from '../../components/common/RecentPost'
 
 const HeaderContainer = styled.div`
   margin-bottom: 70px;
@@ -22,9 +23,11 @@ const PostTitle = styled.div`
 export default function Detail({
   post,
   mdx,
+  recentPostProps,
 }: {
   post: PostType
   mdx: MDXRemoteSerializeResult
+  recentPostProps: RecentPostProps
 }) {
   const router = useRouter()
   if (!router.isFallback && !post?.slug) {
@@ -39,6 +42,7 @@ export default function Detail({
       </HeaderContainer>
       <PostBody mdx={mdx} />
       <AuthorInfo />
+      <RecentPost {...recentPostProps} />
       <Giscus />
     </main>
   )
@@ -64,12 +68,17 @@ export async function getStaticProps({ params }: Params) {
     'tags',
   ])
   const mdx = await serializedMdx(postData.content)
+  const recentPostProps = {
+    prevPost: '이전포스트',
+    nextPost: '다음포스트',
+  }
   return {
     props: {
       post: {
         ...postData,
       },
       mdx,
+      recentPostProps,
     },
   }
 }
