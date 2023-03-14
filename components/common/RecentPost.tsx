@@ -6,41 +6,47 @@ import RightArrowIcon from '../icons/RightArrowIcon'
 
 const RecentPostContainer = styled.div`
   display: flex;
+  justify-content: space-between;
   margin-bottom: 5rem;
 `
 const RecentPostContent = styled(Link)`
-  width: 50%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   font-weight: 600;
-  &:last-child {
-    justify-content: flex-end;
-  }
   &:hover {
-    opacity: 0.8;
+    opacity: 0.7;
   }
   @media screen and (max-width: 767px) {
     font-size: 12px;
   }
 `
 
+interface RecentProps {
+  slug: string
+  date: string
+  title: string
+}
 export type RecentPostProps = {
-  prevPost: string
-  nextPost: string
+  prevPost: RecentProps
+  nextPost: RecentProps
 }
 
 export default function RecentPost({ prevPost, nextPost }: RecentPostProps) {
   return (
     <RecentPostContainer>
-      <RecentPostContent href="/">
-        <LeftArrowIcon width={25} fill={`${themeColor.text1}`} />
-        {prevPost}
-      </RecentPostContent>
-      <RecentPostContent href="/">
-        {nextPost}
-        <RightArrowIcon width={25} fill={`${themeColor.text1}`} />
-      </RecentPostContent>
+      {prevPost && (
+        <RecentPostContent href={prevPost?.slug ?? '/'}>
+          <LeftArrowIcon width={25} fill={`${themeColor.text1}`} />
+          {prevPost.title}
+        </RecentPostContent>
+      )}
+      <div />
+      {nextPost && nextPost?.title && (
+        <RecentPostContent href={nextPost?.slug ?? '/'}>
+          {nextPost.title}
+          <RightArrowIcon width={25} fill={`${themeColor.text1}`} />
+        </RecentPostContent>
+      )}
     </RecentPostContainer>
   )
 }

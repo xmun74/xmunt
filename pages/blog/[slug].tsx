@@ -51,10 +51,18 @@ export default function Detail({
 type Params = {
   params: {
     slug: string
+    date: string
   }
 }
 
 export async function getStaticProps({ params }: Params) {
+  const allPosts = getAllPosts(['slug', 'date', 'title'])
+  const postIdx = allPosts.findIndex((allP) => allP.slug === params.slug)
+
+  if (postIdx === -1) {
+    return { notFound: true }
+  }
+
   const postData = getPostBySlug(params.slug, [
     'slug',
     'title',
@@ -69,8 +77,8 @@ export async function getStaticProps({ params }: Params) {
   ])
   const mdx = await serializedMdx(postData.content)
   const recentPostProps = {
-    prevPost: '이전포스트',
-    nextPost: '다음포스트',
+    prevPost: allPosts[postIdx + 1] ?? null,
+    nextPost: allPosts[postIdx - 1] ?? null,
   }
   return {
     props: {
