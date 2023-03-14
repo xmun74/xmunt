@@ -1,6 +1,6 @@
-import Head from 'next/head'
 import styled from 'styled-components'
 import PreviewContent from '../components/PreviewContent'
+import Seo from '../components/Seo'
 
 const HomeContainer = styled.div``
 
@@ -34,9 +34,7 @@ export default function Home() {
   ]
   return (
     <>
-      <Head>
-        <title>xmunt blog</title>
-      </Head>
+      <Seo mode="default" />
       <HomeContainer>
         <SubHeading>Featured Posts</SubHeading>
         <PreviewContent previewPosts={previewPosts} />

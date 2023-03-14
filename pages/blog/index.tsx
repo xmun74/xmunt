@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import styled from 'styled-components'
 import PostDate from '../../components/PostDate'
+import Seo from '../../components/Seo'
 import { getAllPosts } from '../../lib/api'
 import { PostType } from '../../lib/types'
 import { themeColor } from '../../styles/theme'
@@ -70,6 +71,7 @@ type Props = {
 export default function Blog({ allPosts }: Props) {
   return (
     <>
+      <Seo mode="default" />
       <AllPostsTitle>Posts {allPosts.length}</AllPostsTitle>
       <PostContainer>
         {allPosts.map(({ slug, title, description, date }) => (

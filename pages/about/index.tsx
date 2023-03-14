@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Seo from '../../components/Seo'
 
 const AboutContainer = styled.div`
   height: 100vh;
@@ -15,6 +16,7 @@ const Content = styled.div`
 export default function About() {
   return (
     <AboutContainer>
+      <Seo mode="default" />
       <AboutTitle>taegyeong mun</AboutTitle>
       <Content>
         I am interested in solving problems and helping others. <br />

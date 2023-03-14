@@ -57,6 +57,7 @@ export default function AuthorInfo() {
             alt="프로필 이미지"
             fill
             priority
+            draggable={false}
             sizes="320 640 750"
           />
         </ImgWrap>
