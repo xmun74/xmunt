@@ -21,6 +21,9 @@ const Content = styled.article`
         margin-left: -1em;
         padding-right: 0.5em;
         cursor: pointer;
+        @media screen and (max-width: 767px) {
+          margin-left: -0.61em;
+        }
         &::after {
           content: '#';
           font-weight: 200;

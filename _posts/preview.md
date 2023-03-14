@@ -227,10 +227,10 @@ npm install -D prettier eslint-plugin-prettier eslint-config-prettier
 
 #### 1. `npm run lint` 실행 시 뜨는 에러내용
 
-```
+```bash
 Error: "prettier/@typescript-eslint" has been merged
 into "prettier" in eslint-config-prettier 8.0.0.
-See: https://github.com/prettier/eslint-config-prettie r/blob/main/CHANGELOG.md#version-800-2021-02-21
+See: https://github.com/prettier/eslint-config-prettier/blob/main/CHANGELOG.md#version-800-2021-02-21
 ```
 
 #### 2. 원인

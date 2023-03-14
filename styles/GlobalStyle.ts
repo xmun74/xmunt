@@ -15,6 +15,9 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     font-family: 'Inter', sans-serif;
   }
+  body, html{
+    overflow-x: hidden;
+  }
 
   body {
     ${themes.light}

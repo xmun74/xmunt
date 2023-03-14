@@ -116,7 +116,7 @@ pre[class*='language-'] {
 
 /* rehype-prism-plus => code-line : num, delete, inserte */
 .code-highlight {
-  float: left; /* 1 */
+  /* float: left; 1 */
   min-width: 100%; /* 2 */
 }
 

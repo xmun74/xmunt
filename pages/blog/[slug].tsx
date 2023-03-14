@@ -11,6 +11,7 @@ import { PostType } from '../../lib/types'
 import AuthorInfo from '../../components/common/AuthorInfo'
 import RecentPost, { RecentPostProps } from '../../components/common/RecentPost'
 import Tag from '../../components/common/Tag'
+import PostToc from '../../components/PostToc'
 
 const HeaderContainer = styled.div`
   margin-bottom: 70px;
@@ -19,16 +20,21 @@ const PostTitle = styled.div`
   font-weight: 800;
   font-size: 36px;
   margin-bottom: 20px;
+  @media screen and (max-width: 767px) {
+    font-size: 28px;
+  }
 `
 
 export default function Detail({
   post,
   mdx,
   recentPostProps,
+  postToc,
 }: {
   post: PostType
   mdx: MDXRemoteSerializeResult
   recentPostProps: RecentPostProps
+  postToc: any //
 }) {
   const router = useRouter()
   if (!router.isFallback && !post?.slug) {
@@ -37,12 +43,15 @@ export default function Detail({
   return (
     <main>
       <Seo post={post} mode="post" />
+      {/* Post Header */}
       <HeaderContainer>
         <PostTitle>{post.title}</PostTitle>
         <PostDate date={post.date} />
       </HeaderContainer>
+      {/* Post Body */}
       <PostBody mdx={mdx} />
-
+      <PostToc postToc={postToc} />
+      {/* Post Footer */}
       {Array.isArray(post.tags) &&
         post?.tags.map((tag) => <Tag tag={tag} key={tag} />)}
       <AuthorInfo />
@@ -84,6 +93,7 @@ export async function getStaticProps({ params }: Params) {
     prevPost: allPosts[postIdx + 1] ?? null,
     nextPost: allPosts[postIdx - 1] ?? null,
   }
+  const postToc = '목차입니다'
   return {
     props: {
       post: {
@@ -91,6 +101,7 @@ export async function getStaticProps({ params }: Params) {
       },
       mdx,
       recentPostProps,
+      postToc,
     },
   }
 }
