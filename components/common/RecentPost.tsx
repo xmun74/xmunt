@@ -13,8 +13,20 @@ const RecentPostContent = styled(Link)`
   display: flex;
   align-items: center;
   font-weight: 600;
+  flex: 1;
   &:hover {
     opacity: 0.7;
+  }
+`
+const PostTitle = styled.div`
+  flex: 1;
+  line-height: 1.2rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  &:first-child {
+    text-align: right;
   }
   @media screen and (max-width: 767px) {
     font-size: 12px;
@@ -36,15 +48,15 @@ export default function RecentPost({ prevPost, nextPost }: RecentPostProps) {
     <RecentPostContainer>
       {prevPost && (
         <RecentPostContent href={prevPost?.slug ?? '/'}>
-          <LeftArrowIcon width={25} fill={`${themeColor.text1}`} />
-          {prevPost.title}
+          <LeftArrowIcon width={20} height={20} fill={`${themeColor.text1}`} />
+          <PostTitle>{prevPost.title}</PostTitle>
         </RecentPostContent>
       )}
       <div />
-      {nextPost && nextPost?.title && (
+      {nextPost && (
         <RecentPostContent href={nextPost?.slug ?? '/'}>
-          {nextPost.title}
-          <RightArrowIcon width={25} fill={`${themeColor.text1}`} />
+          <PostTitle>{nextPost.title}</PostTitle>
+          <RightArrowIcon width={20} height={20} fill={`${themeColor.text1}`} />
         </RecentPostContent>
       )}
     </RecentPostContainer>

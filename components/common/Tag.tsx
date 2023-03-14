@@ -10,6 +10,9 @@ const TagLink = styled.div`
   &:hover {
     opacity: 0.7;
   }
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+  }
 `
 
 export default function Tag({ tag }: { tag: string }) {

@@ -18,6 +18,10 @@ const ImgDiv = styled.div`
       opacity: 0.7;
     }
   }
+  @media screen and (max-width: 767px) {
+    width: 20px;
+    height: 20px;
+  }
 `
 
 export default function AuthorContacts() {

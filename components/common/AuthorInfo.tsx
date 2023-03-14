@@ -15,6 +15,10 @@ const ImgWrap = styled.div`
   img {
     border-radius: 50%;
   }
+  @media screen and (max-width: 767px) {
+    width: 70px;
+    height: 70px;
+  }
 `
 const InfoWrapper = styled.div`
   display: flex;
@@ -25,10 +29,16 @@ const AuthorName = styled.div`
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1rem;
+  @media screen and (max-width: 767px) {
+    font-size: 1rem;
+  }
 `
 const AuthorBio = styled.div`
   font-weight: 200;
   margin-bottom: 1rem;
+  @media screen and (max-width: 767px) {
+    font-size: 0.8rem;
+  }
 `
 
 const Hr = styled.hr`
