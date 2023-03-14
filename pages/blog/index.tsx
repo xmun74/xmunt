@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import styled from 'styled-components'
+import Heading from '../../components/common/Heading'
 import PostDate from '../../components/PostDate'
 import Seo from '../../components/Seo'
 import { getAllPosts } from '../../lib/api'
@@ -15,11 +16,6 @@ const PostContainer = styled.div`
   @media screen and (max-width: 767px) {
     grid-template-columns: 1fr;
   }
-`
-
-const AllPostsTitle = styled.div`
-  font-size: 42px;
-  font-weight: 800;
 `
 
 const PostItem = styled.div`
@@ -72,7 +68,7 @@ export default function Blog({ allPosts }: Props) {
   return (
     <>
       <Seo mode="default" />
-      <AllPostsTitle>Posts {allPosts.length}</AllPostsTitle>
+      <Heading title={`Posts ${allPosts.length}`} />
       <PostContainer>
         {allPosts.map(({ slug, title, description, date }) => (
           <Link as={`/blog/${slug}`} href={`/blog/${slug}`} key={title}>
