@@ -6,7 +6,7 @@ import AuthorContacts from './AuthorContacts'
 const InfoContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 5rem;
+  margin: 5rem 0;
 `
 const ImgWrap = styled.div`
   position: relative;

@@ -8,6 +8,7 @@ path: 'sitemap-seo'
 category: 'NextJS'
 tags:
   - '검색엔진'
+  - 'SEO'
 ---
 
 작성한 블로그 글이 네이버, 구글 등에서 검색되게 하고 싶다면?

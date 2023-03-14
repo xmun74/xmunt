@@ -10,6 +10,7 @@ import Giscus from '../../components/Giscus'
 import { PostType } from '../../lib/types'
 import AuthorInfo from '../../components/common/AuthorInfo'
 import RecentPost, { RecentPostProps } from '../../components/common/RecentPost'
+import Tag from '../../components/common/Tag'
 
 const HeaderContainer = styled.div`
   margin-bottom: 70px;
@@ -41,6 +42,9 @@ export default function Detail({
         <PostDate date={post.date} />
       </HeaderContainer>
       <PostBody mdx={mdx} />
+
+      {Array.isArray(post.tags) &&
+        post?.tags.map((tag) => <Tag tag={tag} key={tag} />)}
       <AuthorInfo />
       <RecentPost {...recentPostProps} />
       <Giscus />
