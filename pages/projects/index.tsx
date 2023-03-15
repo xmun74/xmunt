@@ -5,7 +5,6 @@ import Heading from '../../components/common/Heading'
 import Seo from '../../components/Seo'
 
 const ProjectContainer = styled.div`
-  font-weight: 100;
   height: 100vh;
 `
 const ProjectWrapper = styled.div`
@@ -14,32 +13,45 @@ const ProjectWrapper = styled.div`
   grid-gap: 10px;
 `
 
-const ProjectItem = styled.div`
+const ProjectImg = styled.div`
   position: relative;
   width: 100%;
   height: 250px;
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  &:hover {
+    opacity: 0.6;
+    box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 15%);
+    -webkit-box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 15%);
+    -moz-box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 15%);
+    transform: translateY(-3px);
+    transition: all 0.2s ease-in-out;
+  }
   img {
     object-fit: cover;
     border-radius: 15px;
   }
-  &:hover {
-    opacity: 0.6;
-    transition: 0.15s ease-in-out;
-  }
+`
+const ProjectTitle = styled.div`
+  font-weight: 400;
+  margin: 10px 0;
+`
+const ProjectInfo = styled.div`
+  font-weight: 100;
 `
 
 const ProjectLists = [
   {
-    title: 'xmunt blog',
-    href: '/',
-    imgSrc: '/images/projects/dailyclub.png',
+    title: '문태경 BLOG',
+    href: 'https://github.com/xmun74/xmunt',
+    imgSrc: '/images/projects/xmuntblog.png',
     description: '개인 블로그 제작',
   },
   {
     title: '데일리클럽',
-    href: 'http://dailyclub.site/',
+    href: 'https://github.com/codestates-seb/dailyclub',
     imgSrc: '/images/projects/dailyclub.png',
-    description: '데일리클럽 프로젝트',
+    description: '일회성 동호회 모임 사이트',
   },
 ]
 
@@ -51,18 +63,18 @@ export default function Projects() {
       <ProjectWrapper>
         {ProjectLists &&
           ProjectLists.map((el) => (
-            <Link href={el.href} key={el.title}>
-              <ProjectItem>
+            <Link href={el.href} key={el.title} target="_blank">
+              <ProjectImg>
                 <Image
                   src={el.imgSrc}
                   alt={el.description}
                   draggable={false}
                   fill
-                  // width={200}
-                  // height={200}
                   sizes="320 640 750"
                 />
-              </ProjectItem>
+              </ProjectImg>
+              <ProjectTitle>{el.title}</ProjectTitle>
+              <ProjectInfo>{el.description}</ProjectInfo>
             </Link>
           ))}
       </ProjectWrapper>

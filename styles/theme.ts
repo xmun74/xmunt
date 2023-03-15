@@ -9,7 +9,7 @@ export const lightTheme: DefaultTheme = {
   bg1: '#ffffff',
   bg2: 'rgba(248,194,145,0.7)',
   inlineCode: '#E9ECEF',
-  box1: '#EFFBF5',
+  box1: '#ffffff',
   navBgHoverImg: `linear-gradient(
       to right bottom,
       #ff6802,
