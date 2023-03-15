@@ -33,15 +33,15 @@ export default function Home() {
       imgUrl: '/images/defaultImg.jpeg',
     },
     {
-      href: '/blog/preview',
-      title: 'Next.js + TS 초기 셋팅1',
-      date: '2023-02-07',
+      href: '/blog/open-graph',
+      title: 'NextJS로 만든 블로그 이쁘게 공유하기 - Open Graph',
+      date: '2023-03-14',
       imgUrl: '',
     },
     {
-      href: '/blog/preview',
-      title: 'Next.js + TS 초기 셋팅2',
-      date: '2023-02-07',
+      href: '/blog/google-analytics',
+      title: 'NextJS 블로그에 Google Analytics 추가하기',
+      date: '2023-03-09',
       imgUrl: '',
     },
   ]
