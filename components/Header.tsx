@@ -16,9 +16,11 @@ const Container = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${themeColor.bg1};
   margin: 0 auto;
   box-shadow: 0px 3px 20px -10px #6666664b;
+  background-color: ${themeColor.gnbBackDrop};
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 `
 const HeaderContent = styled.div`
   min-width: 590px;

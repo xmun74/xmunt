@@ -14,5 +14,6 @@ declare module 'styled-components' {
     navBgHoverImg: string
     navBgClickImg: string
     navGuideBg: string
+    gnbBackDrop: string
   }
 }
