@@ -74,12 +74,17 @@ const Content = styled.article`
     list-style-position: inline;
     line-height: 2.2;
     padding-inline-start: 1.5em;
-    list-style-type: disc;
   }
-  li {
-    &::marker {
-      color: ${themeColor.accent2};
+  ul {
+    list-style-type: disc;
+    li {
+      &::marker {
+        color: ${themeColor.accent2};
+      }
     }
+  }
+  ol {
+    list-style-type: decimal;
   }
   a {
     color: #fa620a;
@@ -88,8 +93,10 @@ const Content = styled.article`
     }
   }
   .rehype-code-title {
+    margin-top: 1rem;
     margin-bottom: -0.7rem;
-    padding: 0.3em 0.7em;
+    padding: 0.18em 0.8em;
+    font-size: 0.9rem;
     font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console',
       'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
       'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier,
@@ -103,6 +110,13 @@ const Content = styled.article`
   img {
     width: 100%;
     height: auto;
+    margin-top: 1rem;
+  }
+  hr {
+    background: #c8c8c8;
+    height: 1px;
+    border: 0;
+    margin: 3rem 0;
   }
 `
 

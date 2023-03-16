@@ -134,6 +134,8 @@ export default function App({ Component, pageProps }: AppProps) {
 
 - [구글 콘솔](https://search.google.com/search-console) - 개요 - 오른쪽 상단 `Search Console Insights` 클릭
 
+---
+
 #### 참고
 
 - [nextjs예시](https://github.com/vercel/next.js/tree/canary/examples/with-google-analytics)
