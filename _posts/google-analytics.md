@@ -17,13 +17,7 @@ tags:
 
 1. 관리 - 데이터스트림 - 스트림 추가 - 내사이트 입력
 2. 태그 안내보기 - `직접 설치`
-3. 파일 설정 [nextjs예시](https://github.com/vercel/next.js/tree/canary/examples/with-google-analytics)
-
-- `.env` 추가
-
-  ```js
-  NEXT_PUBLIC_GA_ID = 'G-로 시작하는 id복붙'
-  ```
+3. 파일 설정 - [NextJS 예시](https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics/pages/_app.js)
 
 - 공식예시가 gtag.js여서 ts 타입 정의를 위해 설치
 
@@ -37,7 +31,7 @@ tags:
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
-export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID ?? ''
+export const GA_TRACKING_ID = `G-로 시작하는 id복붙`
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: URL) => {
@@ -120,17 +114,25 @@ export default function App({ Component, pageProps }: AppProps) {
 ```
 
 - `{!isDev && ( ... ) }` 배포 모드일때만 해당 script를 추가하게 함
-- `id="gtag-init"`으로 html에 추가됐는지 확인할 수 있게 함
+- 배포 후 사이트 html Elements탭에서 `id="gtag-init"`으로 검색해서 잘 추가됐는지 확인하기
+- 구글 애널리틱스에 표시되기까지 24-48시간 정도 걸린다고 한다..
 
-- 구글 애널리틱스에 표시되기까지 24-48시간 정도 걸림
+## 실시간 사용자 수 보기
+
+- [Google Analytics](https://analytics.google.com/analytics)에 왼쪽 탭에서 `보고서` 클릭 - `실시간` 클릭
+  밑처럼 실시간 사용자 수를 분석한 통계를 볼 수 있다!
+  ![230316-132736](/images/posts/google-analytics/230316-132736.png)
 
 # Google Search Console과 연결
+
+구글에서 검색해서 들어온 통계를 보기 위해서 연결하기
 
 - 관리자 - Search Console 링크 - 연결
   ![230309-161524](/images/posts/google-analytics/230309-161524.png)
 
-- 구글 콘솔에서 사이트 통계보기
-  [구글 콘솔](https://search.google.com/search-console) - 개요 - 오른쪽 상단 Search Console Insights 클릭
+#### 구글 콘솔에서 사이트 통계보기
+
+- [구글 콘솔](https://search.google.com/search-console) - 개요 - 오른쪽 상단 `Search Console Insights` 클릭
 
 #### 참고
 
