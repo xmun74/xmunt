@@ -17,26 +17,60 @@ tags:
 # 1. sitemap
 
 [구글 사이트맵 설명](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview?hl=ko)
-sitemap이란 사이트의 정보를 제공하는 파일이다.
-검색엔진이 이 파일을 읽고 더 효율적으로 사이트를 크롤링할 수 있게 도움을 준다.
-검색엔진에 사이트맵 url을 추가해야되기 때문에 먼저 sitemap부터 생성하도록 하겠다
+sitemap이란?
+사이트에 있는 페이지, 동영상 등의 정보를 제공하는 파일이다.
+검색엔진이 sitemap 파일을 읽고 더 효율적으로 사이트를 크롤링할 수 있게 도움을 준다.
+따라서 검색했을 때 해당 사이트가 검색되게 하려면? sitemap을 생성해서 등록해주면 된다.
+검색엔진에 사이트맵 URL을 추가해야되기 때문에 먼저 sitemap 파일부터 생성해보자!
 
-- `next-sitemap` 라이브러리 설치
+## 방법 1. `next-sitemap` 라이브러리로 sitemap.xml 만들기
+
+- [next-sitemap](https://github.com/iamvishnusankar/next-sitemap) 라이브러리 설치
 
 ```bash
 npm i -D next-sitemap
 ```
 
-- `next-sitemap.config.js` 생성
+- `next-sitemap.config.js` 생성하고
+
+  ```js:next-sitemap.config.js
+  /** @type {import('next-sitemap').IConfig} */
+  module.exports = {
+    siteUrl: '본인 사이트 url',
+    changefreq: 'daily',
+    priority: 0.7,
+    sitemapSize: 7000,
+    generateRobotsTxt: true,
+    exclude: [],
+  }
+  ```
+
+- `tsconfig.json`에 "next-sitemap.config.js"을 추가한다
+
+  ```json:tsconfig.json {6} showLineNumbers
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.d.ts",
+    "next-sitemap.config.js"
+  ],
+  ```
 
 - `package.json` 수정
   ` "build": "next build && next-sitemap && next export",`
 
 - npm run build 하면
   `public/robots.text`, `public/sitemap.xml`, `public/sitemap-0.xml` 파일 생성됨
-  원격 push 안되게 gitignore에 추가
+  원격 push 안되게 gitignore에 추가하기
 
-# 2. 검색엔진
+> - `sitemap.xml` - 어떤 URL을 크롤링하는 지 알려주는 역할
+
+## 방법 2. 직접 sitemap.xml 만들기
+
+원래는 `next-sitemap` 라이브러리를 사용했는데 자꾸 구글 콘솔에 인식이 안되서 직접 만들기로 했다.
+
+# 2. 검색엔진 등록
 
 - 구글 서치 콘솔 - [Google Search Console](https://search.google.com/search-console/welcome?utm_source=about-page)
 - 네이버 서치 어드바이저- [Naver Search Advisor](https://searchadvisor.naver.com/)

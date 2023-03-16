@@ -9,7 +9,6 @@ import isDev from '../lib/isDev'
 
 export default function App({ Component, pageProps }: AppProps) {
   if (!isDev) gtag.useGtag()
-
   return (
     <RecoilRoot>
       <GlobalStyle />
