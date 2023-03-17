@@ -61,16 +61,21 @@ npm i -D next-sitemap
   ` "build": "next build && next-sitemap && next export",`
 
 - npm run build 하면
-  `public/robots.text`, `public/sitemap.xml`, `public/sitemap-0.xml` 파일 생성됨
+  `public/robots.txt`, `public/sitemap.xml`, `public/sitemap-0.xml` 파일 생성됨
   원격 push 안되게 gitignore에 추가하기
 
 > - `sitemap.xml` - 어떤 URL을 크롤링하는 지 알려주는 역할
+> - `robots.txt` - 어떤 URL에 접근할 수 있는지 검색엔진 크롤러에 알려주는 역할
 
 ## 방법 2. 직접 sitemap.xml 만들기
 
 원래는 `next-sitemap` 라이브러리를 사용했는데 자꾸 구글 콘솔에 인식이 안되서 직접 만들기로 했다.
 
-# 2. 검색엔진 등록
+# 2. 검색엔진 등록 방법
+
+### 검색엔진 종류
+
+내 블로그는 주로 사용하는 구글과 네이버 검색엔진을 등록하기로 했다.
 
 - 구글 서치 콘솔 - [Google Search Console](https://search.google.com/search-console/welcome?utm_source=about-page)
 - 네이버 서치 어드바이저- [Naver Search Advisor](https://searchadvisor.naver.com/)
@@ -79,12 +84,10 @@ npm i -D next-sitemap
 ## [Google Search Console](https://search.google.com/search-console/welcome?utm_source=about-page)
 
 1. 사이트 등록 - 도메인이 있다면 도메인을 등록하거나, URL접두어를 등록하기
+   ![230308-123054](/images/posts/sitemap-seo/230308-123054.png)
 
-![230308-123054](/images/posts/sitemap-seo/230308-123054.png)
-
-![230308-123528](/images/posts/sitemap-seo/230308-123528.png)
-
-2. `_document.tsx`에 위에서 복사한 HTML `meta` 태그 추가
+2. 아래의 HTML `meta` 태그를 `_document.tsx` `Head`에 추가
+   ![230308-123528](/images/posts/sitemap-seo/230308-123528.png)
 
 ```js:_document.tsx {4-7} showLineNumbers
     return (

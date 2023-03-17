@@ -85,7 +85,6 @@ export default function PreviewContent({
                     src={el.imgUrl}
                     alt={el.title}
                     draggable={false}
-                    priority
                     fill
                     sizes="320 640 750"
                   />
