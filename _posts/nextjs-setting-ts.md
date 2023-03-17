@@ -11,8 +11,6 @@ category: 'NextJS'
 
 #### 개발환경
 
-> blockquote다
-
 - next.js - 13.1.1
 - typescript - 4.9.4
 - eslint (+ airbnb규칙) - 8.31.0
@@ -35,10 +33,10 @@ pnpm create next-app --ts 프로젝트명
 # eslint 설치하겠냐는 질문에 yes 선택
 ```
 
-```diff-json:package.json {1} showLineNumbers
+```diff-json:package.json showLineNumbers
 {
-+  "name": "xmunt",
--  "version": "0.1.0",
+  "name": "xmunt",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
