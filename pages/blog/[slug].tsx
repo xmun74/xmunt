@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import styled from 'styled-components'
-import { getAllPosts, getPostBySlug } from '../../lib/api'
+import { getAllPosts, getPostBySlug, getPostToc } from '../../lib/api'
 import Seo from '../../components/Seo'
 import PostBody from '../../components/PostBody'
 import PostDate from '../../components/PostDate'
@@ -93,7 +93,7 @@ export async function getStaticProps({ params }: Params) {
     prevPost: allPosts[postIdx + 1] ?? null,
     nextPost: allPosts[postIdx - 1] ?? null,
   }
-  const postToc = '목차입니다'
+  const postToc = getPostToc(mdx)
   return {
     props: {
       post: {

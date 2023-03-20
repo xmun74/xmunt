@@ -51,3 +51,9 @@ export function getAllPosts(fields: string[] = []) {
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
   return posts //  [ { slug: 'pre-rendering' }, { slug: 'preview' } ]
 }
+
+export function getPostToc(mdx: any) {
+  mdx.compiledSource.split('\n')
+  // console.log(mdx.compiledSource) //
+  return '미완성'
+}
