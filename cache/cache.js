@@ -1,6 +1,7 @@
-import fs from 'fs'
-import { join } from 'path'
-import matter from 'gray-matter'
+/* eslint @typescript-eslint/no-var-requires: "off" */
+const fs = require('fs')
+const { join } = require('path')
+const matter = require('gray-matter')
 
 function postData() {
   const postsDirectory = join(process.cwd(), '_posts')
