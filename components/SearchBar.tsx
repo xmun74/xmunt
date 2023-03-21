@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useCallback, useRef, useState } from 'react'
 import styled from 'styled-components'
+import useHotkey from '../lib/hooks/useHotkey'
 import { CachedPost } from '../pages/api/search'
 import { themeColor } from '../styles/theme'
 
@@ -76,7 +77,9 @@ export default function SearchBar() {
   const searchRef = useRef(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const searchEndPoint = (value: string) => `/api/search?q=${value}`
+  useHotkey({ inputRef })
+
+  const searchEndPoint = (inputValue: string) => `/api/search?q=${inputValue}`
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
@@ -103,6 +106,11 @@ export default function SearchBar() {
   const handleFocus = () => {
     setActive(true)
   }
+
+  const handleResultClick = () => {
+    setQuery('')
+    setActive(false)
+  }
   return (
     <SearchBarContainer ref={searchRef}>
       <SearchInput
@@ -123,7 +131,7 @@ export default function SearchBar() {
       {active && results.length > 0 && (
         <SearchResultUl>
           {results?.map(({ slug, title, content }) => (
-            <SearchResultLi key={title}>
+            <SearchResultLi key={title} onClick={handleResultClick}>
               <SearchResultLink href={`/blog/${slug}`} key={title}>
                 {title}
               </SearchResultLink>

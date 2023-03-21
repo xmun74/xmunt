@@ -26,7 +26,7 @@ const BlogLinkWrap = styled.div`
 export default function Home() {
   const previewPosts = [
     {
-      href: '/blog/preview',
+      href: '/blog/nextjs-setting-ts',
       title:
         'NextJs + TS 셋팅 - eslint, prettier, styled-components (husky, lint-staged, airbnb)',
       date: '2023-02-07',
