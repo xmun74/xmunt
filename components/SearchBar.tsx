@@ -87,7 +87,11 @@ export default function SearchBar() {
 
     if (value.trim().length === 0) setResults([])
     else {
-      fetch(searchEndPoint(value))
+      fetch(searchEndPoint(value), {
+        headers: {
+          Accept: 'application / json',
+        },
+      })
         .then((res) => res.json())
         .then((data) => {
           setResults([...data.results])

@@ -11,10 +11,11 @@ export type CachedPost = {
 type Data = {
   results: CachedPost[]
 }
-const posts =
+const posts = cachedPosts as CachedPost[]
+/* const posts =
   process.env.NODE_ENV === 'production'
     ? (cachedPosts as CachedPost[])
-    : (getAllPosts(['slug', 'title', 'content']) as CachedPost[])
+    :   getAllPosts(['slug', 'title', 'content']) as CachedPost[] */
 
 export default function searchHandler(
   req: NextApiRequest,
@@ -26,10 +27,10 @@ export default function searchHandler(
     ? posts.filter((post) =>
         post.title.toLowerCase().includes(query.q!.toString()),
       )
-    : posts
+    : []
 
   res.setHeader('Content-Type', 'application/json')
   res.status(200).json({ results })
 
-  // console.log(`${method} 쿼리: `, req.query.q)
+  console.log(`${method} 쿼리: `, req.query.q, results)
 }
