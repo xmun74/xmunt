@@ -12,7 +12,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true
   },
   "include": [
@@ -20,7 +20,8 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.d.ts",
-    "next-sitemap.config.js"
+    "next-sitemap.config.js",
+    "cache/cache.js"
   ],
   "exclude": ["node_modules"]
 }

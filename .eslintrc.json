@@ -11,7 +11,7 @@
     "node": true,
     "es6": true
   },
-  "ignorePatterns": ["node_modules/"],
+  "ignorePatterns": ["node_modules/", "cache/post.js"],
   "extends": [
     "airbnb",
     "airbnb-typescript",
@@ -30,6 +30,7 @@
     "no-useless-catch": "off",
     "no-console": "off",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
-    "react/require-default-props": "warn"
+    "react/require-default-props": "warn",
+    "import/prefer-default-export": "off"
   }
 }

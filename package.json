@@ -2,12 +2,15 @@
   "name": "xmunt",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build && next-sitemap --config next-sitemap.config.js && next export",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "cache-posts": "node cache/cache.js",
+    "pre-commit": "npm run cache-posts && git add cache/post.js"
   },
   "dependencies": {
     "@next/font": "13.1.1",
