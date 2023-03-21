@@ -6,6 +6,7 @@ import { themeColor } from '../styles/theme'
 import ThemeToggleBtn from './button/ThemeToggleBtn'
 import themeState from '../states/atoms/theme'
 import Nav from './Nav'
+import SearchBar from './SearchBar'
 
 const Container = styled.header`
   position: fixed;
@@ -40,8 +41,13 @@ const HeaderWrap = styled.div`
   display: flex;
 `
 const LogoBtn = styled.button`
+  position: relative;
   border: none;
-  width: 5rem;
+  width: 70px;
+  height: 60px;
+  @media screen and (max-width: 767px) {
+    width: 55px;
+  }
 `
 export default function Header() {
   const theme = useRecoilValue(themeState)
@@ -51,12 +57,13 @@ export default function Header() {
   return (
     <Container>
       <HeaderContent>
-        <LogoBtn>
-          <Link href="/">
-            <Image src={curTheme} alt="사이트 로고" width={70} height={60} />
-          </Link>
-        </LogoBtn>
+        <Link href="/">
+          <LogoBtn>
+            <Image src={curTheme} alt="사이트 로고" fill />
+          </LogoBtn>
+        </Link>
         <HeaderWrap>
+          <SearchBar />
           <Nav />
           <ThemeToggleBtn />
         </HeaderWrap>

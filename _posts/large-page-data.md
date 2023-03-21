@@ -1,5 +1,5 @@
 ---
-title: 'lage-page-data warning'
+title: 'large-page-data warning'
 description: '로드되는 페이지 데이터 용량이 클 경우 나타나는 경고문'
 coverImage: ''
 image: ''

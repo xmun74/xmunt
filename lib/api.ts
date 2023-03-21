@@ -2,23 +2,28 @@ import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
 
-// gray-matter: 모든 게시글 추출해서 page의 props로 전달하기
+/** _posts 폴더 path
+ * @returns /Users/username/Documents/xmunt/_posts
+ */
+const POST_PATH = join(process.cwd(), '_posts')
 
-// path.join(경로,...) : 여러 인자면 하나의 경로로 합쳐주기  /  process.cwd() :  프로젝트 폴더 반환함.
-const POST_PATH = join(process.cwd(), '_posts') //  /Users/mun/Documents/xmunt/_posts
-const fileNames = fs.readdirSync(POST_PATH)
-
+/**
+ * _posts 폴더 안 모든 글 slug 출력
+ * @returns [ 'pre-rendering.md', 'preview.md', ... ]
+ */
 export function getPostSlugs() {
-  return fs.readdirSync(POST_PATH) // readdirSync: 비동기 폴더검색  => [ 'pre-rendering.md', 'preview.md' ]
+  return fs.readdirSync(POST_PATH)
 }
 
-// [ 'pre-rendering.md', 'preview.md' ] 각각에 ['title', 'date'] 필드 전송
-// slugs.map((slug)=> getPostBySlug(slug, fields) )
+/** <특정 글> slug에 맞는 fields값(slug, title, date 등) 출력
+ * @params - ex) getPostBySlug(params.slug, ['slug', 'title', 'date', ...])
+ * @returns - { slug: 'open-graph', title: '블로그 제목', date: '2023-00-00', ...}
+ */
 export function getPostBySlug(slug: string, fields: string[] = []) {
-  const realSlug = slug.replace(/\.md$/, '')
-  const fullPath = join(POST_PATH, `${realSlug}.md`) // /Users/mun/Documents/xmunt/_posts/pre-rendering.md
-  const fileContents = fs.readFileSync(fullPath, 'utf8') // 해당md 파일 내용전체
-  const { data, content } = matter(fileContents) // md파싱하기 - data는 title,date같은 최상위 작성한것 / content는 작성내용
+  const realSlug = slug.replace(/\.md$/, '') // Remove ".md" from file name
+  const fullPath = join(POST_PATH, `${realSlug}.md`) // /Users/username/Documents/xmunt/_posts/pre-rendering.md
+  const fileContents = fs.readFileSync(fullPath, 'utf8') // 해당 md 파일 내용전체
+  const { data, content } = matter(fileContents) // md 파싱하기 - data는 frontmatter / content는 작성내용
 
   type Items = {
     [key: string]: string
@@ -38,18 +43,21 @@ export function getPostBySlug(slug: string, fields: string[] = []) {
       items[field] = data[field]
     }
   })
-
   return items
 }
 
-//  getAllPosts(['title', 'date'])
+/**
+ * <모든 글> fields값(slug, title, date 등) 출력
+ * @param  fields - ex) getAllPosts(['slug', 'date'])
+ * @returns [ { slug: 'pre-rendering', date: '2023-00-00' }, { slug: 'preview', date: '2023-00-00' }, ... ]
+ */
 export function getAllPosts(fields: string[] = []) {
-  const slugs = getPostSlugs() //  [ 'pre-rendering.md', 'preview.md' ]
+  const slugs = getPostSlugs()
   const posts = slugs
     .map((slug) => getPostBySlug(slug, fields))
     // sort posts by date in descending order 날짜 내림차순 정렬
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
-  return posts //  [ { slug: 'pre-rendering' }, { slug: 'preview' } ]
+  return posts
 }
 
 export function getPostToc(mdx: any) {
