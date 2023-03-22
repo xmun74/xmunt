@@ -82,19 +82,14 @@ export default function SearchBar() {
   useHotkey({ inputRef })
 
   const URL = isDev === true ? '' : DOMAIN
-  const searchEndPoint = (value: string) => `${URL}/api/search?q=${value}`
+  const searchEndPoint = (value: string) => `/api/search?q=${value}`
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
     setQuery(value)
-
     if (value.trim().length === 0) setResults([])
     else {
-      fetch(`/api/search?q=${value}`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      fetch(searchEndPoint(value))
         .then((res) => res.json())
         .then((data) => {
           setResults(data.results)
