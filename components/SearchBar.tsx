@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import { useCallback, useRef, useState } from 'react'
 import styled from 'styled-components'
+import DOMAIN from '../constants/domain'
 import useHotkey from '../lib/hooks/useHotkey'
+import isDev from '../lib/isDev'
 import { CachedPost } from '../pages/api/search'
 import { themeColor } from '../styles/theme'
 
@@ -79,7 +81,9 @@ export default function SearchBar() {
 
   useHotkey({ inputRef })
 
-  const searchEndPoint = (inputValue: string) => `/api/search?q=${inputValue}`
+  const URL = isDev === true ? '' : DOMAIN
+  const searchEndPoint = (inputValue: string) =>
+    `${URL}/api/search?q=${inputValue}`
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
@@ -89,7 +93,7 @@ export default function SearchBar() {
     else {
       fetch(searchEndPoint(value), {
         headers: {
-          Accept: 'application / json',
+          'Content-Type': 'application/json',
         },
       })
         .then((res) => res.json())

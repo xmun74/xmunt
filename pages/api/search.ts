@@ -32,5 +32,5 @@ export default function searchHandler(
   res.setHeader('Content-Type', 'application/json')
   res.status(200).json({ results })
 
-  console.log(`${method} 쿼리: `, req.query.q, results)
+  // console.log(`${method} 쿼리: `, req.query.q, results)
 }
