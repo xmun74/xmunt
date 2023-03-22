@@ -29,8 +29,9 @@ export default function searchHandler(
       )
     : []
 
+  res.statusCode = 200
   res.setHeader('Content-Type', 'application/json')
-  res.status(200).json({ results })
+  res.end(JSON.stringify({ results }))
 
   console.log(`${method} 쿼리: `, req.query.q, results)
 }
