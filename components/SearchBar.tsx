@@ -98,8 +98,9 @@ export default function SearchBar() {
       })
         .then((res) => res.json())
         .then((data) => {
-          setResults([...data.results])
+          setResults(data.results)
         })
+        .catch((err) => console.log('Error :', err))
     }
   }, [])
 

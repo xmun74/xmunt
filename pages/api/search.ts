@@ -5,12 +5,13 @@ import { cachedPosts } from '../../cache/post'
 export type CachedPost = {
   slug: string
   title: string
-  content: string
+  content?: string
 }
 
 type Data = {
   results: CachedPost[]
 }
+
 const posts = cachedPosts as CachedPost[]
 /* const posts =
   process.env.NODE_ENV === 'production'
@@ -33,5 +34,5 @@ export default function searchHandler(
   res.setHeader('Content-Type', 'application/json')
   res.end(JSON.stringify({ results }))
 
-  console.log(`${method} 쿼리: `, req.query.q, results)
+  // console.log(`${method} 쿼리: `, req.query.q, results)
 }
