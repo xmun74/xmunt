@@ -1,12 +1,10 @@
 import { useState } from 'react'
-import styled from 'styled-components'
 import useTimeout from '../../lib/hooks/useTimeout'
 import { themeColor } from '../../styles/theme'
 import IconBtn from '../common/IconBtn'
 import CheckIcon from '../icons/CheckIcon'
 import CopyLinkIcon from '../icons/CopyLinkIcon'
 
-const BtnContainer = styled.div``
 export default function CopyLinkBtn() {
   const [copied, setCopied] = useState(false)
 

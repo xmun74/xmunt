@@ -1,5 +1,5 @@
-import fs from 'fs'
 import { join } from 'path'
+import fs from 'fs'
 import matter from 'gray-matter'
 
 /** _posts 폴더 path
@@ -60,8 +60,43 @@ export function getAllPosts(fields: string[] = []) {
   return posts
 }
 
-export function getPostToc(mdx: any) {
-  mdx.compiledSource.split('\n')
-  // console.log(mdx.compiledSource) //
-  return '미완성'
+/**
+ * Toc - headings 추출
+ * @param content
+ * @returns  text, href, level
+ */
+export function getPostToc(content: string) {
+  const headingLines = content.split('\n').filter((el: string) => {
+    // let test = el.replace(/`{3,3}.+/gm, '') // ```제외
+    // let test2 = el.match(/^((?!`{3,3}.+).)*$/gm)
+    // console.log(test)
+
+    return el.match(/(^#{1,3})\s/) // #1-3개까지 있는 문자열 추출
+  })
+
+  return headingLines.map((el: any) => {
+    let text = el.replace(/^##*\s/, '')
+    let textOnly
+    if (text.slice(0, 1) === '[') {
+      textOnly = text.match(/\[.*\]/gi)
+      textOnly += ''
+      textOnly = textOnly.split('[').join('')
+      textOnly = textOnly.split(']').join('')
+      text = textOnly
+    }
+
+    let href = text.toLowerCase().replaceAll(' ', '-')
+    // let hrefRegex = /[^ㄱ-ㅎ가-힣a-zA-Z0-9][-]*$/gi
+    /* eslint-disable-next-line */
+    let hrefRegex = /[`~!@#$%^&*()|+\=?;:'",.<>\{\}\[\]\\\/ ]/gi // 특수문자 -_뺴고 삭제
+    href = href.replace(hrefRegex, '')
+
+    let level
+    if (el.slice(0, 2) === '# ') {
+      level = 1
+    } else {
+      level = el.slice(0, 3) === '###' ? 3 : 2
+    }
+    return { text, href, level }
+  })
 }

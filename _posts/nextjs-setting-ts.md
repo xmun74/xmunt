@@ -21,16 +21,16 @@ category: 'NextJS'
 
 # Next.js + TS 설치
 
-### 1. Next.js + TS **새 프로젝트로 생성**하는 방법 1
+### 1. Next.js + TS 새 프로젝트로 생성하는 방법 1
 
 ```bash
 npx create-next-app@latest --ts 프로젝트명
-# or
+#or
 yarn create next-app --typescript 프로젝트명
-# or
+#or
 pnpm create next-app --ts 프로젝트명
 
-# eslint 설치하겠냐는 질문에 yes 선택
+#eslint 설치하겠냐는 질문에 yes 선택
 ```
 
 ```diff-json:package.json showLineNumbers
@@ -110,12 +110,12 @@ npm info "eslint-config-airbnb@latest" peerDependencies
 #### 설치하기
 
 ```bash
-# 1. airbnb + 종속 패키지까지 설치하기
+#1. airbnb + 종속 패키지까지 설치하기
 npx install-peerdeps --dev eslint-config-airbnb
-# 또는 각각 개별적 설치
+#또는 각각 개별적 설치
 npm install -D eslint eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-jsx-ally
 
-# 2. TypeScript 관련 airbnb, lint 패키지 설치하기
+#2. TypeScript 관련 airbnb, lint 패키지 설치하기
 npm install -D eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ```
 
@@ -221,7 +221,7 @@ npm install -D prettier eslint-plugin-prettier eslint-config-prettier
 - rules
   배열의 첫번째 값을 0,1,2나 "off", "warn", "error"로 규칙 표시
 
-> ## Error
+## Error
 
 #### 1. `npm run lint` 실행 시 뜨는 에러내용
 
@@ -323,7 +323,7 @@ eslint-config-prettier 버전 8부터
 - staged된 파일만 특정 명령어 실행하는 도구
 - commit 시 전체가 아니라 변경된 파일만 eslint, prettier 실행하기
 
-### 설치하기
+#### 설치하기
 
 #### 1. [husky 권장설치 공식문서](https://typicode.github.io/husky/#/?id=automatic-recommended)
 
@@ -377,7 +377,7 @@ npx lint-staged # 추가
 
 # 4. styled-components 설정
 
-### 설치하기
+#### 설치하기
 
 ```bash
 npm i styled-components

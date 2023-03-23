@@ -1,8 +1,8 @@
+import Link from 'next/link'
 import styled from 'styled-components'
 import { themeColor } from '../styles/theme'
 import CopyLinkBtn from './button/CopyLinkBtn'
 import IconBtn from './common/IconBtn'
-import CopyLinkIcon from './icons/CopyLinkIcon'
 import DownArrowIcon from './icons/DownArrowIcon'
 import UpArrowIcon from './icons/UpArrowIcon'
 
@@ -13,20 +13,29 @@ const TocContainer = styled.div`
   right: 30px;
   bottom: 0;
   width: 15%;
-  height: 60%; //
   overflow-y: auto;
   padding: 1rem;
 
-  border: 1px solid ${themeColor.inlineCode};
   @media screen and (min-width: 1150px) {
-    display: none;
-    /* display: flex; */
+    /* display: none; */
+    display: flex;
     flex-direction: column;
-    justify-content: space-between;
     border-radius: 5px;
   }
 `
-const TocContent = styled.div``
+const TocContent = styled.div`
+  font-size: 0.8rem;
+  margin-bottom: 1.5rem;
+`
+const TocAnchor = styled(Link)<{ level: number }>`
+  display: block;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
+  padding-left: ${({ level }) => (level > 1 ? '10px' : '0')};
+`
 const BtnContainer = styled.div`
   display: flex;
   justify-content: space-around;
@@ -35,10 +44,23 @@ const BtnContainer = styled.div`
   padding: 0.5rem;
 `
 
-export default function PostToc({ postToc }: { postToc: any }) {
+export interface PostTocProps {
+  text: string
+  href: string
+  level: number
+}
+
+export default function PostToc({ postToc }: { postToc: PostTocProps[] }) {
   return (
     <TocContainer>
-      <TocContent>{postToc}</TocContent>
+      <TocContent>
+        {postToc &&
+          postToc.map((el: any) => (
+            <TocAnchor key={el.text} href={`#${el.href}`} level={el.level}>
+              {el.text}
+            </TocAnchor>
+          ))}
+      </TocContent>
       <BtnContainer>
         <CopyLinkBtn />
         <IconBtn

@@ -11,7 +11,7 @@ import { PostType } from '../../lib/types'
 import AuthorInfo from '../../components/common/AuthorInfo'
 import RecentPost, { RecentPostProps } from '../../components/common/RecentPost'
 import Tag from '../../components/common/Tag'
-import PostToc from '../../components/PostToc'
+import PostToc, { PostTocProps } from '../../components/PostToc'
 
 const HeaderContainer = styled.div`
   margin-bottom: 70px;
@@ -34,7 +34,7 @@ export default function Detail({
   post: PostType
   mdx: MDXRemoteSerializeResult
   recentPostProps: RecentPostProps
-  postToc: any //
+  postToc: PostTocProps[]
 }) {
   const router = useRouter()
   if (!router.isFallback && !post?.slug) {
@@ -93,7 +93,7 @@ export async function getStaticProps({ params }: Params) {
     prevPost: allPosts[postIdx + 1] ?? null,
     nextPost: allPosts[postIdx - 1] ?? null,
   }
-  const postToc = getPostToc(mdx)
+  const postToc = getPostToc(postData.content)
   return {
     props: {
       post: {

@@ -12,7 +12,7 @@ tags:
   - SEO
 ---
 
-#### 🤬 정보가 없는 미리보기
+#### 정보가 없는 미리보기
 
 ![230314-185422](/images/posts/open-graph/230314-185422.png)
 만약 위처럼 블로그를 공유했는데
@@ -21,7 +21,7 @@ tags:
 
 <br></br>
 
-#### 🥳 정보가 풍부한 미리보기
+#### 정보가 풍부한 미리보기
 
 ![230314-185428](/images/posts/open-graph/230314-185428.png)
 이번엔 위처럼 SNS에 블로그 링크를 공유할때
@@ -30,7 +30,7 @@ tags:
 
 <br></br><br></br>
 
-# Open Graph 🖼
+# Open Graph
 
 링크를 공유했을 때 정보를 표시해주는 open graph를 적용해보자!
 Open Graph는 통일된 메타데이터를 작성하도록 정의한 규약이다. Facebook, Twitter는 자체 프로토콜을 가지고 있다.
