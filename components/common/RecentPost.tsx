@@ -45,7 +45,7 @@ export type RecentPostProps = {
 
 export default function RecentPost({ prevPost, nextPost }: RecentPostProps) {
   return (
-    <RecentPostContainer>
+    <RecentPostContainer className="recentPost-link">
       {prevPost && (
         <RecentPostContent href={prevPost?.slug ?? '/'}>
           <LeftArrowIcon width={20} height={20} fill={`${themeColor.text1}`} />
