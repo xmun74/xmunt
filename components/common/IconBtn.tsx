@@ -5,9 +5,12 @@ const IconBtnContainer = styled.button`
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 15px;
-  margin-right: 0.3rem;
   &:hover {
     background-color: #cad0d97a;
+  }
+  @media screen and (max-width: 767px) {
+    width: 2rem;
+    height: 2rem;
   }
 `
 export default function IconBtn({

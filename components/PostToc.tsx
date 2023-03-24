@@ -2,35 +2,42 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import { themeColor } from '../styles/theme'
 import CopyLinkBtn from './button/CopyLinkBtn'
-import IconBtn from './common/IconBtn'
-import DownArrowIcon from './icons/DownArrowIcon'
-import UpArrowIcon from './icons/UpArrowIcon'
+import ScrollDownBtn from './button/ScrollDownBtn'
+import ScrollUpBtn from './button/ScrollUpBtn'
 
 const TocContainer = styled.div`
-  display: none;
   position: fixed;
-  top: 100px;
-  right: 30px;
+  right: 0px;
   bottom: 0;
-  width: 15%;
   overflow-y: auto;
   padding: 1rem;
-
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #bab9b98c;
+    border-radius: 20px;
+    scrollbar-width: thin;
+  }
   @media screen and (min-width: 1150px) {
-    /* display: none; */
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
+    right: 30px;
+    top: 80px;
+    width: 16.5%;
   }
 `
 const TocContent = styled.div`
+  display: none;
   font-size: 0.8rem;
   margin-bottom: 1.5rem;
+  @media screen and (min-width: 1150px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 const TocAnchor = styled(Link)<{ level: number }>`
   display: block;
   margin-bottom: 1rem;
-  opacity: 0.7;
+  opacity: 0.55;
   &:hover {
     opacity: 1;
   }
@@ -38,10 +45,16 @@ const TocAnchor = styled(Link)<{ level: number }>`
 `
 const BtnContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
   border-radius: 15px;
   background-color: ${themeColor.inlineCode};
-  padding: 0.5rem;
+  padding: 0.3rem;
+  @media screen and (min-width: 1150px) {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0.5rem;
+  }
 `
 
 export interface PostTocProps {
@@ -63,20 +76,8 @@ export default function PostToc({ postToc }: { postToc: PostTocProps[] }) {
       </TocContent>
       <BtnContainer>
         <CopyLinkBtn />
-        <IconBtn
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        >
-          <UpArrowIcon fill={`${themeColor.text1}`} />
-        </IconBtn>
-        <IconBtn
-          onClick={() =>
-            document
-              .querySelector('.recentPost-link')
-              ?.scrollIntoView({ behavior: 'smooth' })
-          }
-        >
-          <DownArrowIcon fill={`${themeColor.text1}`} />
-        </IconBtn>
+        <ScrollUpBtn />
+        <ScrollDownBtn />
       </BtnContainer>
     </TocContainer>
   )
