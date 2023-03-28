@@ -1,9 +1,8 @@
 import Link from 'next/link'
 import { useCallback, useRef, useState } from 'react'
 import styled from 'styled-components'
-import DOMAIN from '../constants/domain'
+import { postsApi } from '../lib/apis'
 import useHotkey from '../lib/hooks/useHotkey'
-import isDev from '../lib/isDev'
 import { CachedPost } from '../pages/api/search'
 import { themeColor } from '../styles/theme'
 
@@ -81,27 +80,18 @@ export default function SearchBar() {
 
   useHotkey({ inputRef })
 
-  const URL = isDev === true ? '' : DOMAIN
-  const searchEndPoint = (value: string) => `/api/search?q=${value}`
-
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target
-    setQuery(value)
-    if (value.trim().length === 0) setResults([])
-    else {
-      fetch(searchEndPoint(value), {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setResults(data.results)
-        })
-        .catch((err) => console.log('Error :', err))
-    }
-  }, [])
+  const handleChange = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { value } = e.target
+      setQuery(value)
+      if (value.trim().length === 0) setResults([])
+      else {
+        const data = await postsApi.searchPosts(value)
+        setResults(data?.results)
+      }
+    },
+    [],
+  )
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Escape') {

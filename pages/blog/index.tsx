@@ -1,9 +1,11 @@
 import Link from 'next/link'
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import Heading from '../../components/common/Heading'
 import PostDate from '../../components/PostDate'
 import Seo from '../../components/Seo'
-import { getAllPosts } from '../../lib/api'
+import { blogsApi } from '../../lib/apis'
+import { getAllPosts } from '../../lib/posts'
 import { PostType } from '../../lib/types'
 import { themeColor } from '../../styles/theme'
 
@@ -65,6 +67,9 @@ type Props = {
 }
 
 export default function Blog({ allPosts }: Props) {
+  useEffect(() => {
+    const data = blogsApi.getBlogs() //
+  }, [])
   return (
     <>
       <Seo mode="default" />

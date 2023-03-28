@@ -1,6 +1,6 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getAllPosts } from '../../lib/api'
+import { getAllPosts } from '../../lib/posts'
 import { cachedPosts } from '../../cache/post'
 
 export type CachedPost = {

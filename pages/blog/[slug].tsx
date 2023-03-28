@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import styled from 'styled-components'
-import { getAllPosts, getPostBySlug, getPostToc } from '../../lib/api'
+import { getAllPosts, getPostBySlug, getPostToc } from '../../lib/posts'
 import Seo from '../../components/Seo'
 import PostBody from '../../components/PostBody'
 import PostDate from '../../components/PostDate'

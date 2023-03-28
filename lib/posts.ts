@@ -63,14 +63,10 @@ export function getAllPosts(fields: string[] = []) {
 /**
  * Toc - headings 추출
  * @param content
- * @returns  text, href, level
+ * @returns text, href, level
  */
 export function getPostToc(content: string) {
   const headingLines = content.split('\n').filter((el: string) => {
-    // let test = el.replace(/`{3,3}.+/gm, '') // ```제외
-    // let test2 = el.match(/^((?!`{3,3}.+).)*$/gm)
-    // console.log(test)
-
     return el.match(/(^#{1,3})\s/) // #1-3개까지 있는 문자열 추출
   })
 
@@ -86,7 +82,6 @@ export function getPostToc(content: string) {
     }
 
     let href = text.toLowerCase().replaceAll(' ', '-')
-    // let hrefRegex = /[^ㄱ-ㅎ가-힣a-zA-Z0-9][-]*$/gi
     /* eslint-disable-next-line */
     let hrefRegex = /[`~!@#$%^&*()|+\=?;:'",.<>\{\}\[\]\\\/ ]/gi // 특수문자 -_뺴고 삭제
     href = href.replace(hrefRegex, '')
