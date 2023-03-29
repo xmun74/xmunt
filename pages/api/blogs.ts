@@ -4,7 +4,12 @@ import { CachedPost } from './search'
 // import { cachedPosts } from '../../cache/post'
 
 type Data = {
-  results: CachedPost[]
+  contents: CachedPost[]
+  pageNumber: number
+  totalCount: number
+  totalPages: number
+  isLastPage: boolean
+  isFirstPage: boolean
 }
 
 const posts = getAllPosts([
@@ -23,10 +28,25 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>,
 ) {
-  const { query, method } = req
-  // console.log(`${method} 쿼리: `, req.query.q, results)
+  const { query } = req
+  // console.log(`${req.method} 쿼리: `, req.query) //
 
-  const results = posts
+  const page = Number(query.page)
+  const size = Number(query.size)
+
+  const contents = posts.slice(page * size, (page + 1) * size)
+  const totalCount = posts.length
+  const totalPages = Math.round(totalCount / size)
+  const isLastPage = totalPages <= page
+  const isFirstPage = page === 0
+
   res.setHeader('Content-Type', 'application/json')
-  res.status(200).json({ results })
+  res.status(200).json({
+    contents,
+    pageNumber: page,
+    totalCount,
+    totalPages,
+    isLastPage,
+    isFirstPage,
+  })
 }

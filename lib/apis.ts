@@ -16,7 +16,8 @@ const get = async (path: string, headers = {}) => {
 }
 
 export const blogsApi = {
-  getBlogs: () => get(`/blogs`),
+  getBlogs: (page: number, size: number) =>
+    get(`/blogs?page=${page}&size=${size}`),
 }
 
 export const postsApi = {

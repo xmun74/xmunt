@@ -1,10 +1,11 @@
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 import Heading from '../../components/common/Heading'
 import PostDate from '../../components/PostDate'
 import Seo from '../../components/Seo'
 import { blogsApi } from '../../lib/apis'
+import useIntersect from '../../lib/hooks/useIntersect'
 import { getAllPosts } from '../../lib/posts'
 import { PostType } from '../../lib/types'
 import { themeColor } from '../../styles/theme'
@@ -67,26 +68,49 @@ type Props = {
 }
 
 export default function Blog({ allPosts }: Props) {
-  useEffect(() => {
-    const data = blogsApi.getBlogs() //
-  }, [])
+  const [blogs, setBlogs] = useState([])
+  const [page, setPage] = useState(0)
+  const [nextPage, setNextPage] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const fetchData = async () => {
+    setIsLoading(true)
+    const { contents, pageNumber, isLastPage } = await blogsApi.getBlogs(
+      page,
+      8,
+    )
+    setBlogs(blogs.concat(contents))
+    setPage(pageNumber + 1)
+    setNextPage(!isLastPage)
+    setIsLoading(false)
+  }
+
+  const target = useIntersect(async (entry, observer) => {
+    observer.unobserve(entry.target)
+    if (nextPage && !isLoading) {
+      fetchData()
+    }
+  })
+
   return (
     <>
       <Seo mode="default" />
-      <Heading title={`Posts ${allPosts.length}`} />
+      <Heading title={`Posts ${blogs.length}`} />
       <PostContainer>
-        {allPosts.map(({ slug, title, description, date }) => (
-          <Link as={`/blog/${slug}`} href={`/blog/${slug}`} key={title}>
-            <PostItem>
-              <div>
-                <PostTitle>{title}</PostTitle>
-                <PostDesc>{description}</PostDesc>
-              </div>
-              <PostDate date={date} />
-            </PostItem>
-          </Link>
-        ))}
+        {blogs &&
+          blogs?.map(({ slug, title, description, date }) => (
+            <Link as={`/blog/${slug}`} href={`/blog/${slug}`} key={title}>
+              <PostItem>
+                <div>
+                  <PostTitle>{title}</PostTitle>
+                  <PostDesc>{description}</PostDesc>
+                </div>
+                <PostDate date={date} />
+              </PostItem>
+            </Link>
+          ))}
       </PostContainer>
+      <div ref={target}>{isLoading && <div>Loading...</div>}</div>
     </>
   )
 }
