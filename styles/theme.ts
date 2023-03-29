@@ -35,7 +35,7 @@ export const darkTheme: DefaultTheme = {
   accent1: '#121212',
   accent2: '#bdc3c7',
   accent3: '#2c3e50',
-  text1: '#ffffff',
+  text1: '#ECECEC',
   text2: '#bdc3c7',
   text3: '#bdc3c7',
   bg1: '#121212',

@@ -36,27 +36,27 @@ const Content = styled.article`
     }
   }
   h1 {
-    font-size: 36px;
-    font-weight: 800;
+    font-size: 2.5rem;
+    font-weight: 700;
     margin-top: 50px;
   }
   h2 {
-    font-size: 28px;
-    font-weight: 800;
+    font-size: 2rem;
+    font-weight: 600;
     margin-top: 26px;
   }
   h3 {
-    font-size: 24px;
-    font-weight: 800;
+    font-size: 1.5rem;
+    font-weight: 600;
     margin-top: 22px;
   }
   h4 {
-    font-size: 18px;
-    font-weight: 800;
+    font-size: 1.125rem;
+    font-weight: 700;
     margin-top: 20px;
   }
   p {
-    font-size: 16px;
+    font-size: 1.125rem;
   }
   img {
     width: 100%;

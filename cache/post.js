@@ -5,6 +5,7 @@ export const cachedPosts = [
     title: 'NextJS 블로그에 Google Analytics 추가하기',
   },
   { slug: 'large-page-data', title: 'large-page-data warning' },
+  { slug: 'nextjs-infinite-scroll', title: 'NextJS에서 무한스크롤 구현' },
   {
     slug: 'nextjs-setting-ts',
     title:
