@@ -74,6 +74,7 @@ const Content = styled.article`
     list-style-position: inline;
     line-height: 2.2;
     padding-inline-start: 1.5em;
+    font-size: 1.125rem;
   }
   ul {
     list-style-type: disc;

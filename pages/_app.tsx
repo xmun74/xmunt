@@ -6,9 +6,13 @@ import '../styles/dracula-prism.css'
 import Layout from '../components/Layout'
 import * as gtag from '../lib/gtag'
 import isDev from '../lib/isDev'
+import useScrollRestoration from '../lib/hooks/useScrollRestoration'
 
 export default function App({ Component, pageProps }: AppProps) {
   if (!isDev) gtag.useGtag()
+
+  useScrollRestoration()
+
   return (
     <RecoilRoot>
       <GlobalStyle />

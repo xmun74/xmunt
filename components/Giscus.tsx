@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import { getLocalStorage } from '../lib/localStorage'
+import { getLocalStorage } from '../lib/webStorage'
 import themeState from '../states/atoms/theme'
 
 export default function Giscus() {

@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil'
 import themeState, { ThemeMode } from '../../states/atoms/theme'
-import { setLocalStorage } from '../localStorage'
+import { setLocalStorage } from '../webStorage'
 
 const useToggleTheme = () => {
   const [theme, setTheme] = useRecoilState(themeState)

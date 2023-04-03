@@ -1,14 +1,14 @@
 ---
-title: 'NextJS에서 무한스크롤 구현'
+title: 'NextJS에서 무한스크롤 구현 1'
 description: 'Intersection Observer API를 사용하여 무한 스크롤링 구현하기'
 coverImage: ''
 image: ''
 date: '2023-03-29'
 path: 'nextjs-infinite-scroll'
-category: 'Intersection Observer'
+category: '무한 스크롤'
 tags:
   - 'Intersection Observer'
-  - 'Infinite Scroll'
+  - '무한 스크롤'
 ---
 
 ## 적용하는 이유
@@ -38,10 +38,10 @@ tags:
 #### 구현할 것
 
 - 최하단까지 스크롤하면 N개 데이터 로드
+- 받아올 다음 데이터 없으면 무한 스크롤 중지
 - 로딩중, 스켈레톤 UI 로드
 - 목록에서 스크롤 내리고 1개 글 클릭해서 들어갔다가
   뒤로가기 누르면 이전 스크롤 위치 기억하기
-- 총 데이터 다 불러왔으면 무한 스크롤 중지
 
 ---
 
@@ -69,8 +69,7 @@ let observer = new IntersectionObserver(callback, options)
 
 - `root` - 대상이 root에 들어오면 콜백함수를 실행함. (기본값인 `null`은 viewport가 지정됨)
 - `rootMargin` - root의 margin값 [상,오,하,왼] 지정 가능. (기본값 0)
-- `threshold` - 대상의 가시성 비율을 나타내는 숫자나 배열로, 대상이 얼마나 보이느냐에 따라 콜백함수 실행함.
-  0.5 - 대상이 root에서 50% 보이면 감지 / 1.0- 대상 전체가 보이면 감지 (기본값 0)
+- `threshold` - 대상의 가시성 비율을 나타내는 숫자나 배열로, 대상이 얼마나 보이느냐에 따라 콜백함수 실행함. 0.5 - 대상이 root에서 50% 보이면 감지 / 1.0- 대상 전체가 보이면 감지 (기본값 0)
 
 #### callback 함수
 
@@ -220,7 +219,7 @@ export default function Blog() {
 React의 Strict Mode 엄격 모드에서는 페이지 진입 시 api 호출이 2번 발생한다. 코드를 엄격하게 검사해서 경고 메시지를 출력해주기 때문에 이를 보고 미리 에러를 방지할 수 있다.
 
 - 개발 모드에서만 활성화되고 배포 환경에서는 발생 안한다.
-- NextJS - `next.config.js`
+- NextJS는 `next.config.js`에서 엄격모드가 켜져있는 것을 볼 수 있다.
   ```js:next.config.js
   /** @type {import('next').NextConfig} */
   const nextConfig = {
@@ -237,9 +236,7 @@ return 문에서 `disconnect()`해서 언마운트될 때 관찰을 중단한다
 
 #### 뒤로가기 시 이전 스크롤 위치 기억하기
 
-글 목록에서 글 상세 클릭하기 전 sessionStorage에 페이지를 저장하고 나서
-뒤로가기 이벤트 감지 시 sessionStorage에서 저장된 page 불러와
-값을 넘기기
+뒤로가기 시 스크롤 유지는 다음 글에서 설명하도록 하겠다.
 
 <br /><br /><br />
 

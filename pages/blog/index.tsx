@@ -24,7 +24,6 @@ const PostContainer = styled.div`
 const PostItem = styled.div`
   position: relative;
   height: 170px;
-
   border-radius: 5px;
   padding: 20px 20px 20px 0;
   display: flex;

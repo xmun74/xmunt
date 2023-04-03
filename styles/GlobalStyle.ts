@@ -16,7 +16,9 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Inter', sans-serif;
   }
   body, html{
-    overflow-x: hidden;
+    @media screen and (max-width: 767px) {
+      overflow-x: hidden;
+    }
   }
 
   body {
