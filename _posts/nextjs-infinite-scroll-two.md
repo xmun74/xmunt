@@ -25,20 +25,78 @@ tags:
 - 뒤로가기를 해서 해당 경로에 왔는 지 체크
 - 뒤로가기로 왔으면 저장했던 스크롤위치로 복구
 
-## 1. 뒤로가기 이벤트 감지하기
+### 구현 코드
 
-next-router의 router.events를 사용하여 경로가 이동될 때 함수를 실행하게 한다.
+```tsx:useScrollRestoration.tsx
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import {
+  getSessionStorage,
+  removeWebStorage,
+  setSessionStorage,
+} from '../webStorage'
 
-- `routeChangeStart(url, { shallow })`
-  경로가 변경되기 시작할때 발생
+export default function useScrollRestoration() {
+  const router = useRouter()
 
-- `routeChangeComplete(url, { shallow })`  
-  경로가 완전히 변경되면 발생
+  useEffect(() => {
+    let scrollStore: null | { x: number; y: number }
 
-## 2. 스크롤 위치를 sessionStorage에 저장
+    const onRouteChangeStart = () => {
+      setSessionStorage('scroll-position', {
+        x: window.pageXOffset,
+        y: window.pageYOffset,
+      })
+      //   console.log('1. 경로변경 전 저장', window.pageXOffset, window.pageYOffset)
+    }
 
-글 목록 => 글 상세 페이지로 url 경로를 변경하기 전 스크롤 위치 기억해서 sessionStorage에 저장하기로 했다.
-저장하는 순간이 경로가 변경된 후의 스크롤 위치가 아니라, 변경 전의 스크롤 위치를 저장한다.
+    const onRouteChangeComplete = () => {
+      if (scrollStore) {
+        const { x, y } = scrollStore
+        // console.log('3. 경로변경 후 (복구)', scrollStore)
+        setTimeout(() => window.scrollTo(x, y), 50)
+        scrollStore = null
+        removeWebStorage('scroll-position', 'session')
+      }
+    }
 
-- 글 목록에서 글 상세 클릭하기 전 sessionStorage에 페이지를 저장하고 나서
-  뒤로가기 이벤트 감지 시 sessionStorage에서 저장된 page 불러와 값을 넘기기
+    router.beforePopState(() => {
+      scrollStore = getSessionStorage('scroll-position')
+      //   console.log('2. 뒤로가기 전 실행', scrollStore)
+      return true
+    })
+    router.events.on('routeChangeStart', onRouteChangeStart)
+    router.events.on('routeChangeComplete', onRouteChangeComplete)
+
+    return () => {
+      router.events.off('routeChangeStart', onRouteChangeStart)
+      router.events.off('routeChangeComplete', onRouteChangeComplete)
+    }
+  }, [])
+}
+```
+
+위 해당 코드를 `_app`에서 실행시켰다.
+먼저 코드를 보면서 설명해보자면,
+next-router의 `router.events`를 활용하여 경로가 이동될 때 함수를 실행하게 했다.
+
+- `routeChangeStart(url, { shallow })` - 경로가 변경되기 시작할때 발생
+
+- `routeChangeComplete(url, { shallow })` - 경로가 완전히 변경되면 발생
+
+- [router.beforePopState](https://nextjs.org/docs/api-reference/next/router) - 경로 작동 전 실행함. return값이 true면 popstate를 호출함
+
+  - [popstate](https://developer.mozilla.org/en-US/docs/Web/API/Window/popstate_event) : 뒤로가기/앞으로가기 버튼 클릭 시 호출됨
+
+#### 구현 과정
+
+> 경로 이동 예시 : 글 목록 (스크롤 후)=> 글 상세
+
+1. 경로 이동 시작될 때 스크롤위치를 sessionStorage에 저장
+2. 뒤로가기 클릭해서 경로 작동되기 전에 sessionStorage에 저장된 값을 변수(scrollStore)에 할당함
+3. 경로 완전히 변경되면 변수에 저장된 값이 있으면 스크롤 위치로 복구 후 다시 초기화해줌
+
+# 참고
+
+https://coffeeandcakeandnewjeong.tistory.com/94
+https://helloinyong.tistory.com/300
