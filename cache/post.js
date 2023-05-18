@@ -23,4 +23,5 @@ export const cachedPosts = [
     slug: 'sitemap-seo',
     title: 'NextJS로 만든 블로그 글 검색되게 하자! - sitemap, 검색엔진',
   },
+  { slug: 'state-management', title: '상태관리 ' },
 ]

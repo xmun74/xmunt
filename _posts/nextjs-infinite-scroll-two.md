@@ -76,9 +76,9 @@ export default function useScrollRestoration() {
 }
 ```
 
-위 해당 코드를 `_app`에서 실행시켰다.
-먼저 코드를 보면서 설명해보자면,
-next-router의 `router.events`를 활용하여 경로가 이동될 때 함수를 실행하게 했다.
+위 해당 코드를 `_app.tsx`에서 실행시켰다. 먼저 코드를 보면서 설명해보자면,
+next-router의 [router.events](https://nextjs.org/docs/api-reference/next/router#routerevents)를 활용하여 경로가 이동될 때 함수를 실행하게 했다.
+참고로 라우터 이벤트는 useEffect에서 구독하여 실행해야한다.
 
 - `routeChangeStart(url, { shallow })` - 경로가 변경되기 시작할때 발생
 
@@ -92,9 +92,11 @@ next-router의 `router.events`를 활용하여 경로가 이동될 때 함수를
 
 > 경로 이동 예시 : 글 목록 (스크롤 후)=> 글 상세
 
-1. 경로 이동 시작될 때 스크롤위치를 sessionStorage에 저장
-2. 뒤로가기 클릭해서 경로 작동되기 전에 sessionStorage에 저장된 값을 변수(scrollStore)에 할당함
-3. 경로 완전히 변경되면 변수에 저장된 값이 있으면 스크롤 위치로 복구 후 다시 초기화해줌
+1. 경로 이동 시작될 때(routeChangeStart) 스크롤위치를 sessionStorage에 저장
+2. 뒤로가기 클릭해서 경로 작동되기 전에(beforePopState) sessionStorage에 저장된 값을 변수(scrollStore)에 할당함
+3. 경로 완전히 변경된 후(routeChangeComplete) 변수에 저장된 값이 있으면 스크롤 위치 복구 후 다시 초기화해줌
+
+# 문제
 
 # 참고
 

@@ -6,9 +6,11 @@ import PostDate from '../../components/PostDate'
 import Seo from '../../components/Seo'
 import { blogsApi } from '../../lib/apis'
 import useIntersect from '../../lib/hooks/useIntersect'
+import useScrollRestoration from '../../lib/hooks/useScrollRestoration'
 import { getAllPosts } from '../../lib/posts'
 import { PostType } from '../../lib/types'
 import { themeColor } from '../../styles/theme'
+// import { getSessionStorage, setSessionStorage } from '../../lib/webStorage'
 
 const PostContainer = styled.div`
   padding-top: 50px;
@@ -71,13 +73,21 @@ export default function Blog({ allPosts }: Props) {
   const [page, setPage] = useState(0)
   const [nextPage, setNextPage] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
+  const PAGE_SIZE = 8
+
+  useScrollRestoration({ page, setPage })
 
   const fetchData = async () => {
     setIsLoading(true)
     const { contents, pageNumber, isLastPage } = await blogsApi.getBlogs(
       page,
-      8,
+      PAGE_SIZE,
     )
+    // const cachePage = getSessionStorage('page')
+    // if (cachePage) {
+    //   console.log(cachePage)
+    //   setPage(cachePage)
+    // }
     setBlogs(blogs.concat(contents))
     setPage(pageNumber + 1)
     setNextPage(!isLastPage)
