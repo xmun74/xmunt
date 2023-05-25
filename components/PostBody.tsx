@@ -7,6 +7,8 @@ const Content = styled.article`
   width: 100%;
   margin-bottom: 100px;
   line-height: 2;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
   /* white-space: pre; */
   h1,
   h2,
@@ -34,6 +36,12 @@ const Content = styled.article`
         }
       }
     }
+    :not(pre) > code {
+      background-color: transparent;
+      font-family: unset;
+      font-size: 100%;
+      font-weight: inherit;
+    }
   }
   h1 {
     font-size: 2.5rem;
@@ -55,6 +63,10 @@ const Content = styled.article`
     font-weight: 700;
     margin-top: 20px;
   }
+  strong,
+  b {
+    font-weight: 700;
+  }
   p {
     font-size: 1.125rem;
   }
@@ -67,7 +79,6 @@ const Content = styled.article`
     padding-left: 10px;
     border-left: 10px solid;
     border-left-color: ${themeColor.accent2};
-    font-weight: 500;
   }
   ul,
   ol {
@@ -81,6 +92,12 @@ const Content = styled.article`
     li {
       &::marker {
         color: ${themeColor.accent2};
+      }
+      ul {
+        list-style-type: circle;
+        ul {
+          list-style-type: square;
+        }
       }
     }
   }

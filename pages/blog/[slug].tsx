@@ -14,15 +14,24 @@ import Tag from '../../components/common/Tag'
 import PostToc, { PostTocProps } from '../../components/PostToc'
 
 const HeaderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-bottom: 70px;
 `
 const PostTitle = styled.div`
   font-weight: 800;
   font-size: 36px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   @media screen and (max-width: 767px) {
     font-size: 28px;
   }
+`
+const PostInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 50px;
+  border-bottom: 1px solid lightgray;
 `
 
 export default function Detail({
@@ -46,14 +55,18 @@ export default function Detail({
       {/* Post Header */}
       <HeaderContainer>
         <PostTitle>{post.title}</PostTitle>
-        <PostDate date={post.date} />
+        <PostInfo>
+          <div>
+            {Array.isArray(post.tags) &&
+              post?.tags.map((tag) => <Tag tag={tag} key={tag} />)}
+          </div>
+          <PostDate date={post.date} />
+        </PostInfo>
       </HeaderContainer>
       {/* Post Body */}
       <PostBody mdx={mdx} />
       <PostToc postToc={postToc} />
       {/* Post Footer */}
-      {Array.isArray(post.tags) &&
-        post?.tags.map((tag) => <Tag tag={tag} key={tag} />)}
       <AuthorInfo />
       <RecentPost {...recentPostProps} />
       <Giscus />

@@ -49,9 +49,13 @@ const GlobalStyle = createGlobalStyle`
     color:inherit;
   }
   :not(pre) > code {
-  padding: 0.2em 0.5em;
-  border-radius: 3px;
-  background-color: ${themeColor.inlineCode};
-}
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    background-color: ${themeColor.inlineCode};
+    font-size: 85%;
+    font-weight: 400;
+  }
+
 `
 export default GlobalStyle

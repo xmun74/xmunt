@@ -36,8 +36,9 @@ const SearchInput = styled.input`
 const SearchResultUl = styled.ul`
   position: fixed;
   top: 55px;
-  padding: 0.6rem;
-  border: 1px solid ${themeColor.inlineCode};
+  width: 370px;
+  max-width: 370px;
+  padding: 0 0.6rem;
   border-radius: 8px;
   box-shadow: 0px 3px 30px -10px #6666664b;
   background-color: ${themeColor.bg1};
@@ -45,12 +46,15 @@ const SearchResultUl = styled.ul`
   /* backdrop-filter: blur(5px); */
   /* -webkit-backdrop-filter: blur(5px); */
 `
-const SearchResultLi = styled.li``
+const SearchResultLi = styled.li`
+  line-height: 1.3rem;
+`
 const SearchResultLink = styled(Link)`
   height: 2.3rem;
   display: flex;
   align-items: center;
-  padding: 0.4rem;
+  padding: 8px 10px;
+  margin: 10px 0;
   &:hover {
     background-color: #c3ccdc46;
     border-radius: 5px;
@@ -70,6 +74,11 @@ const SearchShortCut = styled.div`
     font-size: 0.9rem;
   }
 `
+const SearchResultsNotFound = styled.div`
+  padding: 32px;
+  text-align: center;
+  opacity: 0.4;
+`
 
 export default function SearchBar() {
   const [query, setQuery] = useState<string>('')
@@ -84,6 +93,7 @@ export default function SearchBar() {
     async (e: React.ChangeEvent<HTMLInputElement>) => {
       const { value } = e.target
       setQuery(value)
+      setActive(true)
       if (value.trim().length === 0) setResults([])
       else {
         const data = await postsApi.searchPosts(value)
@@ -97,12 +107,10 @@ export default function SearchBar() {
     if (e.key === 'Escape') {
       setQuery('')
       setActive(false)
-      inputRef.current!.blur()
+      if (inputRef.current !== null) {
+        inputRef.current.blur()
+      }
     }
-  }
-
-  const handleFocus = () => {
-    setActive(true)
   }
 
   const handleResultClick = () => {
@@ -116,7 +124,6 @@ export default function SearchBar() {
         placeholder="Search..."
         onChange={handleChange}
         onKeyDown={handleKeyDown}
-        onFocus={handleFocus}
         ref={inputRef}
       />
       {query.length > 0 ? (
@@ -126,15 +133,21 @@ export default function SearchBar() {
           <span>⌘</span>&nbsp;K
         </SearchShortCut>
       )}
-      {active && results.length > 0 && (
+      {active && (
         <SearchResultUl>
-          {results?.map(({ slug, title, content }) => (
-            <SearchResultLi key={title} onClick={handleResultClick}>
-              <SearchResultLink href={`/blog/${slug}`} key={title}>
-                {title}
-              </SearchResultLink>
-            </SearchResultLi>
-          ))}
+          {results.length > 0 &&
+            results?.map(({ slug, title, content }) => (
+              <SearchResultLi key={title} onClick={handleResultClick}>
+                <SearchResultLink href={`/blog/${slug}`} key={title}>
+                  {title}
+                </SearchResultLink>
+              </SearchResultLi>
+            ))}
+          {query.length > 0 && results.length === 0 && (
+            <SearchResultsNotFound>
+              No document titles found.
+            </SearchResultsNotFound>
+          )}
         </SearchResultUl>
       )}
     </SearchBarContainer>

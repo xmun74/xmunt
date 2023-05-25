@@ -1,6 +1,6 @@
+import { useEffect, useState } from 'react'
+import styled, { CSSProperties } from 'styled-components'
 import Link from 'next/link'
-import { useState } from 'react'
-import styled from 'styled-components'
 import Heading from '../../components/common/Heading'
 import PostDate from '../../components/PostDate'
 import Seo from '../../components/Seo'
@@ -10,6 +10,7 @@ import useScrollRestoration from '../../lib/hooks/useScrollRestoration'
 import { getAllPosts } from '../../lib/posts'
 import { PostType } from '../../lib/types'
 import { themeColor } from '../../styles/theme'
+// import VirtualizedList from '../../components/VirtualizedList'
 // import { getSessionStorage, setSessionStorage } from '../../lib/webStorage'
 
 const PostContainer = styled.div`
@@ -36,11 +37,11 @@ const PostItem = styled.div`
     position: absolute;
     content: '';
     width: 0;
-    height: 3%;
+    height: 1%;
     top: 0;
     right: 0;
     z-index: -1;
-    background-color: ${themeColor.bg2};
+    background-color: ${themeColor.text1};
     border-radius: 5px;
     transition: all 0.1s ease;
   }
@@ -59,17 +60,50 @@ const PostTitle = styled.h1`
   font-weight: 700;
   font-size: 24px;
   padding-bottom: 10px;
+  line-height: 1.7rem;
+
+  &::after {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 1%;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    background-color: ${themeColor.text1};
+    border-radius: 5px;
+    transition: all 0.1s ease;
+  }
+  &:hover {
+    transition: 0.1s ease-in-out;
+  }
+  &:hover:after {
+    left: 0;
+    width: 100%;
+  }
+  &:active {
+    top: 2px;
+  }
 `
 const PostDesc = styled.div`
   color: ${themeColor.text2};
+  opacity: 0.5;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.3rem;
 `
 
 type Props = {
   allPosts: PostType[]
 }
 
+interface ItemProps {
+  index: number
+  style: CSSProperties | undefined
+}
+
 export default function Blog({ allPosts }: Props) {
-  const [blogs, setBlogs] = useState([])
+  const [blogs, setBlogs] = useState<PostType[]>([])
   const [page, setPage] = useState(0)
   const [nextPage, setNextPage] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
@@ -88,11 +122,15 @@ export default function Blog({ allPosts }: Props) {
     //   console.log(cachePage)
     //   setPage(cachePage)
     // }
-    setBlogs(blogs.concat(contents))
+    setBlogs([...blogs, ...contents])
     setPage(pageNumber + 1)
     setNextPage(!isLastPage)
     setIsLoading(false)
   }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   const target = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target)
@@ -100,6 +138,35 @@ export default function Blog({ allPosts }: Props) {
       fetchData()
     }
   })
+  const lastEleRef = target
+
+  const renderListItem = ({ index, style }: ItemProps) => {
+    let lastEle
+    if (index < blogs.length) {
+      lastEle = null
+    } else {
+      lastEle = lastEleRef
+    }
+    return (
+      <Link
+        as={`/blog/${blogs[index].slug}`}
+        href={`/blog/${blogs[index].slug}`}
+        key={blogs[index].title}
+        className="item"
+        style={style}
+        // {index >== blogs.length ? ref={target}:''}
+        // ref={lastEle}
+      >
+        <PostItem>
+          <div>
+            <PostTitle>{blogs[index].title}</PostTitle>
+            <PostDesc>{blogs[index].description}</PostDesc>
+          </div>
+          <PostDate date={blogs[index].date} />
+        </PostItem>
+      </Link>
+    )
+  }
 
   return (
     <>
@@ -119,6 +186,15 @@ export default function Blog({ allPosts }: Props) {
             </Link>
           ))}
       </PostContainer>
+      {/* {blogs && (
+        <VirtualizedList
+          numItems={blogs && blogs.length}
+          windowHeight={600}
+          itemHeight={170}
+          renderItem={renderListItem}
+        />
+      )} */}
+
       <div ref={target}>{isLoading && <div>Loading...</div>}</div>
     </>
   )
