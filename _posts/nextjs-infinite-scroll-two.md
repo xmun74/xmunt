@@ -1,5 +1,5 @@
 ---
-title: 'NextJS에서 무한스크롤 구현 2 - 스크롤 유지'
+title: '무한스크롤 구현에서 뒤로가기 시 스크롤 유지를 해보자'
 description: '뒤로가기 시 이전 스크롤 위치로 복구(scroll restoration)되게 하자'
 coverImage: ''
 image: ''

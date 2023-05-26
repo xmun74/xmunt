@@ -1,6 +1,6 @@
 ---
-title: 'NextJS에서 무한스크롤 구현 1'
-description: 'Intersection Observer API를 사용하여 무한 스크롤링 구현하기'
+title: 'Intersection Observer API로 무한스크롤 구현하기'
+description: 'Intersection Observer API를 사용하여 긴 목록을 렌더링하는 무한 스크롤링 구현하기'
 coverImage: ''
 image: ''
 date: '2023-03-29'
@@ -13,15 +13,13 @@ tags:
 
 ## 적용하는 이유
 
-현재 블로그에서 글 목록을 볼 때 모든 글을 출력하고 있었다.
-글 목록에서 getStaticProps로 총 게시글을 prop로 전달하는 방식이었다.
-이렇게 되면 글 목록 개수가 많을 때 getStaticProps로 전달하는 props 용량이 128kb를 초과하면 warn을 출력한다.
-
-그래서 페이지네이션이나 무한스크롤을 적용하여 필요한 부분들 데이터만 나눠 받을 수 있게 하는 것이 바람직했다.
+이전에는 블로그에서 글 목록 페이지에 접속했을 때 모든 글을 출력해주고 있었습니다.
+예를 들어 100개 글이 있다면 1번 요청에 100개를 받아오는 방식인 것입니다.
+그래서 긴 목록을 렌더링할 때 사용하는 페이지네이션이나 무한스크롤을 적용하여 필요한 데이터만 나눠 받을 수 있게 하는 것으로 구현하고자 합니다.
 
 페이지네이션은 페이지 이동을 위해 따로 클릭을 해야하지만
-무한스크롤은 그냥 스크롤만 하면 원하는 데이터를 볼 수 있다.
-따라서 무한스크롤을 선택하여 구현하고자 한다.
+무한스크롤은 그냥 스크롤만 하면 많은 데이터를 볼 수 있습니다.
+따라서 이 글에서는 무한스크롤 방식을 Intersection Opserver API를 사용하여 구현하고자 합니다.
 
 ### 무한 스크롤 단점
 
@@ -31,15 +29,14 @@ tags:
 
 ## 무한스크롤 구현 방법
 
-1. scroll event - throttle 구현(스크롤 이벤트 성능개선을 위해)
+1. scroll event - throttle이나 requestAnimationFrame으로 구현(스크롤 이벤트 성능개선을 위해)
 2. Intersection Opserver API
-   +react-query 사용시 useInfiniteQuery를 활용하는 방법
 
-#### 구현할 것
+#### 구현 사항
 
 - 최하단까지 스크롤하면 N개 데이터 로드
 - 받아올 다음 데이터 없으면 무한 스크롤 중지
-- 로딩중, 스켈레톤 UI 로드
+- 로딩중일 때, 스켈레톤 UI 로드
 - 목록에서 스크롤 내리고 1개 글 클릭해서 들어갔다가
   뒤로가기 누르면 이전 스크롤 위치 기억하기
 
@@ -117,7 +114,7 @@ return (
 
 ## 2. 커스텀 훅 만들기
 
-- 무한 스크롤, 스켈레톤 UI, 지연 로딩 등에서도 사용될 수 있으므로 Hook으로 분리하여 구현해보자.
+커스텀 훅으로 만들어두면 무한 스크롤, 스켈레톤 UI, 지연 로딩 등에서도 재사용할 수 있으므로 Hook으로 분리하여 구현해봅시다.
 
 ```tsx:useIntersect.tsx
 /* NextJS + TS 버전 */
@@ -172,7 +169,7 @@ export default function useIntersect(
 }
 ```
 
-### 3. 훅 사용한 곳
+#### 훅 사용처
 
 ```tsx
 export default function Blog() {
@@ -214,25 +211,10 @@ export default function Blog() {
 조건문에 해당할 때만 fetch하도록 구성한다.
 예를 들어 다음 데이터가 있고, 로딩중이 아닐때만 fetch를 하도록 한다.
 
-#### API 요청 2번하는 이유
-
-React의 Strict Mode 엄격 모드에서는 페이지 진입 시 api 호출이 2번 발생한다. 코드를 엄격하게 검사해서 경고 메시지를 출력해주기 때문에 이를 보고 미리 에러를 방지할 수 있다.
-
-- 개발 모드에서만 활성화되고 배포 환경에서는 발생 안한다.
-- NextJS는 `next.config.js`에서 엄격모드가 켜져있는 것을 볼 수 있다.
-  ```js:next.config.js
-  /** @type {import('next').NextConfig} */
-  const nextConfig = {
-    reactStrictMode: true, // Strict Mode가 켜져있다
-    //...
-  }
-  module.exports = nextConfig
-  ```
-
 #### React에서는 useEffect 안에서 인스턴스 생성
 
 useEffect에서 렌더링 되고 나서 해당 target이 있을 때 관찰을 시작하고
-return 문에서 `disconnect()`해서 언마운트될 때 관찰을 중단한다.
+return 문에서 언마운트될 때 `disconnect()`하여 관찰을 중단한다.
 
 #### 뒤로가기 시 이전 스크롤 위치 기억하기
 
@@ -244,7 +226,7 @@ return 문에서 `disconnect()`해서 언마운트될 때 관찰을 중단한다
 
 > 참고
 
-https://tech.kakaoenterprise.com/149
+[실전 Infinite Scroll with React - kakaoenterprise](https://tech.kakaoenterprise.com/149)
 [(React) 무한 스크롤 기능 구현하기 : used by Intersection Observer - 2](https://velog.io/@yunsungyang-omc/React-%EB%AC%B4%ED%95%9C-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-used-by-Intersection-Observer-2)
 [무한 스크롤(Infinite scroll) 구현하기](https://velog.io/@eunoia/%EB%AC%B4%ED%95%9C-%EC%8A%A4%ED%81%AC%EB%A1%A4Infinite-scroll-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
 [[React] 무한 스크롤 적용하기](https://velog.io/@sjoleee_/React-%EB%AC%B4%ED%95%9C-%EC%8A%A4%ED%81%AC%EB%A1%A4#%EB%AC%B4%ED%95%9C%EC%8A%A4%ED%81%AC%EB%A1%A4%EC%9D%84-%EB%8F%84%EC%9E%85%ED%95%98%EA%B2%8C-%EB%90%9C-%EC%9D%B4%EC%9C%A0)

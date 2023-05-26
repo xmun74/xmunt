@@ -8,7 +8,6 @@ const Content = styled.article`
   margin-bottom: 100px;
   line-height: 2;
   font-family: 'Noto Sans KR', sans-serif;
-  font-weight: 300;
   /* white-space: pre; */
   h1,
   h2,

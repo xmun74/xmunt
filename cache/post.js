@@ -6,9 +6,12 @@ export const cachedPosts = [
   },
   {
     slug: 'nextjs-infinite-scroll-two',
-    title: 'NextJS에서 무한스크롤 구현 2 - 스크롤 유지',
+    title: '무한스크롤 구현에서 뒤로가기 시 스크롤 유지를 해보자',
   },
-  { slug: 'nextjs-infinite-scroll', title: 'NextJS에서 무한스크롤 구현 1' },
+  {
+    slug: 'nextjs-infinite-scroll',
+    title: 'Intersection Observer API로 무한스크롤 구현하기',
+  },
   {
     slug: 'nextjs-setting-ts',
     title:
