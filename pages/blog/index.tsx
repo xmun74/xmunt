@@ -109,7 +109,7 @@ export default function Blog({ allPosts }: Props) {
   const [isLoading, setIsLoading] = useState(false)
   const PAGE_SIZE = 8
 
-  useScrollRestoration({ page, setPage })
+  // useScrollRestoration({ page, setPage })
 
   const fetchData = async () => {
     setIsLoading(true)
@@ -151,7 +151,7 @@ export default function Blog({ allPosts }: Props) {
       <Link
         as={`/blog/${blogs[index].slug}`}
         href={`/blog/${blogs[index].slug}`}
-        key={blogs[index].title}
+        key={`${blogs[index].slug}`}
         className="item"
         style={style}
         // {index >== blogs.length ? ref={target}:''}
@@ -187,13 +187,13 @@ export default function Blog({ allPosts }: Props) {
           ))}
       </PostContainer>
       {/* {blogs && (
-        <VirtualizedList
-          numItems={blogs && blogs.length}
-          windowHeight={600}
-          itemHeight={170}
-          renderItem={renderListItem}
-        />
-      )} */}
+          <VirtualizedList
+            numItems={blogs && blogs.length}
+            windowHeight={600}
+            itemHeight={170}
+            renderItem={renderListItem}
+          />
+        )} */}
 
       <div ref={target}>{isLoading && <div>Loading...</div>}</div>
     </>
