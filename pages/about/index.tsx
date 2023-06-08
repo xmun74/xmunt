@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Seo from '../../components/Seo'
+import Seo from '@components/Seo'
 
 const AboutContainer = styled.div`
   height: 100vh;

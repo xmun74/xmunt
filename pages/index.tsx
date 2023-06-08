@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import styled from 'styled-components'
-import Heading from '../components/common/Heading'
-import PlusIcon from '../components/icons/PlusIcon'
-import PreviewContent from '../components/PreviewContent'
-import Seo from '../components/Seo'
+import Heading from '@components/common/Heading'
+import PlusIcon from '@components/icons/PlusIcon'
+import PreviewContent from '@components/PreviewContent'
+import Seo from '@components/Seo'
 
 const HomeContainer = styled.div`
   height: 100vh;

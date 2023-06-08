@@ -40,31 +40,17 @@ function VirtualizedList({
 
   const items = []
   for (let i = startIndex; i <= endIndex; i += 1) {
-    if (i < numItems - 1) {
-      items.push(
-        renderItem({
-          index: i,
-          style: {
-            position: 'absolute',
-            transform: `translateY(${i * itemHeight}px)`, // reflow막으려고
-            width: '100%',
-          },
-        }),
-      )
-    }
     items.push(
       renderItem({
         index: i,
         style: {
           position: 'absolute',
-          transform: `translateY(${i * itemHeight}px)`, // reflow막으려고
+          transform: `translateY(${i * itemHeight}px)`,
           width: '100%',
         },
-        // ref
       }),
     )
   }
-
   const onScroll = (e: React.UIEvent<HTMLDivElement>) =>
     setScrollTop(e.currentTarget.scrollTop)
 

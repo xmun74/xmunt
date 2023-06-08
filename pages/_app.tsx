@@ -1,11 +1,11 @@
 import type { AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil'
 import Script from 'next/script'
-import GlobalStyle from '../styles/GlobalStyle'
-import '../styles/dracula-prism.css'
-import Layout from '../components/Layout'
-import * as gtag from '../lib/gtag'
-import isDev from '../lib/isDev'
+import GlobalStyle from '@styles/GlobalStyle'
+import '@styles/dracula-prism.css'
+import Layout from '@components/Layout'
+import * as gtag from '@lib/gtag'
+import isDev from '@lib/isDev'
 
 export default function App({ Component, pageProps }: AppProps) {
   if (!isDev) gtag.useGtag()

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import Heading from '../../components/common/Heading'
-import Seo from '../../components/Seo'
+import Heading from '@components/common/Heading'
+import Seo from '@components/Seo'
 
 const NoteContainer = styled.div`
   font-weight: 100;

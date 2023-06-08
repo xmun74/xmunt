@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import styled from 'styled-components'
-import Heading from '../../components/common/Heading'
-import Seo from '../../components/Seo'
+import Seo from '@components/Seo'
+import Heading from '@components/common/Heading'
 
 const ProjectContainer = styled.div`
   height: 100vh;

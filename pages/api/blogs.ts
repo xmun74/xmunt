@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getAllPosts } from '../../lib/posts'
+import { getAllPosts } from '@lib/posts'
 import { CachedPost } from './search'
-// import { cachedPosts } from '../../cache/post'
+// import { cachedPosts } from '@cache/post'
 
 type Data = {
   contents: CachedPost[]

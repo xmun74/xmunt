@@ -1,7 +1,7 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getAllPosts } from '../../lib/posts'
-import { cachedPosts } from '../../cache/post'
+import { cachedPosts } from '@cache/post'
+import { getAllPosts } from '@lib/posts'
 
 export type CachedPost = {
   slug: string

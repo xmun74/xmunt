@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
 import styled, { CSSProperties } from 'styled-components'
 import Link from 'next/link'
-import Heading from '../../components/common/Heading'
-import PostDate from '../../components/PostDate'
-import Seo from '../../components/Seo'
-import { blogsApi } from '../../lib/apis'
-import useIntersect from '../../lib/hooks/useIntersect'
-import useScrollRestoration from '../../lib/hooks/useScrollRestoration'
-import { getAllPosts } from '../../lib/posts'
-import { PostType } from '../../lib/types'
-import { themeColor } from '../../styles/theme'
-// import VirtualizedList from '../../components/VirtualizedList'
+import Seo from '@components/Seo'
+import useIntersect from '@lib/hooks/useIntersect'
+import Heading from '@components/common/Heading'
+import PostDate from '@components/PostDate'
+import { blogsApi } from '@lib/apis'
+import useScrollRestoration from '@lib/hooks/useScrollRestoration'
+import { getAllPosts } from '@lib/posts'
+import { PostType } from '@lib/types'
+import { themeColor } from '@styles/theme'
+import VirtualizedList from '@components/VirtualizedList'
 // import { getSessionStorage, setSessionStorage } from '../../lib/webStorage'
 
 const PostContainer = styled.div`
@@ -111,17 +111,29 @@ export default function Blog({ allPosts }: Props) {
 
   // useScrollRestoration({ page, setPage })
 
-  const fetchData = async () => {
+  const buffer = PAGE_SIZE * 2
+  const cache = buffer - PAGE_SIZE
+
+  const fetchPrevData = async () => {
     setIsLoading(true)
-    const { contents, pageNumber, isLastPage } = await blogsApi.getBlogs(
-      page,
-      PAGE_SIZE,
-    )
+    const { contents, pageNumber, isLastPage, isFirstPage } =
+      await blogsApi.getBlogs(page, PAGE_SIZE)
+    setBlogs([...contents, ...blogs.slice(0, cache)])
+    setPage(pageNumber - 1)
+    setNextPage(!isFirstPage)
+    setIsLoading(false)
+  }
+
+  const fetchNextData = async () => {
+    setIsLoading(true)
+    const { contents, pageNumber, isLastPage, isFirstPage } =
+      await blogsApi.getBlogs(page, PAGE_SIZE)
     // const cachePage = getSessionStorage('page')
     // if (cachePage) {
     //   console.log(cachePage)
     //   setPage(cachePage)
     // }
+    // setBlogs([...contents.slice(-cache), ...blogs])
     setBlogs([...blogs, ...contents])
     setPage(pageNumber + 1)
     setNextPage(!isLastPage)
@@ -129,34 +141,52 @@ export default function Blog({ allPosts }: Props) {
   }
 
   useEffect(() => {
-    fetchData()
+    fetchNextData()
   }, [])
 
   const target = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target)
     if (nextPage && !isLoading) {
-      fetchData()
+      fetchNextData()
     }
   })
-  const lastEleRef = target
 
   const renderListItem = ({ index, style }: ItemProps) => {
-    let lastEle
-    if (index < blogs.length) {
-      lastEle = null
-    } else {
-      lastEle = lastEleRef
-    }
+    // if (index + 1 < blogs.length) {
+    //   return (
+    //     <Link
+    //       as={`/blog/${blogs[index].slug}`}
+    //       href={`/blog/${blogs[index].slug}`}
+    //       key={`${blogs[index].slug}`}
+    //       className="item"
+    //       style={style}
+    //     >
+    //       <PostItem>
+    //         <div>
+    //           <PostTitle>{blogs[index].title}</PostTitle>
+    //           <PostDesc>{blogs[index].description}</PostDesc>
+    //         </div>
+    //         <PostDate date={blogs[index].date} />
+    //       </PostItem>
+    //     </Link>
+    //   )
+    // }
+    // 처음, 마지막 요소에 ref추가
+    let itemOrder = 'item'
+    if (index === 0) itemOrder = 'firstItem'
+    else if (index === blogs.length - 1) itemOrder = 'lastItem'
+
     return (
       <Link
         as={`/blog/${blogs[index].slug}`}
         href={`/blog/${blogs[index].slug}`}
-        key={`${blogs[index].slug}`}
-        className="item"
+        key={`${blogs[index].title}`}
+        className={`${itemOrder}`}
         style={style}
-        // {index >== blogs.length ? ref={target}:''}
-        // ref={lastEle}
+        // {...(itemOrder === 'lastItem' ? { ref: target } : {})}
+        // ref={itemOrder === 'lastItem' ? target : null}
       >
+        {isLoading && <div>Loading...</div>}
         <PostItem>
           <div>
             <PostTitle>{blogs[index].title}</PostTitle>
@@ -187,13 +217,13 @@ export default function Blog({ allPosts }: Props) {
           ))}
       </PostContainer>
       {/* {blogs && (
-          <VirtualizedList
-            numItems={blogs && blogs.length}
-            windowHeight={600}
-            itemHeight={170}
-            renderItem={renderListItem}
-          />
-        )} */}
+        <VirtualizedList
+          numItems={blogs && blogs.length}
+          windowHeight={600}
+          itemHeight={170}
+          renderItem={renderListItem}
+        />
+      )} */}
 
       <div ref={target}>{isLoading && <div>Loading...</div>}</div>
     </>
