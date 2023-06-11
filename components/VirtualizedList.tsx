@@ -1,20 +1,21 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import styled, { CSSProperties } from 'styled-components'
 
 const Outer = styled.div<{ windowHeight: number }>`
-  height: ${(props) => props.windowHeight}px;
-  overflow-y: scroll;
-`
-const Inner = styled.div`
-  /* padding-top: 50px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 30px;
+  max-height: ${(props) => props.windowHeight}px;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
 
-  @media screen and (max-width: 767px) {
-    grid-template-columns: 1fr;
-  } */
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #bab9b97a;
+    border-radius: 15px;
+    scrollbar-width: thin;
+  }
 `
+const Inner = styled.div``
 
 interface ListProps {
   numItems: number
@@ -34,7 +35,7 @@ function VirtualizedList({
   const innerHeight = numItems * itemHeight
   const startIndex = Math.floor(scrollTop / itemHeight)
   const endIndex = Math.min(
-    numItems - 1, // don't render past the end of the list
+    numItems - 1,
     Math.floor((scrollTop + windowHeight) / itemHeight),
   )
 
@@ -51,8 +52,9 @@ function VirtualizedList({
       }),
     )
   }
-  const onScroll = (e: React.UIEvent<HTMLDivElement>) =>
+  const onScroll = (e: React.UIEvent<HTMLDivElement>) => {
     setScrollTop(e.currentTarget.scrollTop)
+  }
 
   return (
     <Outer className="outer" onScroll={onScroll} windowHeight={windowHeight}>

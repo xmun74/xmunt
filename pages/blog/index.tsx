@@ -6,12 +6,9 @@ import useIntersect from '@lib/hooks/useIntersect'
 import Heading from '@components/common/Heading'
 import PostDate from '@components/PostDate'
 import { blogsApi } from '@lib/apis'
-import useScrollRestoration from '@lib/hooks/useScrollRestoration'
 import { getAllPosts } from '@lib/posts'
 import { PostType } from '@lib/types'
 import { themeColor } from '@styles/theme'
-import VirtualizedList from '@components/VirtualizedList'
-// import { getSessionStorage, setSessionStorage } from '../../lib/webStorage'
 
 const PostContainer = styled.div`
   padding-top: 50px;
@@ -97,11 +94,6 @@ type Props = {
   allPosts: PostType[]
 }
 
-interface ItemProps {
-  index: number
-  style: CSSProperties | undefined
-}
-
 export default function Blog({ allPosts }: Props) {
   const [blogs, setBlogs] = useState<PostType[]>([])
   const [page, setPage] = useState(0)
@@ -109,31 +101,12 @@ export default function Blog({ allPosts }: Props) {
   const [isLoading, setIsLoading] = useState(false)
   const PAGE_SIZE = 8
 
-  // useScrollRestoration({ page, setPage })
-
-  const buffer = PAGE_SIZE * 2
-  const cache = buffer - PAGE_SIZE
-
-  const fetchPrevData = async () => {
-    setIsLoading(true)
-    const { contents, pageNumber, isLastPage, isFirstPage } =
-      await blogsApi.getBlogs(page, PAGE_SIZE)
-    setBlogs([...contents, ...blogs.slice(0, cache)])
-    setPage(pageNumber - 1)
-    setNextPage(!isFirstPage)
-    setIsLoading(false)
-  }
-
   const fetchNextData = async () => {
     setIsLoading(true)
-    const { contents, pageNumber, isLastPage, isFirstPage } =
-      await blogsApi.getBlogs(page, PAGE_SIZE)
-    // const cachePage = getSessionStorage('page')
-    // if (cachePage) {
-    //   console.log(cachePage)
-    //   setPage(cachePage)
-    // }
-    // setBlogs([...contents.slice(-cache), ...blogs])
+    const { contents, pageNumber, isLastPage } = await blogsApi.getBlogs(
+      page,
+      PAGE_SIZE,
+    )
     setBlogs([...blogs, ...contents])
     setPage(pageNumber + 1)
     setNextPage(!isLastPage)
@@ -150,53 +123,6 @@ export default function Blog({ allPosts }: Props) {
       fetchNextData()
     }
   })
-
-  const renderListItem = ({ index, style }: ItemProps) => {
-    // if (index + 1 < blogs.length) {
-    //   return (
-    //     <Link
-    //       as={`/blog/${blogs[index].slug}`}
-    //       href={`/blog/${blogs[index].slug}`}
-    //       key={`${blogs[index].slug}`}
-    //       className="item"
-    //       style={style}
-    //     >
-    //       <PostItem>
-    //         <div>
-    //           <PostTitle>{blogs[index].title}</PostTitle>
-    //           <PostDesc>{blogs[index].description}</PostDesc>
-    //         </div>
-    //         <PostDate date={blogs[index].date} />
-    //       </PostItem>
-    //     </Link>
-    //   )
-    // }
-    // 처음, 마지막 요소에 ref추가
-    let itemOrder = 'item'
-    if (index === 0) itemOrder = 'firstItem'
-    else if (index === blogs.length - 1) itemOrder = 'lastItem'
-
-    return (
-      <Link
-        as={`/blog/${blogs[index].slug}`}
-        href={`/blog/${blogs[index].slug}`}
-        key={`${blogs[index].title}`}
-        className={`${itemOrder}`}
-        style={style}
-        // {...(itemOrder === 'lastItem' ? { ref: target } : {})}
-        // ref={itemOrder === 'lastItem' ? target : null}
-      >
-        {isLoading && <div>Loading...</div>}
-        <PostItem>
-          <div>
-            <PostTitle>{blogs[index].title}</PostTitle>
-            <PostDesc>{blogs[index].description}</PostDesc>
-          </div>
-          <PostDate date={blogs[index].date} />
-        </PostItem>
-      </Link>
-    )
-  }
 
   return (
     <>
@@ -216,15 +142,6 @@ export default function Blog({ allPosts }: Props) {
             </Link>
           ))}
       </PostContainer>
-      {/* {blogs && (
-        <VirtualizedList
-          numItems={blogs && blogs.length}
-          windowHeight={600}
-          itemHeight={170}
-          renderItem={renderListItem}
-        />
-      )} */}
-
       <div ref={target}>{isLoading && <div>Loading...</div>}</div>
     </>
   )
@@ -243,6 +160,6 @@ export const getStaticProps = async () => {
 
   return {
     props: { allPosts },
-    revalidate: 10, // 10초 후 새 요청오면 페이지 새로 생성
+    revalidate: 10,
   }
 }

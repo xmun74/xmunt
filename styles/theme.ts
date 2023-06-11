@@ -29,6 +29,7 @@ export const lightTheme: DefaultTheme = {
   navBgClickImg: `linear-gradient(120deg, #f093fb 0%, #f5576c 100%)`,
   navGuideBg: `#f6d1e8`,
   gnbBackDrop: 'rgba(255, 255, 255, 0.6)',
+  boxShadow: ' 0px 3px 30px -10px #6666664b',
 }
 
 export const darkTheme: DefaultTheme = {
@@ -60,6 +61,7 @@ export const darkTheme: DefaultTheme = {
   navBgClickImg: `linear-gradient(120deg, #f093fb 0%, #f5576c 100%)`,
   navGuideBg: `#ef7ccc8f`,
   gnbBackDrop: 'rgba(18, 18, 18, 0.6)',
+  boxShadow: '0px 3px 30px -10px #f9f9f9c7',
 }
 
 type VariableKey = keyof DefaultTheme

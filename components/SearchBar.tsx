@@ -1,10 +1,11 @@
-import Link from 'next/link'
 import { useCallback, useRef, useState } from 'react'
+import Link from 'next/link'
 import styled from 'styled-components'
-import { postsApi } from '../lib/apis'
-import useHotkey from '../lib/hooks/useHotkey'
-import { CachedPost } from '../pages/api/search'
-import { themeColor } from '../styles/theme'
+import { postsApi } from '@lib/apis'
+import useHotkey from '@lib/hooks/useHotkey'
+import { CachedPost } from '@pages/api/search'
+import { themeColor } from '@styles/theme'
+import VirtualizedList from './VirtualizedList'
 
 const SearchBarContainer = styled.div`
   position: relative;
@@ -38,23 +39,21 @@ const SearchResultUl = styled.ul`
   top: 55px;
   width: 370px;
   max-width: 370px;
-  padding: 0 0.6rem;
+  padding: 0.6rem 0;
   border-radius: 8px;
-  box-shadow: 0px 3px 30px -10px #6666664b;
+  box-shadow: ${themeColor.boxShadow};
   background-color: ${themeColor.bg1};
-  /* background-color: ${themeColor.gnbBackDrop}; */
-  /* backdrop-filter: blur(5px); */
-  /* -webkit-backdrop-filter: blur(5px); */
 `
 const SearchResultLi = styled.li`
   line-height: 1.3rem;
 `
 const SearchResultLink = styled(Link)`
-  height: 2.3rem;
+  height: 40px;
   display: flex;
   align-items: center;
-  padding: 8px 10px;
-  margin: 10px 0;
+  font-size: 14px;
+  padding: 10px 10px;
+  margin: 0 10px;
   &:hover {
     background-color: #c3ccdc46;
     border-radius: 5px;
@@ -117,6 +116,7 @@ export default function SearchBar() {
     setQuery('')
     setActive(false)
   }
+
   return (
     <SearchBarContainer ref={searchRef}>
       <SearchInput
@@ -133,17 +133,29 @@ export default function SearchBar() {
           <span>⌘</span>&nbsp;K
         </SearchShortCut>
       )}
-      {active && (
+
+      {active && query.length > 0 && (
         <SearchResultUl>
-          {results.length > 0 &&
-            results?.map(({ slug, title, content }) => (
-              <SearchResultLi key={title} onClick={handleResultClick}>
-                <SearchResultLink href={`/blog/${slug}`} key={title}>
-                  {title}
-                </SearchResultLink>
-              </SearchResultLi>
-            ))}
-          {query.length > 0 && results.length === 0 && (
+          {results.length > 0 && (
+            <VirtualizedList
+              numItems={results && results.length}
+              windowHeight={200}
+              itemHeight={40}
+              renderItem={({ index, style }) => (
+                <SearchResultLi
+                  key={results[index].slug}
+                  style={style}
+                  onClick={handleResultClick}
+                >
+                  <SearchResultLink href={`/blog/${results[index].slug}`}>
+                    {results[index].title}
+                  </SearchResultLink>
+                </SearchResultLi>
+              )}
+            />
+          )}
+
+          {results.length === 0 && (
             <SearchResultsNotFound>
               No document titles found.
             </SearchResultsNotFound>
