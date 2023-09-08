@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { useState } from 'react'
 import useTimeout from '../../lib/hooks/useTimeout'
 import { themeColor } from '../../styles/theme'

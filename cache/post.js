@@ -21,6 +21,10 @@ export const cachedPosts = [
     slug: 'open-graph',
     title: 'NextJS로 만든 블로그 이쁘게 공유하기 - Open Graph',
   },
+  {
+    slug: 'optimization-01',
+    title: '빌드 속도 최소화? 근데 이제 Webpack과 React을 곁들인',
+  },
   { slug: 'pitfalls-of-jwt', title: 'JWT도 함정은 있다!' },
   {
     slug: 'sitemap-seo',

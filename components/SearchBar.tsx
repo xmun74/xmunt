@@ -1,8 +1,8 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { postsApi } from '@lib/apis'
-import useHotkey from '@lib/hooks/useHotkey'
+import useHotkey, { HotKeyProps, HotKeysProps } from '@lib/hooks/useHotkey'
 import { CachedPost } from '@pages/api/search'
 import { themeColor } from '@styles/theme'
 import VirtualizedList from './VirtualizedList'
@@ -86,7 +86,47 @@ export default function SearchBar() {
   const searchRef = useRef(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  useHotkey({ inputRef })
+  useHotkey({ inputRef, setQuery, active, setActive })
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  /*  const hotkeys: HotKeyProps[] = useMemo(() => {
+    return [
+      {
+        comboKeys: 'meta+k',
+        label: 'Search focus',
+        global: true,
+        onKeyDown: (e: React.KeyboardEvent<Element>) => {
+          setActive(true)
+          if (inputRef.current !== null) {
+            inputRef.current.blur()
+          }
+          console.log('meta+k', e.nativeEvent)
+        },
+      },
+      {
+        comboKeys: 'ctrl+k',
+        label: 'Search focus',
+        global: true,
+        onKeyDown: (e: React.KeyboardEvent<Element>) => {
+          setActive(true)
+          if (inputRef.current !== null) {
+            inputRef.current.blur()
+          }
+          console.log('ctrl+k', e.nativeEvent)
+        },
+      },
+      {
+        label: 'Search blur',
+        comboKeys: 'esc',
+        onKeyDown: (e: React.KeyboardEvent<Element>) => {
+          setQuery('')
+          setActive(false)
+          console.log('esc', e.nativeEvent)
+        },
+      },
+    ]
+  }, []) */
+  // const { handleKeyDown } = useHotkey(hotkeys)
 
   const handleChange = useCallback(
     async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -99,7 +139,7 @@ export default function SearchBar() {
         setResults(data?.results)
       }
     },
-    [],
+    []
   )
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
