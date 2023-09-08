@@ -14,6 +14,8 @@ tags:
 
 > 프로젝트가 커질 수록 번들 크기는 무거워지고 빌드 속도가 느려질 수 있습니다. 사용자가 첫 페이지에 진입할 때 느린 초기 로딩을 경험하지 않게 하기 위해서 Webpack과 React를 활용하여 코드를 분할하고 빌드 속도를 개선하는 방법을 살펴보겠습니다.
 
+<br /><br />
+
 ### 🕖 빌드 시간 측정하기
 
 - [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)로 Webpack loader와 plugin의 빌드 속도를 측정할 수 있습니다.
@@ -72,12 +74,14 @@ tags:
 # 빌드 시간 최적화 방법
 
 development 모드에서는 빠른 빌드 속도와 디버깅이 편하기 위해 파일압축 등의 최적화 작업이 불필요하지만, production 모드일 때는 번들 크기를 줄여야하기 때문에 압축(Minify), 난독화 등의 최적화 작업이 필요합니다. 따라서 번들 크기를 줄이거나 빌드 속도를 최적화하는 방법을 알아보겠습니다.
+<br />
 
-> - 압축(Minify)
->   : 공백/들여쓰기, 주석, debugger, console.log 등을 제거하는 작업
+> **압축(Minify)**
+> : 공백/들여쓰기, 주석, debugger, console.log 등을 제거하는 작업
+> **난독화(Uglify)**
+> : 기존 변수명, 함수명을 다르게 치환하는 보안 처리 작업. 난독화 단계가 높을 수록 코드를 해석하고 실행하는 시간이 늘어난다.
 
-- 난독화(Uglify)
-  : 기존 변수명, 함수명을 다르게 치환하는 보안 처리 작업. 난독화 단계가 높을 수록 코드를 해석하고 실행하는 시간이 늘어난다.
+ <br />
 
 1. 불필요한 loader, plugin 제거
 2. loader 교체하기
@@ -119,6 +123,8 @@ v5 이전까진 `file-loader`, `url-loader`, `raw-loader`를 사용했지만, v5
 제일 처음에는 `babel-loader`를 사용했었습니다.
 하지만 파일 압축 플러그인을 설치 안했을 때 빌드 속도가 4.6s였기 때문에 플러그인을 추가 설치한다면 속도가 늘어날 것으로 예상됐습니다. 그래서 아예 loader를 교체해 빌드 속도를 줄이고자 했습니다.
 loader 종류로는 `babel-loader`, `ts-loader`, `esbuild-loader`, `swc-loader` 등이 있습니다. 이 중 앞선 3개 로더를 중심으로 살펴보겠습니다.
+
+<br />
 
 #### 1. `babel-loader` - 4.6s 소요됨 (플러그인 미설치 기준)
 
@@ -173,11 +179,14 @@ loader 종류로는 `babel-loader`, `ts-loader`, `esbuild-loader`, `swc-loader` 
   "build": "npm run typecheck && webpack"
   ```
 
-> **esbuild 란?**
+> ### esbuild 란?
+>
 > esbuild는 차세대 번들러로 webpack5보다 빠른 속도를 가지고 있습니다. [(esbuild가 빠른 이유 - esbuild 공식문서)](https://esbuild.github.io/faq/) > ![](https://velog.velcdn.com/images/xmun74/post/19ce4ad4-cc92-4554-bda1-b3b7f10e101a/image.png)
 > 이렇게나 빠른데 esbuild를 번들러로 사용하지 않는 이유가 있습니다!
 > 아직까진 안정화된 단계가 아닌 점과 주의할 사항으로 Hot-module reloading, TypeScript 타입 검사 등의 기능 지원은 앞으로 없다고 합니다.[(참고)](https://esbuild.github.io/faq/#upcoming-roadmap)
 > 그런데 esbuild는 `esbuild-loader`를 지원하기 때문에 webpack의 loader와 결합할 수 있어서 webpack의 빌드 성능을 개선하는 데 활용할 수 있습니다.
+
+<br /><br />
 
 ### ✅ esbuild-loader 적용 예시
 
@@ -300,6 +309,8 @@ module.exports = merge(common, {
 })
 ```
 
+<br /><br />
+
 ### 로더 교체 전/후 빌드 속도 비교
 
 - `babel-loader`일 때 `speed-measure-webpack-plugin`으로 빌드 시간을 측정한 결과 4.65s 소요
@@ -315,12 +326,14 @@ module.exports = merge(common, {
 이로 인해 SPA일 때 사용자가 첫 페이지에 진입하면 모든 코드가 포함된 대용량의 파일을 다운받다보니 초기 로드 시간이 길어지는 문제가 발생합니다.
 때문에 사용자와의 상호작용이 늦어지게 되어 사용자 경험을 저하시키게 됩니다.
 초기 로드 시간이 길어지면 사용자 이탈이 증가하기 때문에 초기 렌더링 시간을 단축하는 것이 중요합니다.
-
+<br />
 따라서 이를 해결하기 위해 Code-Splitting이 나타나게 됐습니다.
 대용량인 하나의 번들링 파일을 여러 개의 파일로 분할하는 작업입니다.
 이렇게 코드 분할한 뒤 사용자가 첫 페이지에 진입 시 필요한 코드만 불러오면 되기 때문에 좋은 사용자 경험을 제공할 수 있게 됩니다.
-
+<br />
 Code-Splitting을 두가지로 나눠서 살펴보겠습니다.
+
+<br />
 
 1. [Webpack으로 코드 분할하기](https://webpack.kr/guides/code-splitting/)
 2. React lazy로 특정 컴포넌트를 분할하고 동적 import하기
@@ -381,8 +394,10 @@ React lazy 기능으로 필요할 때만 컴포넌트를 동적 import 해오도
 
 `React lazy`는 컴포넌트를 JS Chunk으로 분리하게 해줍니다. 예를 들어서 Home 페이지 컴포넌트를 따로 Home.Chunk 번들 파일로 분할해주는 것입니다.
 `Suspense`를 사용하면 지연이 발생할 때 로딩중인 스피너를 띄운다던지 로딩상태를 표시할 수 있습니다.
-
+<br />
 위에서 674 번들처럼 번들명이 id로 자동으로 생성된 것을 볼 수 있습니다. id로 자동 생성된 번들명이 아니라 직관적인 번들명으로 지정해보겠습니다.
+
+<br />
 
 #### 주석으로 번들명 지정하기
 
@@ -450,11 +465,13 @@ React lazy 기능으로 필요할 때만 컴포넌트를 동적 import 해오도
 
 yarn build를 하면 보고서가 브라우저에 자동으로 열립니다.
 밑 사진과 같이 main에 커서를 올려서 용량을 알 수 있습니다.
+<br />
 
 > - Stat - 파일 입력 크키 (축소 전 크기)
+> - Parsed - 파일 출력 크기 (Minify, Uglify 등 축소 후 크기)
+> - Gzipped - 압축돼서 네트워크에 로드되는 크기
 
-- Parsed - 파일 출력 크기 (Minify, Uglify 등 축소 후 크기)
-- Gzipped - 압축돼서 네트워크에 로드되는 크기
+<br />
 
 - 전 - Stat : 738KB / Parsed : 739KB / Gzipped : 179KB
   ![](https://velog.velcdn.com/images/xmun74/post/6c97f601-b227-4de8-b9b1-ba417cb526b6/image.png)
