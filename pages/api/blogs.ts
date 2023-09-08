@@ -54,7 +54,7 @@ const posts = getAllPosts([
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>,
+  res: NextApiResponse<Data>
 ) {
   const { query } = req
 

@@ -19,14 +19,14 @@ const posts =
 
 export default function searchHandler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>,
+  res: NextApiResponse<Data>
 ) {
   const { query, method } = req
 
   try {
     const results = query.q
       ? posts.filter((post) =>
-          post.title.toLowerCase().includes(query.q!.toString()),
+          post.title.toLowerCase().includes(query.q!.toString())
         )
       : []
     res.setHeader('Content-Type', 'application/json')

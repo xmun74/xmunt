@@ -36,7 +36,7 @@ function VirtualizedList({
   const startIndex = Math.floor(scrollTop / itemHeight)
   const endIndex = Math.min(
     numItems - 1,
-    Math.floor((scrollTop + windowHeight) / itemHeight),
+    Math.floor((scrollTop + windowHeight) / itemHeight)
   )
 
   const items = []
@@ -49,7 +49,7 @@ function VirtualizedList({
           transform: `translateY(${i * itemHeight}px)`,
           width: '100%',
         },
-      }),
+      })
     )
   }
   const onScroll = (e: React.UIEvent<HTMLDivElement>) => {

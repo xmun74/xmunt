@@ -8,7 +8,7 @@ interface IntersectionObserverInit {
 
 type IntersectHandler = (
   entry: IntersectionObserverEntry,
-  observer: IntersectionObserver,
+  observer: IntersectionObserver
 ) => void
 
 const defaultOptions = {
@@ -19,7 +19,7 @@ const defaultOptions = {
 
 export default function useIntersect(
   onIntersect: IntersectHandler,
-  options?: IntersectionObserverInit,
+  options?: IntersectionObserverInit
 ) {
   const target = useRef<HTMLDivElement>(null)
 
@@ -31,7 +31,7 @@ export default function useIntersect(
         }
       })
     },
-    [onIntersect],
+    [onIntersect]
   )
 
   useEffect(() => {

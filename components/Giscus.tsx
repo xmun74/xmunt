@@ -49,21 +49,21 @@ export default function Giscus() {
   useEffect(() => {
     if (!mounted) return
     const iframe = document.querySelector<HTMLIFrameElement>(
-      'iframe.giscus-frame',
+      'iframe.giscus-frame'
     )
     iframe?.contentWindow?.postMessage(
       { giscus: { setConfig: { theme } } },
-      'https://giscus.app',
+      'https://giscus.app'
     )
   }, [theme, mounted])
 
   useEffect(() => {
     const iframe = document.querySelector<HTMLIFrameElement>(
-      'iframe.giscus-frame',
+      'iframe.giscus-frame'
     )
     iframe?.contentWindow?.postMessage(
       { giscus: { setConfig: { term: router.asPath } } },
-      'https://giscus.app',
+      'https://giscus.app'
     )
   }, [router.asPath])
 

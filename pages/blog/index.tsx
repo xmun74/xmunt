@@ -105,7 +105,7 @@ export default function Blog({ allPosts }: Props) {
     setIsLoading(true)
     const { contents, pageNumber, isLastPage } = await blogsApi.getBlogs(
       page,
-      PAGE_SIZE,
+      PAGE_SIZE
     )
     setBlogs([...blogs, ...contents])
     setPage(pageNumber + 1)

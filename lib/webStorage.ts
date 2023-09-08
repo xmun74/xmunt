@@ -22,7 +22,7 @@ export const removeWebStorage = (key: string, type = storageType): void => {
 export const getSessionStorage = (key: string) => {
   try {
     const sessionStorageValue = JSON.parse(
-      sessionStorage.getItem(key) as string,
+      sessionStorage.getItem(key) as string
     )
     return sessionStorageValue
   } catch (error) {
