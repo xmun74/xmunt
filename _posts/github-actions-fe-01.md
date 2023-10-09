@@ -1,4 +1,4 @@
-----
+---
 title: 'Github Actions - 프론트엔드 CI/CD 구축하기 (S3, CloudFront)'
 description: 'Github Actions로 프론트엔드 코드 빌드하고 AWS S3, CloudFront 배포 자동화하기'
 coverImage: ''

@@ -1,4 +1,4 @@
-----
+---
 title: 'Github Actions - 백엔드 CI/CD 구축하기'
 description: 'Github Actions로 백엔드 코드 빌드와 AWS 배포 자동화하기'
 coverImage: ''
