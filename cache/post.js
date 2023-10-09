@@ -1,5 +1,7 @@
 export const cachedPosts = [
   { slug: 'giscus', title: 'Next.js 블로그에 댓글기능 추가하기 - Giscus' },
+  { slug: 'github-actions-be-01' },
+  { slug: 'github-actions-fe-01' },
   {
     slug: 'google-analytics',
     title: 'NextJS 블로그에 Google Analytics 추가하기',
