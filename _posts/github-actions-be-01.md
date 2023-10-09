@@ -7,8 +7,8 @@ date: '2023-09-25'
 path: 'github-actions-be-01'
 category: 'CI/CD'
 tags:
-  - Github Actions
-  - CI/CD
+  - 'Github Actions'
+  - 'CI/CD'
 ---
 
 ## 도입 배경
@@ -95,9 +95,9 @@ jobs:
 
 1. `actions/checkout@v3`
    Runner(workflow 실행환경)가 현재 Github 저장소 소스코드에 체크아웃됩니다.
-2. ⎔ Use Node.js ${{ matrix.node-version }}
+2. `⎔ Use Node.js ${{ matrix.node-version }}`
    인스턴스와 동일한 node 버전(18.x)으로 적용합니다.
-3. ⎔ Install packages
+3. `⎔ Install packages`
    yarn 명령어로 패키지들 설치합니다.
 
 ```yml
@@ -120,9 +120,9 @@ jobs:
         run: tar -czvf dist.tar.gz dist
 ```
 
-4. ⎔ Build server
+4. `⎔ Build server`
    env 환경변수들을 가져오고 빌드하기
-5. ⎔ Package dist Folder
+5. `⎔ Package dist Folder`
    빌드한 dist 폴더를 tar 파일로 압축하기
 
 ## 3. 압축된 빌드 결과물을 EC2 인스턴스에 전송

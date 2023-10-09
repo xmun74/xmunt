@@ -7,8 +7,8 @@ date: '2023-09-28'
 path: 'github-actions-fe-01'
 category: 'CI/CD'
 tags:
-  - Github Actions
-  - CI/CD
+  - 'Github Actions'
+  - 'CI/CD'
 ---
 
 # IAM
