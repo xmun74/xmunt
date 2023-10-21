@@ -43,6 +43,7 @@ MFE를 간단히 설명하자면 한 패키지에 묶여있던 거대한 서비�
 
 [마틴 파울러 사이트의 글](https://martinfowler.com/articles/micro-frontends.html#IntegrationApproaches)에서 소개된 방식들을 간단히 살펴보겠습니다. 방식에 대한 자세한 내용은 해당 글을 참고하시고, 이 외에도 여러 방식이 존재합니다. 나눠진 코드 조각들을 하나로 통합하는 방식들입니다.
 그 중 JavaScript를 통한 런타임 통합 방식으로 Moduel Federation이 있습니다.
+<br />
 
 1. 서버 측 템플릿 구성
 2. 빌드 타임 통합
@@ -53,7 +54,11 @@ MFE를 간단히 설명하자면 한 패키지에 묶여있던 거대한 서비�
    - Module Federation
 5. 웹 컴포넌트를 통한 런타임 통합
 
+<br />
+
 위 방식 중에서 JavaScript를 통한 런타임 통합으로 Module Federation에 대한 구현은 밑과 같은 방식들이 있습니다.
+
+<br />
 
 - Webpack5의 [ModuleFederationPlugin](https://webpack.kr/plugins/module-federation-plugin/)
   : Webpack5부터 내장된 모듈 페더레이션 플러그인입니다.
