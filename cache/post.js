@@ -12,6 +12,7 @@ export const cachedPosts = [
     slug: 'google-analytics',
     title: 'NextJS 블로그에 Google Analytics 추가하기',
   },
+  { slug: 'module-federation-01', title: 'Module Federation이란?' },
   {
     slug: 'nextjs-infinite-scroll-two',
     title: '무한스크롤 구현에서 뒤로가기 시 스크롤 유지를 해보자',
