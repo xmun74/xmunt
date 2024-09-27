@@ -11,23 +11,9 @@ export const lightTheme: DefaultTheme = {
   bg2: 'rgba(248,194,145,0.7)',
   inlineCode: '#E9ECEF',
   box1: '#ffffff',
-  navBgHoverImg: `linear-gradient(
-      to right bottom,
-      #ff6802,
-      #ff7b1a,
-      #ff8b2d,
-      #ff9b3f,
-      #ffa952,
-      #ffa952,
-      #ffa952,
-      #ffa952,
-      #ff9a3f,
-      #ff8a2c,
-      #ff7919,
-      #ff6600
-    )`,
-  navBgClickImg: `linear-gradient(120deg, #f093fb 0%, #f5576c 100%)`,
-  navGuideBg: `#f6d1e8`,
+  navBgHoverImg: `#F0F1F3`,
+  navBgClickImg: `#fae8f3`,
+  navGuideBg: `#fae8f3`,
   gnbBackDrop: 'rgba(255, 255, 255, 0.6)',
   boxShadow: ' 0px 3px 30px -10px #6666664b',
 }
@@ -43,23 +29,9 @@ export const darkTheme: DefaultTheme = {
   bg2: 'rgba(223, 181, 28, 0.7);',
   inlineCode: '#363636',
   box1: '#424242',
-  navBgHoverImg: `linear-gradient(
-      to right bottom,
-      #ff6802,
-      #ff7b1a,
-      #ff8b2d,
-      #ff9b3f,
-      #ffa952,
-      #ffa952,
-      #ffa952,
-      #ffa952,
-      #ff9a3f,
-      #ff8a2c,
-      #ff7919,
-      #ff6600
-    )`,
-  navBgClickImg: `linear-gradient(120deg, #f093fb 0%, #f5576c 100%)`,
-  navGuideBg: `#ef7ccc8f`,
+  navBgHoverImg: `#2B2B2B`,
+  navBgClickImg: `#878f95`,
+  navGuideBg: `#2B2B2B`,
   gnbBackDrop: 'rgba(18, 18, 18, 0.6)',
   boxShadow: '0px 3px 30px -10px #f9f9f9c7',
 }
@@ -76,7 +48,7 @@ const convertCssVar = (variable: DefaultTheme) => {
   const keys = Object.keys(variable) as (keyof DefaultTheme)[]
   return keys.reduce(
     (acc, key) => acc.concat(`--${key}: ${variable[key]};`, '\n'),
-    '',
+    ''
   )
 }
 export const themes = {

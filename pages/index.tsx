@@ -49,7 +49,7 @@ export default function Home() {
     <>
       <Seo mode="default" />
       <HomeContainer>
-        <Heading title="Featured Posts" />
+        <Heading title="Posts" />
         <PreviewContent previewPosts={previewPosts} />
         <BlogLink href="/blog">
           <BlogLinkWrap>

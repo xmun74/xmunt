@@ -19,10 +19,10 @@ export default function About() {
       <Seo mode="default" />
       <AboutTitle>taegyeong mun</AboutTitle>
       <Content>
-        I&apos;m interested in solving problems and helping others. <br />
+        {/* I&apos;m interested in solving problems and helping others. <br />
         and my heart beats when I do creative work. <br />
         also mainly use React, Typescript, styled-components for front-end
-        development.
+        development. */}
       </Content>
     </AboutContainer>
   )

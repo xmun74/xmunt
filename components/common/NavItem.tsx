@@ -10,7 +10,7 @@ const StyledLink = styled(Link)`
   color: white;
   margin-right: 0.5rem;
   &:hover {
-    background-image: ${themeColor.navBgHoverImg};
+    background-color: ${themeColor.navBgHoverImg};
     transition: 0.3s ease-in-out;
   }
   display: inline-flex;
@@ -29,7 +29,7 @@ const NavHoverLabel = styled.div`
   background-color: ${themeColor.navGuideBg};
   color: ${themeColor.text1};
   font-weight: 300;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   top: 50px;
 `
 
@@ -52,7 +52,7 @@ export default function NavItem({
   const [curHoveredIdx, setCurHoveredIdx] = useState(-1)
 
   const NavStyle = {
-    backgroundImage: `${themeColor.navBgClickImg}`,
+    backgroundColor: `${themeColor.navBgClickImg}`,
   }
   const NavGuideHoverStyle = {
     display: curHoveredIdx === idx ? 'block' : 'none',

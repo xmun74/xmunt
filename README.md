@@ -10,3 +10,5 @@
 - styled-components
 - Recoil
 - Vercel
+
+- 이미지 복사 익스텐션 : Paste Image (단축키 : option + command + v)
