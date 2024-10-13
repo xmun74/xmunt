@@ -1,7 +1,7 @@
 ---
 title: '개행.줄바꿈.EOL(end-of-line)문자란? - CR, LF'
 description: 'CR, LF에 대해서 알아보자'
-coverImage: ''
+coverImage: '/images/posts/crlf/241013-173532.png'
 image: ''
 date: '2024-10-13'
 path: 'crlf'
