@@ -108,12 +108,8 @@ Carriage Return Line Feed : 커서 맨앞 이동 + 다음줄 이동
 
 - 두가지를 조합한 CRLF `\r\n` 채택
 - 윈도우에서 LF 개행으로 된 파일을 읽을 때 깨짐 현상 발생
-
-  1. 줄바꿈 충돌로 글자가 붙여서 보임
-     ![](https://velog.velcdn.com/images/xmun74/post/39d720c3-0c04-425f-b615-db6837a5fa67/image.png)
-
-  2. 글자끝에 특수문자 ^M 이 출력됨
-     ![](https://velog.velcdn.com/images/xmun74/post/7e18bdda-7344-47d8-8581-0cfa5bcea931/image.png)
+  1. 줄바꿈 충돌로 글자가 붙여서 보여짐
+  2. 글자 제일 마지막에 특수문자 `^M` 이 출력됨
 
 #### 2. UNIX 및 MAC OS(9 버전 이후)
 
@@ -127,6 +123,7 @@ Carriage Return Line Feed : 커서 맨앞 이동 + 다음줄 이동
 > - 이스케이프 시퀀스란?
 >   프린트할 수 없지만 개념상 있는 문자 (예: 개행`\n`, 탭`\t`)
 
+<br/>
 - 자바스크립트에서 keyCode가 13이면 엔터를 의미하는데 이 아스키코드에서 나온 것이다.
 
 <br /><br />
