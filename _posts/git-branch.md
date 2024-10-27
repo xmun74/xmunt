@@ -1,13 +1,13 @@
 ---
-title: ''
-description: ''
-coverImage: ''
+title: 'Git 브랜치 전략'
+description: 'Git Flow, Github Flow, TBD, GitLab Flow'
+coverImage: '/images/posts/git-branch/241027-221924.png'
 image: ''
 date: '2024-10-27'
 path: 'git-branch'
 category: ''
 tags:
-  -
+  - branch
 ---
 
 # Git Flow
