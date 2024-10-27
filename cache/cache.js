@@ -14,7 +14,7 @@ function postData() {
     return {
       slug: realSlug,
       title: data.title,
-      // content,
+      content, // cache 미사용시 주석
     }
   })
   return `export const cachedPosts = ${JSON.stringify(posts)}`
