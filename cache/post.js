@@ -1,6 +1,7 @@
 export const cachedPosts = [
   { slug: 'crlf', title: '개행.줄바꿈.EOL(end-of-line)문자란? - CR, LF' },
   { slug: 'giscus', title: 'Next.js 블로그에 댓글기능 추가하기 - Giscus' },
+  { slug: 'git-branch', title: '' },
   {
     slug: 'github-actions-be-01',
     title: 'Github Actions - 백엔드 CI/CD 구축하기',
