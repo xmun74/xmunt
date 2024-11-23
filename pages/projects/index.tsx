@@ -47,12 +47,6 @@ const ProjectLists = [
     imgSrc: '/images/projects/xmuntblog.png',
     description: '개인 블로그 제작',
   },
-  {
-    title: '데일리클럽',
-    href: 'https://github.com/codestates-seb/dailyclub',
-    imgSrc: '/images/projects/dailyclub.png',
-    description: '일회성 동호회 모임 사이트',
-  },
 ]
 
 export default function Projects() {

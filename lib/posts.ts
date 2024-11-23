@@ -95,3 +95,17 @@ export function getPostToc(content: string) {
     return { text, href, level }
   })
 }
+
+/**
+ * <최신글 4개> fields값(slug, title, date 등) 출력
+ * @param  fields - ex) getRecentPosts(['slug', 'date'])
+ * @returns [ { slug: 'pre-rendering', date: '2023-00-00' }, { slug: 'preview', date: '2023-00-00' }, ... ]
+ */
+export function getRecentPosts(fields: string[] = []) {
+  const slugs = getPostSlugs()
+  const posts = slugs
+    .map((slug) => getPostBySlug(slug, fields))
+    // 날짜 내림차순 정렬
+    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
+  return posts.slice(0, 4)
+}

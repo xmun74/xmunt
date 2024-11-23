@@ -25,13 +25,11 @@ const PostItem = styled.div`
     transition: all 0.3s;
     transform: translateY(-10px);
   }
-  &:nth-child(1) {
-    grid-row: 1 / span 2;
-  }
 `
 const PreviewTitle = styled.div`
   font-size: 20px;
   font-weight: 700;
+  line-height: normal;
   margin: 25px 20px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -52,7 +50,7 @@ const PreviewDate = styled.div`
 const PreviewImg = styled.div`
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 160px;
   img {
     object-fit: cover;
     border-bottom-left-radius: 7px;

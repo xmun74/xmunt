@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getAllPosts } from '@lib/posts'
-import { cachedPosts } from '@cache/post'
+// import { cachedPosts } from '@cache/post'
 import { CachedPost } from './search'
 
 type Data = {
@@ -39,18 +39,18 @@ type Data = {
 // ]
 
 /** saved */
-// const posts = getAllPosts([
-//   'slug',
-//   'title',
-//   'date',
-//   'description',
-// ]) as CachedPost[]
+const posts = getAllPosts([
+  'slug',
+  'title',
+  'date',
+  'description',
+]) as CachedPost[]
 
 /** cached */
-const posts =
-  process.env.NODE_ENV === 'production'
-    ? (cachedPosts as CachedPost[])
-    : (getAllPosts(['slug', 'title', 'date', 'description']) as CachedPost[])
+// const posts =
+//   process.env.NODE_ENV === 'production'
+//     ? (cachedPosts as CachedPost[])
+//     : (getAllPosts(['slug', 'title', 'date', 'description']) as CachedPost[])
 
 export default function handler(
   req: NextApiRequest,

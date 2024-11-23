@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
     color: ${themeColor.text1};
     height: 100%;
     font-family: 'Inter', sans-serif;
+    line-height: normal;
   }
   body, html{
     @media screen and (max-width: 767px) {

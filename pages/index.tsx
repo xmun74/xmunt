@@ -4,6 +4,8 @@ import Heading from '@components/common/Heading'
 import PlusIcon from '@components/icons/PlusIcon'
 import PreviewContent from '@components/PreviewContent'
 import Seo from '@components/Seo'
+import { getRecentPosts } from '@lib/posts'
+import { PostType } from '@lib/types'
 
 const HomeContainer = styled.div`
   height: 100vh;
@@ -23,28 +25,21 @@ const BlogLinkWrap = styled.div`
   display: flex;
 `
 
-export default function Home() {
-  const previewPosts = [
-    {
-      href: '/blog/nextjs-setting-ts',
-      title:
-        'NextJs + TS 셋팅 - eslint, prettier, styled-components (husky, lint-staged, airbnb)',
-      date: '2023-02-07',
-      imgUrl: '/images/defaultImg.jpeg',
-    },
-    {
-      href: '/blog/open-graph',
-      title: 'NextJS로 만든 블로그 이쁘게 공유하기 - Open Graph',
-      date: '2023-03-14',
-      imgUrl: '',
-    },
-    {
-      href: '/blog/google-analytics',
-      title: 'NextJS 블로그에 Google Analytics 추가하기',
-      date: '2023-03-09',
-      imgUrl: '',
-    },
-  ]
+type Props = {
+  recentPosts: PostType[]
+}
+
+export default function Home({ recentPosts }: Props) {
+  console.log('여여', recentPosts)
+
+  const converted = recentPosts?.map(({ slug, title, date, coverImage }) => ({
+    href: `/blog/${slug}`,
+    title,
+    date,
+    imgUrl: coverImage,
+  }))
+
+  const previewPosts = [...converted]
   return (
     <>
       <Seo mode="default" />
@@ -60,4 +55,20 @@ export default function Home() {
       </HomeContainer>
     </>
   )
+}
+export const getStaticProps = async () => {
+  const recentPosts = getRecentPosts([
+    'slug',
+    'title',
+    'description',
+    'coverImage',
+    'date',
+    'category',
+    'tags',
+  ])
+
+  return {
+    props: { recentPosts },
+    revalidate: 10,
+  }
 }
