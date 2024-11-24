@@ -67,10 +67,10 @@ const Content = styled.article`
     font-weight: 700;
   }
   p {
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
   img {
-    width: 100%;
+    max-width: 100%;
     margin-bottom: auto 10px;
     pointer-events: none;
   }
@@ -84,7 +84,7 @@ const Content = styled.article`
     list-style-position: inline;
     line-height: 2.2;
     padding-inline-start: 1.5em;
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
   ul {
     list-style-type: disc;
@@ -125,7 +125,7 @@ const Content = styled.article`
     border-top-right-radius: 0.5em;
   }
   img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     margin-top: 1rem;
   }
