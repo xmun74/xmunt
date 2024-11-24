@@ -34,7 +34,7 @@ export default function Home({ recentPosts }: Props) {
 
   const converted = recentPosts?.map(({ slug, title, date, coverImage }) => ({
     href: `/blog/${slug}`,
-    title,
+    title: title || 'Post',
     date,
     imgUrl: coverImage,
   }))

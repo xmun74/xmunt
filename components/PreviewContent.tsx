@@ -62,7 +62,7 @@ interface PreviewProps {
   href: string
   title: string
   date: string
-  imgUrl: string
+  imgUrl?: string
 }
 export default function PreviewContent({
   previewPosts,
@@ -77,7 +77,7 @@ export default function PreviewContent({
             <Link href={el.href} style={{ height: '100%' }}>
               <PreviewTitle>{el.title}</PreviewTitle>
               <PreviewDate>{el.date}</PreviewDate>
-              {el.imgUrl !== '' ? (
+              {el.imgUrl && el.imgUrl !== '' ? (
                 <PreviewImg>
                   <Image
                     src={el.imgUrl}
