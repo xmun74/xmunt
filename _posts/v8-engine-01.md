@@ -93,7 +93,7 @@ x = 1 // 이제는 숫자 Number
 
    - AST, 스코프 생성
    - 문법 오류 검출
-   - 소스코드 [(v8/src/parsing/preparser.cc)](https://github.com/v8/v8/blob/main/src/parsing/preparser.cc)
+   - 소스코드 [(v8/src/parsing/parser.cc)](https://github.com/v8/v8/blob/main/src/parsing/parser.cc)
 
 2. [pre-parser](https://v8.dev/blog/preparser)
    즉시 실행에 필요한 코드가 아니고 나중에 실행될 코드일 때 사용하는 파서입니다.
