@@ -1,7 +1,7 @@
 ---
 title: '2024년 회고, 그리고 2025년 목표'
 description: '2024년 한 해를 되돌아보며 느꼈던 점과 활동을 정리해보았습니다. 이를 기반으로 2025년에는 무엇을 할 지 개발자로서의 목표, 그리고 개인적인 목표를 세워보았습니다.'
-coverImage: /images/posts/return-2024/250105-233221.png'
+coverImage: '/images/posts/return-2024/250105-233221.png'
 image: ''
 date: '2025-01-05'
 path: 'return-2024'
