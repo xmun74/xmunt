@@ -51,11 +51,11 @@ ls node_modules\typescript\lib\tsserver.js
 
 <br />
 
-### 3. [ts server 로그 확인하기 (vs code)](https://github.com/microsoft/TypeScript/wiki/Getting-logs-from-TS-Server-in-VS-Code)
+### 3. ts server 로그 확인하기 (vs code)
 
 1. `Ctrl + Shift + P` → "TypeScript: Open TS Server logs" 클릭
    클릭하면 파일로 이동하며 해당 파일에서 실시간 로그를 확인할 수 있습니다.
-   가장 상단을 보면 TS Server 시작되는 것을 확인할 수 있습니다.
+   가장 상단을 보면 TS Server 시작되는 것을 확인할 수 있습니다. - [참고](https://github.com/microsoft/TypeScript/wiki/Getting-logs-from-TS-Server-in-VS-Code)
 
 ```bash
 Info 0    [19:12:58.515] Starting TS Server
