@@ -25,7 +25,7 @@ TypeScript Standalone Server (aka TS Server)는 언어 서비스를 제공하는
 
 실행파일은 typescript를 설치한 다음 밑 폴더경로를 통해서 찾을 수 있습니다.
 
-```
+```bash
 npm install --save typescript // 설치 후
 ls node_modules\typescript\lib\tsserver.js
 // .yarn\sdks\typescript\lib\tsserver.js // or yarn으로 설치 시
@@ -57,7 +57,7 @@ ls node_modules\typescript\lib\tsserver.js
    클릭하면 파일로 이동하며 해당 파일에서 실시간 로그를 확인할 수 있습니다.
    가장 상단을 보면 TS Server 시작되는 것을 확인할 수 있습니다.
 
-```
+```bash
 Info 0    [19:12:58.515] Starting TS Server
 Info 1    [19:12:58.515] Version: 5.1.3
 Info 2    [19:12:58.515] Arguments: /Users/~~~ //  파일경로 및 vscode 위치 표시
@@ -85,7 +85,7 @@ tsserver는 편집기 및 IDE(VS Code 등)와의 통신을 위해서 [JSON-RPC (
 
 - quickinfo : 코드위에서 마우스 호버 시 해당코드의 타입 정보를 가져오는 요청
 
-```
+```bash
 Info 1267 [19:46:46.993] request:
     {
       "seq": 210,             // 요청 시퀀스 번호
@@ -101,7 +101,7 @@ Info 1267 [19:46:46.993] request:
 
 2. 응답
 
-```
+```bash
 Perf 1268 [19:46:46.994] 210::quickinfo: elapsed time (in milliseconds) 1.7008
 Info 1269 [19:46:46.995] response:
 // 위는 성능로그. 요청 처리하는 데 걸린 시간 1.7ms
