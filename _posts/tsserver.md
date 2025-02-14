@@ -100,7 +100,7 @@ Info 2    [19:12:58.515] Arguments: /Users/~~~ //  파일경로 및 vscode 위�
 tsserver는 편집기 및 IDE(VS Code 등)와의 통신을 위해서 [JSON-RPC (JavaScript Object Notation-Remote Procedure Call)](https://en.wikipedia.org/wiki/JSON-RPC) 기반의 프로토콜을 사용하고 있습니다.
 먼저 JSON 프로토콜 예시 내용을 살펴보기 위해 ts server 로그파일을 들어가보면 아래와 같은 JSON 객체 결과를 확인할 수 있습니다.
 
-1. 요청 (VSCode => tsserver)
+1. 요청 `(VSCode => tsserver)`
 
 - quickinfo : 코드위에서 마우스 호버 시 해당코드의 타입 정보를 가져오는 요청
 
@@ -118,7 +118,7 @@ Info 1267 [19:46:46.993] request:
     }
 ```
 
-2. 응답 (VSCode <= tsserver)
+2. 응답 `(VSCode <= tsserver)`
 
 ```bash
 Perf 1268 [19:46:46.994] 210::quickinfo: elapsed time (in milliseconds) 1.7008
