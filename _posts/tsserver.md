@@ -20,7 +20,12 @@ ts server가 뭔지 모르시겠다구요?! 하지만 타입스크립트를 써�
 
 # tsserver란?
 
-TypeScript Standalone Server (aka TS Server)는 언어 서비스를 제공하는 독립적인 서버입니다. 여기서 언어 서비스란 IDE 같은 개발 환경에서 코드 자동완성(IntelliSense), 정의로 이동(Go to Definition), 타입 검사 등의 서비스를 말합니다. TypeScript와 같이 언어와 관련된 기능을 제공하기 때문에 언어 서비스라고 부릅니다. TS 서버는 JSON 프로토콜을 통해 IDE 또는 에디터와 통신하며, 실시간으로 코드를 분석해 오류나 경고를 반환하고, 필요한 정보를 에디터에 제공합니다.
+TypeScript Standalone Server (aka TS Server)는 언어 서비스를 제공하는 독립적인 서버입니다. 여기서 언어 서비스란 IDE 같은 개발 환경에서 코드 자동완성(IntelliSense), 정의로 이동(Go to Definition), 타입 검사 등의 서비스를 말합니다.
+예를들면 밑처럼 호버시 타임검사 해주는 것을 확인할 수 있습니다.
+![](https://velog.velcdn.com/images/xmun74/post/6a6cc16e-092a-42fe-a48d-975554ac7e42/image.png)
+
+TypeScript와 같이 언어와 관련된 기능을 제공하기 때문에 언어 서비스라고 부릅니다.
+TS 서버는 JSON 프로토콜을 통해 IDE 또는 에디터와 통신하며, 실시간으로 코드를 분석해 오류나 경고를 반환하고, 필요한 정보를 에디터에 제공합니다.
 우리가 TypeScript를 설치하고 나면 vscode 상에서 타입검사 등을 할 수 있게 도와주는 것이 바로 tsserver라고 생각하시면 됩니다.
 
 <br /><br />
