@@ -22,6 +22,19 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  /* 스크롤바 전체 기본 꾸미기 */
+  body::-webkit-scrollbar {
+    width: 8px;
+    color: red;
+  }
+
+  /* 스크롤바 막대 꾸미기 */
+  body::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    width: 8px;
+    background-color: #bab9b98c;
+  }
+
   body {
     ${themes.light}
   }

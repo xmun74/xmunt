@@ -3,6 +3,9 @@ import { PropsWithChildren } from 'react'
 import Header from './Header'
 import Footer from './Footer'
 
+const LayoutDiv = styled.div`
+  /* height: 100%; */
+`
 const Content = styled.main`
   margin: 60px auto 0 auto;
   max-width: 720px;
@@ -14,10 +17,10 @@ const Content = styled.main`
 
 export default function Layout({ children }: PropsWithChildren) {
   return (
-    <>
+    <LayoutDiv>
       <Header />
       <Content>{children}</Content>
       <Footer />
-    </>
+    </LayoutDiv>
   )
 }

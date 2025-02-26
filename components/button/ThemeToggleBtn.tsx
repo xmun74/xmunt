@@ -1,13 +1,11 @@
-import Image from 'next/image'
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
+import SunIcon from '@components/icons/SunIcon'
+import MoonIcon from '@components/icons/MoonIcon'
 import useToggleTheme from '../../lib/hooks/useToggleTheme'
 import { getLocalStorage } from '../../lib/webStorage'
-import Moon from '../../public/static/Moon.svg'
-import Sun from '../../public/static/Sun.svg'
 import themeState from '../../states/atoms/theme'
-import { themeColor } from '../../styles/theme'
 
 const ToggleBtn = styled.button`
   cursor: pointer;
@@ -18,11 +16,6 @@ const ToggleBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  &:hover {
-    background-color: ${themeColor.accent3};
-    transition: 0.2s ease-in-out;
-  }
 `
 
 export default function ThemeToggleBtn() {
@@ -48,11 +41,7 @@ export default function ThemeToggleBtn() {
   return (
     <div>
       <ToggleBtn onClick={toggleThemeMode}>
-        {theme === 'light' ? (
-          <Image width={30} height={30} src={Sun} alt="해 로고" />
-        ) : (
-          <Image width={28} height={28} src={Moon} alt="달 로고" />
-        )}
+        {theme === 'light' ? <SunIcon /> : <MoonIcon />}
       </ToggleBtn>
     </div>
   )

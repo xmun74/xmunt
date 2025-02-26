@@ -12,6 +12,10 @@ const SearchBarContainer = styled.div`
   display: flex;
   align-items: center;
   margin-right: 8px;
+
+  @media screen and (max-width: 500px) {
+    width: 60px;
+  }
 `
 const SearchInput = styled.input`
   position: relative;
@@ -32,6 +36,9 @@ const SearchInput = styled.input`
   &:focus {
     opacity: 1;
     transition: 0.15s ease-in-out;
+  }
+  @media screen and (max-width: 600px) {
+    display: none;
   }
 `
 const SearchResultUl = styled.ul`
@@ -71,6 +78,9 @@ const SearchShortCut = styled.div`
   align-items: center;
   span {
     font-size: 0.9rem;
+  }
+  @media screen and (max-width: 600px) {
+    display: none;
   }
 `
 const SearchResultsNotFound = styled.div`

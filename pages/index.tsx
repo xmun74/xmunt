@@ -48,7 +48,7 @@ export default function Home({ recentPosts }: Props) {
         <PreviewContent previewPosts={previewPosts} />
         <BlogLink href="/blog">
           <BlogLinkWrap>
-            More other posts &nbsp;
+            더보기 &nbsp;
             <PlusIcon />
           </BlogLinkWrap>
         </BlogLink>
