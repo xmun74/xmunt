@@ -83,7 +83,6 @@ TLS(Transport Layer Security:전송 계층 보안) 또는 SSL(Secure Sockets Lay
 
 > **Cipher Suites 구조** ([사진 참고 - microsoft](https://learn.microsoft.com/en-us/windows/win32/secauthn/cipher-suites-in-schannel))
 > ![](https://velog.velcdn.com/images/xmun74/post/c496f9b2-04a4-4d2a-b76c-a7d3fcd95d16/image.png)
-> 여러
 >
 > - TLS: 프로토콜명
 > - key exchange: 클라이언트-서버 간 대칭키 교환할 방식
