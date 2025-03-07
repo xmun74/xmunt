@@ -30,7 +30,7 @@ export const darkTheme: DefaultTheme = {
   inlineCode: '#363636',
   box1: '#424242',
   navBgHoverImg: `#2B2B2B`,
-  navBgClickImg: `#878f95`,
+  navBgClickImg: `#232323`,
   navGuideBg: `#2B2B2B`,
   gnbBackDrop: 'rgba(18, 18, 18, 0.6)',
   boxShadow: '0px 3px 30px -10px #f9f9f9c7',

@@ -43,10 +43,10 @@ const HeaderWrap = styled.div`
 const LogoBtn = styled.button`
   position: relative;
   border: none;
-  width: 70px;
+  width: 60px;
   height: 60px;
   @media screen and (max-width: 767px) {
-    width: 55px;
+    width: 46px;
   }
 `
 export default function Header() {

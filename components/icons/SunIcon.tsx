@@ -5,13 +5,13 @@ function SunIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={32}
-      height={32}
+      width={24}
+      height={24}
       fill="currentColor"
       {...props}
     >
-      <g clip-path="url(#clip0_18_14710)">
-        <rect width="32" height="32" fill="url(#pattern0_18_14710)" />
+      <g clipPath="url(#clip0_18_14710)">
+        <rect width="24" height="24" fill="url(#pattern0_18_14710)" />
       </g>
       <defs>
         <pattern
@@ -23,7 +23,7 @@ function SunIcon(props: SVGProps<SVGSVGElement>) {
           <use xlinkHref="#image0_18_14710" transform="scale(0.000976562)" />
         </pattern>
         <clipPath id="clip0_18_14710">
-          <rect width="32" height="32" fill="white" />
+          <rect width="24" height="24" fill="white" />
         </clipPath>
         <image
           id="image0_18_14710"

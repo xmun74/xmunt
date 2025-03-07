@@ -19,7 +19,7 @@ const SearchBarContainer = styled.div`
 `
 const SearchInput = styled.input`
   position: relative;
-  height: 85%;
+  height: 100%;
   width: 130px;
   outline: none;
   border: none;
