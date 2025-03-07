@@ -52,7 +52,7 @@ export default function Seo({ post, mode }: SeoPostProps) {
   ) : (
     <Head>
       {/* HTML Meta Tags */}
-      <title>문태경 BLOG</title>
+      <title>문태경 Blog</title>
       <meta name="description" content={`${pageConfig.description}`} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
 

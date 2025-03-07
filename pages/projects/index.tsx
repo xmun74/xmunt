@@ -42,7 +42,7 @@ const ProjectInfo = styled.div`
 
 const ProjectLists = [
   {
-    title: '문태경 BLOG',
+    title: '문태경 Blog',
     href: 'https://github.com/xmun74/xmunt',
     imgSrc: '/images/projects/xmuntblog.png',
     description: '개인 블로그 제작',
