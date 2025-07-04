@@ -16,6 +16,7 @@ export const lightTheme: DefaultTheme = {
   navGuideBg: `#fae8f3`,
   gnbBackDrop: 'rgba(255, 255, 255, 0.6)',
   boxShadow: ' 0px 3px 30px -10px #6666664b',
+  hoverBg: '#F3F2F2',
 }
 
 export const darkTheme: DefaultTheme = {
@@ -34,6 +35,7 @@ export const darkTheme: DefaultTheme = {
   navGuideBg: `#2B2B2B`,
   gnbBackDrop: 'rgba(18, 18, 18, 0.6)',
   boxShadow: '0px 3px 30px -10px #f9f9f9c7',
+  hoverBg: '#232323',
 }
 
 type VariableKey = keyof DefaultTheme

@@ -17,5 +17,6 @@ declare module 'styled-components' {
     navGuideBg: string
     gnbBackDrop: string
     boxShadow: string
+    hoverBg: string
   }
 }

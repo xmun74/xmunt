@@ -11,9 +11,8 @@ import { PostType } from '@lib/types'
 import { themeColor } from '@styles/theme'
 
 const PostContainer = styled.div`
-  padding-top: 50px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 30px;
 
   @media screen and (max-width: 767px) {
@@ -23,64 +22,22 @@ const PostContainer = styled.div`
 
 const PostItem = styled.div`
   position: relative;
-  height: 170px;
+  height: 110px;
   border-radius: 5px;
-  padding: 20px 20px 20px 0;
+  padding: 16px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-
-  &::after {
-    position: absolute;
-    content: '';
-    width: 0;
-    height: 1%;
-    top: 0;
-    right: 0;
-    z-index: -1;
-    background-color: ${themeColor.text1};
-    border-radius: 5px;
-    transition: all 0.1s ease;
-  }
+  gap: 10px;
   &:hover {
+    background-color: ${themeColor.hoverBg};
     transition: 0.1s ease-in-out;
-  }
-  &:hover:after {
-    left: 0;
-    width: 100%;
-  }
-  &:active {
-    top: 2px;
   }
 `
 const PostTitle = styled.h1`
   font-weight: 700;
-  font-size: 24px;
-  padding-bottom: 10px;
+  font-size: 20px;
   line-height: 1.7rem;
-
-  &::after {
-    position: absolute;
-    content: '';
-    width: 0;
-    height: 1%;
-    top: 0;
-    right: 0;
-    z-index: -1;
-    background-color: ${themeColor.text1};
-    border-radius: 5px;
-    transition: all 0.1s ease;
-  }
-  &:hover {
-    transition: 0.1s ease-in-out;
-  }
-  &:hover:after {
-    left: 0;
-    width: 100%;
-  }
-  &:active {
-    top: 2px;
-  }
+  color: ${themeColor.text1};
 `
 const PostDesc = styled.div`
   color: ${themeColor.text2};
@@ -88,6 +45,11 @@ const PostDesc = styled.div`
   font-size: 0.8rem;
   font-weight: 400;
   line-height: 1.3rem;
+`
+const PostWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 
 type Props = {
@@ -127,17 +89,17 @@ export default function Blog({ allPosts }: Props) {
   return (
     <>
       <Seo mode="default" />
-      <Heading title={`Posts ${blogs.length}`} />
+      {/* <Heading title={`Posts ${blogs.length}`} /> */}
       <PostContainer>
         {blogs &&
           blogs?.map(({ slug, title, description, date }) => (
             <Link as={`/blog/${slug}`} href={`/blog/${slug}`} key={title}>
               <PostItem>
-                <div>
+                <PostWrapper>
                   <PostTitle>{title}</PostTitle>
-                  <PostDesc>{description}</PostDesc>
-                </div>
-                <PostDate date={date} />
+                  <PostDate date={date} />
+                </PostWrapper>
+                <PostDesc>{description}</PostDesc>
               </PostItem>
             </Link>
           ))}
