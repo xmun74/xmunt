@@ -3,7 +3,6 @@ import styled, { CSSProperties } from 'styled-components'
 import Link from 'next/link'
 import Seo from '@components/Seo'
 import useIntersect from '@lib/hooks/useIntersect'
-import Heading from '@components/common/Heading'
 import PostDate from '@components/PostDate'
 import { blogsApi } from '@lib/apis'
 import { getAllPosts } from '@lib/posts'
@@ -89,7 +88,6 @@ export default function Blog({ allPosts }: Props) {
   return (
     <>
       <Seo mode="default" />
-      {/* <Heading title={`Posts ${blogs.length}`} /> */}
       <PostContainer>
         {blogs &&
           blogs?.map(({ slug, title, description, date }) => (
