@@ -4,7 +4,6 @@ import Seo from '@components/Seo'
 
 const NoteContainer = styled.div`
   font-weight: 100;
-  height: 100vh;
 `
 
 export default function Note() {

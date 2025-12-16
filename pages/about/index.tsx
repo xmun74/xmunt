@@ -1,9 +1,7 @@
 import styled from 'styled-components'
 import Seo from '@components/Seo'
 
-const AboutContainer = styled.div`
-  height: 100vh;
-`
+const AboutContainer = styled.div``
 const AboutTitle = styled.div`
   font-weight: 100;
   font-size: 50px;

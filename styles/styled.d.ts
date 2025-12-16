@@ -8,6 +8,7 @@ declare module 'styled-components' {
     text1: string
     text2: string
     text3: string
+    text4: string
     bg1: string
     bg2: string
     inlineCode: string

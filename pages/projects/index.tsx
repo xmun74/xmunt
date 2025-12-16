@@ -4,9 +4,7 @@ import styled from 'styled-components'
 import Seo from '@components/Seo'
 import Heading from '@components/common/Heading'
 
-const ProjectContainer = styled.div`
-  height: 100vh;
-`
+const ProjectContainer = styled.div``
 const ProjectWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
