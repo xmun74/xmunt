@@ -38,13 +38,18 @@ const ProjectInfo = styled.div`
   font-weight: 100;
 `
 
-const ProjectLists = [
-  {
-    title: '문태경 Blog',
-    href: 'https://github.com/xmun74/xmunt',
-    imgSrc: '/images/projects/xmuntblog.png',
-    description: '개인 블로그 제작',
-  },
+const ProjectLists: Array<{
+  title: string
+  href: string
+  imgSrc: string
+  description: string
+}> = [
+  // {
+  //   title: '문태경 Blog',
+  //   href: 'https://github.com/xmun74/xmunt',
+  //   imgSrc: '/images/projects/xmuntblog.png',
+  //   description: '개인 블로그 제작',
+  // },
 ]
 
 export default function Projects() {
