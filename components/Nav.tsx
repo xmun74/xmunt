@@ -8,20 +8,20 @@ const navConfig: {
   path: string
 }[] = [
   {
-    label: 'About',
-    path: '/about',
-  },
-  {
-    label: 'Projects',
-    path: '/projects',
-  },
-  {
     label: 'Blog',
     path: '/blog',
   },
   {
     label: 'Note',
     path: '/note',
+  },
+  {
+    label: 'Projects',
+    path: '/projects',
+  },
+  {
+    label: 'About',
+    path: '/about',
   },
 ]
 
