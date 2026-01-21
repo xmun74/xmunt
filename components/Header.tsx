@@ -1,7 +1,7 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { useRecoilValue } from 'recoil'
+import AnimatedLogo from '@components/AnimatedLogo'
 import { themeColor } from '../styles/theme'
 import ThemeToggleBtn from './button/ThemeToggleBtn'
 import themeState from '../states/atoms/theme'
@@ -51,15 +51,14 @@ const LogoBtn = styled.button`
 `
 export default function Header() {
   const theme = useRecoilValue(themeState)
-  const curTheme =
-    theme === 'light' ? '/static/Logo.svg' : '/static/LogoDarkMode.svg'
+  const isDarkMode = theme === 'dark'
 
   return (
     <Container>
       <HeaderContent>
         <Link href="/">
           <LogoBtn>
-            <Image src={curTheme} alt="사이트 로고" fill />
+            <AnimatedLogo isDarkMode={isDarkMode} />
           </LogoBtn>
         </Link>
         <HeaderWrap>
