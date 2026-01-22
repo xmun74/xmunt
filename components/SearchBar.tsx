@@ -11,7 +11,7 @@ const SearchBarContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  margin-right: 8px;
+  margin-right: 0.8rem;
 
   @media screen and (max-width: 500px) {
     width: 60px;
@@ -19,7 +19,7 @@ const SearchBarContainer = styled.div`
 `
 const SearchInput = styled.input`
   position: relative;
-  height: 100%;
+  height: 90%;
   width: 130px;
   outline: none;
   border: none;
@@ -68,7 +68,7 @@ const SearchResultLink = styled(Link)`
 `
 const SearchShortCut = styled.div`
   position: absolute;
-  right: 10px;
+  right: 6px;
   border: 1px solid ${themeColor.inlineCode};
   border-radius: 5px;
   background-color: ${themeColor.bg1};
@@ -171,7 +171,7 @@ export default function SearchBar() {
     <SearchBarContainer ref={searchRef}>
       <SearchInput
         value={query}
-        placeholder="Search..."
+        placeholder="Search"
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         ref={inputRef}
