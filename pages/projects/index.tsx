@@ -45,7 +45,7 @@ const ProjectLists: Array<{
   description: string
 }> = [
   // {
-  //   title: '문태경 Blog',
+  //   title: 'xmunt',
   //   href: 'https://github.com/xmun74/xmunt',
   //   imgSrc: '/images/projects/xmuntblog.png',
   //   description: '개인 블로그 제작',

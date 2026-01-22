@@ -52,7 +52,7 @@ export default function Seo({ post, mode }: SeoPostProps) {
   ) : (
     <Head>
       {/* HTML Meta Tags */}
-      <title>문태경 Blog</title>
+      <title>xmunt</title>
       <meta name="description" content={`${pageConfig.description}`} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -61,10 +61,7 @@ export default function Seo({ post, mode }: SeoPostProps) {
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={`${pageConfig.title}`} />
       <meta property="og:title" content={`${pageConfig.title}`} />
-      <meta
-        property="og:description"
-        content="꾸준히 성장해가는 문태경 블로그입니다."
-      />
+      <meta property="og:description" content="developer xmunt's blog" />
       <meta property="og:image" content={`${pageConfig.siteImg}`} />
 
       {/* Twitter Meta Tags */}
