@@ -43,22 +43,22 @@ const Content = styled.article`
     }
   }
   h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
     margin-top: 50px;
   }
   h2 {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 600;
     margin-top: 26px;
   }
   h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 600;
     margin-top: 22px;
   }
   h4 {
-    font-size: 1.125rem;
+    font-size: 1.1rem;
     font-weight: 700;
     margin-top: 20px;
   }
@@ -67,7 +67,7 @@ const Content = styled.article`
     font-weight: 700;
   }
   p {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   img {
     max-width: 100%;
@@ -84,7 +84,7 @@ const Content = styled.article`
     list-style-position: inline;
     line-height: 2.2;
     padding-inline-start: 1.5em;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   ul {
     list-style-type: disc;
