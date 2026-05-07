@@ -64,8 +64,12 @@ export default function NoteToc({ items, hasCodePanel }: Props) {
 
     observerRef.current = new IntersectionObserver(
       (entries) => {
-        const visible = entries.find((e) => e.isIntersecting)
-        if (visible) setActiveHref(visible.target.id)
+        const intersecting = entries.filter((e) => e.isIntersecting)
+        if (!intersecting.length) return
+        const topmost = intersecting.reduce((prev, cur) =>
+          cur.boundingClientRect.top < prev.boundingClientRect.top ? cur : prev
+        )
+        setActiveHref(topmost.target.id)
       },
       { rootMargin: '-80px 0px -60% 0px', threshold: 0 }
     )

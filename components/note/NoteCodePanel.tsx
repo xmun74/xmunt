@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { PanelBlock } from '@lib/notes'
@@ -133,16 +133,29 @@ export default function NoteCodePanel({
 }) {
   const [activeIdx, setActiveIdx] = useState(0)
   const [copied, setCopied] = useState(false)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
+  }, [])
 
   if (!blocks.length) return null
 
   const active = blocks[activeIdx]
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(active.code).then(() => {
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    })
+    navigator.clipboard
+      .writeText(active.code)
+      .then(() => {
+        setCopied(true)
+        if (timerRef.current) clearTimeout(timerRef.current)
+        timerRef.current = setTimeout(() => setCopied(false), 2000)
+      })
+      .catch(() => {
+        // clipboard write failed (page not focused or non-secure context)
+      })
   }
 
   return (

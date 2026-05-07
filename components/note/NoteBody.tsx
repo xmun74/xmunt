@@ -74,7 +74,7 @@ const Content = styled.article`
   }
   ul,
   ol {
-    list-style-position: inline;
+    list-style-position: inside;
     line-height: 2.2;
     padding-inline-start: 1.5em;
     font-size: 0.9rem;
