@@ -41,6 +41,6 @@ next-env.d.ts
 /docs/
 
 # local notes (example files)
-/_notes/
+/_notes/react-usestate.md
 
 .env
