@@ -19,8 +19,8 @@ export function getNoteBySlug(slug: string, fields: string[] = []) {
 
   fields.forEach((field) => {
     if (field === 'slug') items[field] = realSlug
-    if (field === 'content') items[field] = content
-    if (typeof data[field] !== 'undefined') items[field] = data[field]
+    else if (field === 'content') items[field] = content
+    else if (typeof data[field] !== 'undefined') items[field] = data[field]
   })
   return items
 }

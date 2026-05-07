@@ -166,7 +166,7 @@ export default function NoteCodePanel({
           <TabBar>
             {blocks.map((b, i) => (
               <Tab
-                key={b.filename}
+                key={`${b.filename}-${b.code.length}`}
                 type="button"
                 $active={i === activeIdx}
                 onClick={() => setActiveIdx(i)}
@@ -187,7 +187,7 @@ export default function NoteCodePanel({
       {/* Mobile inline panel */}
       <MobilePanel>
         {blocks.map((b) => (
-          <div key={b.filename}>
+          <div key={`${b.filename}-${b.code.length}`}>
             <MobileFileLabel>{b.filename}</MobileFileLabel>
             <MDXRemote {...b.mdx} />
           </div>

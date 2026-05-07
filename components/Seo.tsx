@@ -1,14 +1,19 @@
 import Head from 'next/head'
 import DOMAIN from '../constants/domain'
 import pageConfig from '../lib/config'
-import { PostType } from '../lib/types'
+import { PostType, NoteType } from '../lib/types'
 
 interface SeoPostProps {
-  post?: PostType
+  post?: PostType | NoteType
   mode: 'post' | 'default'
+  pathPrefix?: string
 }
 
-export default function Seo({ post, mode }: SeoPostProps) {
+export default function Seo({
+  post,
+  mode,
+  pathPrefix = '/blog/',
+}: SeoPostProps) {
   return post && mode === 'post' ? (
     <Head>
       {/* HTML Meta Tags */}
@@ -19,7 +24,7 @@ export default function Seo({ post, mode }: SeoPostProps) {
       {/* Facebook Meta Tags */}
       <meta
         property="og:url"
-        content={`https://xmunt.vercel.app/blog/${post?.slug}`}
+        content={`https://xmunt.vercel.app${pathPrefix}${post?.slug}`}
       />
       <meta property="og:type" content="website" />
       <meta
@@ -31,14 +36,17 @@ export default function Seo({ post, mode }: SeoPostProps) {
         content={`${post?.title} | ${pageConfig.title}`}
       />
       <meta property="og:description" content={post?.description} />
-      <meta property="og:image" content={`${DOMAIN}${post?.coverImage}`} />
+      <meta
+        property="og:image"
+        content={`${DOMAIN}${(post as PostType)?.coverImage}`}
+      />
 
       {/* Twitter Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta property="twitter:domain" content="xmunt.vercel.app" />
       <meta
         property="twitter:url"
-        content={`https://xmunt.vercel.app/blog/${post?.slug}`}
+        content={`https://xmunt.vercel.app${pathPrefix}${post?.slug}`}
       />
       <meta
         name="twitter:title"
@@ -47,7 +55,7 @@ export default function Seo({ post, mode }: SeoPostProps) {
       <meta name="twitter:description" content={post?.description} />
       <meta name="twitter:image" content={`${pageConfig.siteImg}`} />
       <meta name="twitter:label1" content="Category" />
-      <meta name="twitter:data1" content={`${post?.category}`} />
+      <meta name="twitter:data1" content={`${(post as PostType)?.category}`} />
     </Head>
   ) : (
     <Head>

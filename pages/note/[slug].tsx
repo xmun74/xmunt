@@ -84,7 +84,7 @@ function NoteDetail({ note, mdx, panelBlocks, noteToc }: Props) {
 
   return (
     <PageWrapper>
-      <Seo post={note as any} mode="post" />
+      <Seo post={note as any} mode="post" pathPrefix="/note/" />
       <Header />
       <NoteToc items={noteToc} hasCodePanel={hasCodePanel} />
       <MainArea $hasCodePanel={hasCodePanel}>
