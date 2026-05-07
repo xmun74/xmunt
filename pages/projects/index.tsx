@@ -52,11 +52,38 @@ const ProjectLists: Array<{
   // },
 ]
 
+const TitleWrapper = styled.div`
+  position: relative;
+`
+const ImageWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+`
+const HeadingWrapper = styled.div`
+  position: absolute;
+  top: 6px;
+  left: 60px;
+`
 export default function Projects() {
   return (
     <ProjectContainer>
       <Seo mode="default" />
-      <Heading title="Projects" />
+
+      <TitleWrapper>
+        <ImageWrapper>
+          <Image
+            src="/images/icons/planet.png"
+            alt="Projects Icon"
+            width={60}
+            height={60}
+          />
+        </ImageWrapper>
+        <HeadingWrapper>
+          <Heading title="Projects" />
+        </HeadingWrapper>
+      </TitleWrapper>
+
       <ProjectWrapper>
         {ProjectLists &&
           ProjectLists.map((el) => (
