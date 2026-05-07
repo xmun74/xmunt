@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import Seo from '@components/Seo'
@@ -81,9 +80,6 @@ type Props = {
 }
 
 function NoteDetail({ note, mdx, panelBlocks, noteToc }: Props) {
-  const router = useRouter()
-  if (!router.isFallback && !note?.slug) return <div>Loading...</div>
-
   const hasCodePanel = panelBlocks.length > 0
 
   return (
@@ -116,34 +112,40 @@ export default Object.assign(NoteDetail, {
 type Params = { params: { slug: string } }
 
 export async function getStaticProps({ params }: Params) {
-  const noteData = getNoteBySlug(params.slug, [
-    'slug',
-    'title',
-    'description',
-    'date',
-    'content',
-    'tags',
-  ])
+  try {
+    const noteData = getNoteBySlug(params.slug, [
+      'slug',
+      'title',
+      'description',
+      'date',
+      'content',
+      'tags',
+    ])
 
-  const { cleanContent, panelBlocks } = extractPanelBlocks(noteData.content)
+    const { cleanContent, panelBlocks } = extractPanelBlocks(
+      noteData.content ?? ''
+    )
 
-  const mdx = await serializedMdx(cleanContent)
-  const noteToc = getNoteToc(cleanContent)
+    const mdx = await serializedMdx(cleanContent)
+    const noteToc = getNoteToc(cleanContent)
 
-  const serializedPanelBlocks = await Promise.all(
-    panelBlocks.map(async (block) => ({
-      ...block,
-      mdx: await serializedMdx(`\`\`\`${block.lang}\n${block.code}\n\`\`\``),
-    }))
-  )
+    const serializedPanelBlocks = await Promise.all(
+      panelBlocks.map(async (block) => ({
+        ...block,
+        mdx: await serializedMdx(`\`\`\`${block.lang}\n${block.code}\n\`\`\``),
+      }))
+    )
 
-  return {
-    props: {
-      note: { ...noteData },
-      mdx,
-      panelBlocks: serializedPanelBlocks,
-      noteToc,
-    },
+    return {
+      props: {
+        note: { ...noteData },
+        mdx,
+        panelBlocks: serializedPanelBlocks,
+        noteToc,
+      },
+    }
+  } catch {
+    return { notFound: true }
   }
 }
 
