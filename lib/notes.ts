@@ -5,7 +5,7 @@ import matter from 'gray-matter'
 const NOTE_PATH = join(process.cwd(), '_notes')
 
 export function getNoteSlugs() {
-  return fs.readdirSync(NOTE_PATH)
+  return fs.readdirSync(NOTE_PATH).filter((f) => f.endsWith('.md'))
 }
 
 export function getNoteBySlug(slug: string, fields: string[] = []) {
@@ -66,7 +66,7 @@ export function extractPanelBlocks(content: string): {
   panelBlocks: PanelBlock[]
 } {
   const panelBlocks: PanelBlock[] = []
-  const panelRegex = /```(\w+):panel ([^\n]*)\n([\s\S]*?)```/g
+  const panelRegex = /^```(\w+):panel ([^\n]*)\n([\s\S]*?)^```/gm
   const cleanContent = content.replace(
     panelRegex,
     (_match, lang: string, filename: string, code: string) => {
