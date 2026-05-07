@@ -53,9 +53,9 @@ const NoteList = styled.div`
 const NoteItem = styled.div`
   padding: 14px 16px;
   border-radius: 8px;
+  transition: background 150ms ease;
   &:hover {
     background: ${themeColor.hoverBg};
-    transition: background 150ms ease;
   }
 `
 const NoteTitle = styled.h2`
@@ -121,12 +121,19 @@ export default function Note({ allNotes }: Props) {
       <Body>
         {allTags.length > 0 && (
           <FilterBar>
-            <FilterPill $active={!activeTag} onClick={() => setActiveTag(null)}>
+            <FilterPill
+              type="button"
+              aria-pressed={!activeTag}
+              $active={!activeTag}
+              onClick={() => setActiveTag(null)}
+            >
               전체
             </FilterPill>
             {allTags.map((tag) => (
               <FilterPill
                 key={tag}
+                type="button"
+                aria-pressed={activeTag === tag}
                 $active={activeTag === tag}
                 onClick={() => setActiveTag(activeTag === tag ? null : tag)}
               >
@@ -137,10 +144,18 @@ export default function Note({ allNotes }: Props) {
         )}
         <NoteList>
           {filtered.length === 0 && (
-            <EmptyMsg>해당 태그의 노트가 없습니다.</EmptyMsg>
+            <EmptyMsg>
+              {activeTag
+                ? '해당 태그의 노트가 없습니다.'
+                : '아직 작성된 노트가 없습니다.'}
+            </EmptyMsg>
           )}
           {filtered.map(({ slug, title, date, tags }) => (
-            <Link key={slug} href={`/note/${slug}`}>
+            <Link
+              key={slug}
+              href={`/note/${slug}`}
+              style={{ display: 'block' }}
+            >
               <NoteItem>
                 <NoteTitle>{title}</NoteTitle>
                 <NoteMeta>
@@ -159,6 +174,6 @@ export default function Note({ allNotes }: Props) {
 }
 
 export const getStaticProps = async () => {
-  const allNotes = getAllNotes(['slug', 'title', 'date', 'description', 'tags'])
+  const allNotes = getAllNotes(['slug', 'title', 'date', 'tags'])
   return { props: { allNotes } }
 }
