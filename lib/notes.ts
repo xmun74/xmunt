@@ -5,6 +5,7 @@ import matter from 'gray-matter'
 const NOTE_PATH = join(process.cwd(), '_notes')
 
 export function getNoteSlugs() {
+  if (!fs.existsSync(NOTE_PATH)) return []
   return fs.readdirSync(NOTE_PATH).filter((f) => f.endsWith('.md'))
 }
 
