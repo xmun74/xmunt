@@ -40,4 +40,7 @@ next-env.d.ts
 # superpowers docs
 /docs/
 
+# local notes (example files)
+/_notes/
+
 .env
