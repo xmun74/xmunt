@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app'
+import type { NextComponentType } from 'next'
 import { RecoilRoot } from 'recoil'
 import Script from 'next/script'
 import GlobalStyle from '@styles/GlobalStyle'
@@ -7,8 +8,17 @@ import Layout from '@components/Layout'
 import * as gtag from '@lib/gtag'
 import isDev from '@lib/isDev'
 
+type NextPageWithLayout = NextComponentType & {
+  getLayout?: (page: React.ReactElement) => React.ReactNode
+}
+
 export default function App({ Component, pageProps }: AppProps) {
   if (!isDev) gtag.useGtag()
+
+  const PageComponent = Component as NextPageWithLayout
+  const getLayout =
+    PageComponent.getLayout ??
+    ((page: React.ReactElement) => <Layout>{page}</Layout>)
 
   return (
     <RecoilRoot>
@@ -35,10 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
           />
         </>
       )}
-
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      {getLayout(<Component {...pageProps} />)}
     </RecoilRoot>
   )
 }
