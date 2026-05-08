@@ -4,11 +4,19 @@ import styled from 'styled-components'
 import Seo from '@components/Seo'
 import Heading from '@components/common/Heading'
 
-const ProjectContainer = styled.div``
+const ProjectContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+`
 const ProjectWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
+
+  @media screen and (max-width: 767px) {
+    grid-template-columns: 1fr;
+  }
 `
 
 const ProjectImg = styled.div`
@@ -36,6 +44,7 @@ const ProjectTitle = styled.div`
 `
 const ProjectInfo = styled.div`
   font-weight: 100;
+  font-size: 12px;
 `
 
 const ProjectLists: Array<{
@@ -45,15 +54,16 @@ const ProjectLists: Array<{
   description: string
 }> = [
   // {
-  //   title: 'xmunt',
-  //   href: 'https://github.com/xmun74/xmunt',
-  //   imgSrc: '/images/projects/xmuntblog.png',
-  //   description: '개인 블로그 제작',
+  //   title: 'biblical',
+  //   href: 'https://github.com/xmun74/biblical/blob/master/apps/web/README.md',
+  //   imgSrc: '/images/projects/biblical-preview.gif',
+  //   description: '개인 사이드 프로젝트 (운영 중단)',
   // },
 ]
 
 const TitleWrapper = styled.div`
   position: relative;
+  display: flex;
 `
 const ImageWrapper = styled.div`
   position: absolute;
