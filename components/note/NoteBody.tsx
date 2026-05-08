@@ -14,18 +14,24 @@ const Content = styled.article`
   h4 {
     margin-bottom: 5px;
     scroll-margin-top: 5rem;
-    &:hover .anchor {
-      position: absolute;
-      margin-left: -1em;
-      padding-right: 0.5em;
-      cursor: pointer;
-      &::after {
-        content: '#';
-        font-weight: 200;
-      }
-      &:hover {
-        opacity: 0.7;
-        border: none;
+    /* rehype-autolink-headings */
+    &:hover {
+      .anchor {
+        position: absolute;
+        margin-left: -1em;
+        padding-right: 0.5em;
+        cursor: pointer;
+        @media screen and (max-width: 767px) {
+          margin-left: -0.61em;
+        }
+        &::after {
+          content: '#';
+          font-weight: 200;
+        }
+        &:hover {
+          opacity: 0.7;
+          border: none;
+        }
       }
     }
     :not(pre) > code {
@@ -64,25 +70,33 @@ const Content = styled.article`
   }
   img {
     max-width: 100%;
-    height: auto;
-    margin-top: 1rem;
+    margin-bottom: auto 10px;
     pointer-events: none;
   }
   blockquote {
     padding-left: 10px;
-    border-left: 10px solid ${themeColor.accent2};
+    border-left: 10px solid;
+    border-left-color: ${themeColor.accent2};
   }
   ul,
   ol {
-    list-style-position: inside;
+    list-style-position: inline;
     line-height: 2.2;
     padding-inline-start: 1.5em;
     font-size: 0.9rem;
   }
   ul {
     list-style-type: disc;
-    li::marker {
-      color: ${themeColor.accent2};
+    li {
+      &::marker {
+        color: ${themeColor.accent2};
+      }
+      ul {
+        list-style-type: circle;
+        ul {
+          list-style-type: square;
+        }
+      }
     }
   }
   ol {
@@ -105,8 +119,14 @@ const Content = styled.article`
       monospace;
     background-color: #50525c;
     color: white;
+    z-index: 0;
     border-top-left-radius: 0.5em;
     border-top-right-radius: 0.5em;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 1rem;
   }
   hr {
     background: #c8c8c8;

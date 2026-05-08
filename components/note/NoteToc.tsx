@@ -18,7 +18,7 @@ const TocContainer = styled.nav<{ $hasCodePanel: boolean }>`
     top: 96px;
     left: ${({ $hasCodePanel }) =>
       $hasCodePanel ? 'calc(50% - 472px)' : 'calc(50% - 572px)'};
-    width: 180px;
+    width: 220px;
     max-height: calc(100vh - 120px);
     overflow-y: auto;
     padding-right: 8px;
@@ -37,7 +37,8 @@ const TocAnchor = styled(Link)<{ $active: boolean; $level: number }>`
   display: block;
   font-size: 0.78rem;
   margin-bottom: 0.875rem;
-  padding-left: ${({ $level }) => ($level > 1 ? '12px' : '4px')};
+  padding-left: ${({ $level }) =>
+    $level > 1 ? `${10 + 4 * ($level - 1)}px` : '4px'};
   border-left: 2px solid
     ${({ $active }) => ($active ? themeColor.accent2 : 'transparent')};
   opacity: ${({ $active }) => ($active ? 1 : 0.45)};
