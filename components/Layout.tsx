@@ -1,3 +1,5 @@
+'use client'
+
 import styled from 'styled-components'
 import { PropsWithChildren } from 'react'
 import Header from './Header'

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-function NoteIcon(props: React.SVGProps<SVGSVGElement>) {
+function NoteIcon() {
   return (
     <Image
       src="/images/icons/memo.png"

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-function PacmanIcon(props: React.SVGProps<SVGSVGElement>) {
+function PacmanIcon() {
   return (
     <Image
       src="/images/icons/tuttle.png"

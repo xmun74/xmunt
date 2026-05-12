@@ -9,5 +9,5 @@ export default function useTimeout(
     const timer = setTimeout(callback, delay)
 
     return () => clearTimeout(timer)
-  }, [state])
+  }, [callback, delay, state])
 }

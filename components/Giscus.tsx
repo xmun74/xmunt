@@ -1,12 +1,13 @@
-import { useRouter } from 'next/router'
+'use client'
+
+import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-import { useRecoilValue } from 'recoil'
+import { useThemeContext } from '@lib/theme-context'
 import { getLocalStorage } from '../lib/webStorage'
-import themeState from '../states/atoms/theme'
 
 export default function Giscus() {
   const refEl = useRef<HTMLDivElement>(null)
-  const router = useRouter()
+  const pathname = usePathname()
   const [mounted, setMounted] = useState(false)
 
   function getInitTheme() {
@@ -19,7 +20,7 @@ export default function Giscus() {
     }
     return 'light'
   }
-  const theme = useRecoilValue(themeState) === 'dark' ? 'dark' : 'light' // 테마 토글버튼 클릭 시 변경하기
+  const { theme } = useThemeContext()
 
   useEffect(() => {
     const curTheme = getInitTheme() === 'dark' ? 'dark' : 'light' // 새로고침 시 저장된 테마 불러오기
@@ -62,10 +63,10 @@ export default function Giscus() {
       'iframe.giscus-frame'
     )
     iframe?.contentWindow?.postMessage(
-      { giscus: { setConfig: { term: router.asPath } } },
+      { giscus: { setConfig: { term: pathname } } },
       'https://giscus.app'
     )
-  }, [router.asPath])
+  }, [pathname])
 
   return <section ref={refEl} />
 }

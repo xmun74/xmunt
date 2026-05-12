@@ -36,11 +36,11 @@ const PostTitle = styled.div`
 interface RecentProps {
   slug: string
   date: string
-  title: string
+  title?: string
 }
 export type RecentPostProps = {
-  prevPost: RecentProps
-  nextPost: RecentProps
+  prevPost: RecentProps | null
+  nextPost: RecentProps | null
 }
 
 export default function RecentPost({ prevPost, nextPost }: RecentPostProps) {

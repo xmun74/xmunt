@@ -7,7 +7,7 @@ export interface PostType {
   date: string
   content?: string
   category?: string
-  tags?: string
+  tags?: string[]
 }
 
 export interface NoteType {
@@ -17,4 +17,12 @@ export interface NoteType {
   date: string
   content?: string
   tags?: string[]
+}
+
+export type CachedPost = {
+  slug: string
+  title: string
+  date?: string
+  description?: string
+  content?: string
 }

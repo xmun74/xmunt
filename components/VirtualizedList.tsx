@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { ReactElement } from 'react'
 import styled, { CSSProperties } from 'styled-components'
 
 const Outer = styled.div<{ windowHeight: number }>`
@@ -20,7 +21,7 @@ const Inner = styled.div``
 interface ListProps {
   numItems: number
   itemHeight: number
-  renderItem: (props: { index: number; style: CSSProperties }) => JSX.Element
+  renderItem: (props: { index: number; style: CSSProperties }) => ReactElement
   windowHeight: number
 }
 

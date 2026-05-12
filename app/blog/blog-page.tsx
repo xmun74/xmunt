@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
-import styled, { CSSProperties } from 'styled-components'
+'use client'
+
+import { useCallback, useEffect, useRef, useState } from 'react'
+import styled from 'styled-components'
 import Link from 'next/link'
-import Seo from '@components/Seo'
 import useIntersect from '@lib/hooks/useIntersect'
 import PostDate from '@components/PostDate'
 import { blogsApi } from '@lib/apis'
-import { getAllPosts } from '@lib/posts'
 import { PostType } from '@lib/types'
 import { themeColor } from '@styles/theme'
 
@@ -51,43 +51,45 @@ const PostWrapper = styled.div`
   align-items: center;
 `
 
-type Props = {
-  allPosts: PostType[]
-}
-
-export default function Blog({ allPosts }: Props) {
+export default function BlogPage() {
   const [blogs, setBlogs] = useState<PostType[]>([])
-  const [page, setPage] = useState(0)
-  const [nextPage, setNextPage] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
+  const pageRef = useRef(0)
+  const nextPageRef = useRef(true)
+  const isLoadingRef = useRef(false)
   const PAGE_SIZE = 8
 
-  const fetchNextData = async () => {
+  const fetchNextData = useCallback(async () => {
+    if (isLoadingRef.current || !nextPageRef.current) return
+
+    isLoadingRef.current = true
     setIsLoading(true)
+
     const { contents, pageNumber, isLastPage } = await blogsApi.getBlogs(
-      page,
+      pageRef.current,
       PAGE_SIZE
     )
-    setBlogs([...blogs, ...contents])
-    setPage(pageNumber + 1)
-    setNextPage(!isLastPage)
+
+    setBlogs((prev) => [...prev, ...contents])
+    pageRef.current = pageNumber + 1
+    nextPageRef.current = !isLastPage
+    isLoadingRef.current = false
     setIsLoading(false)
-  }
+  }, [])
 
   useEffect(() => {
-    fetchNextData()
-  }, [])
+    void fetchNextData()
+  }, [fetchNextData])
 
   const target = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target)
-    if (nextPage && !isLoading) {
-      fetchNextData()
+    if (nextPageRef.current && !isLoadingRef.current) {
+      await fetchNextData()
     }
   })
 
   return (
     <>
-      <Seo mode="default" />
       <PostContainer>
         {blogs &&
           blogs?.map(({ slug, title, description, date }) => (
@@ -105,21 +107,4 @@ export default function Blog({ allPosts }: Props) {
       <div ref={target}>{isLoading && <div>Loading...</div>}</div>
     </>
   )
-}
-
-export const getStaticProps = async () => {
-  const allPosts = getAllPosts([
-    'slug',
-    'title',
-    'description',
-    'coverImage',
-    'date',
-    'category',
-    'tags',
-  ])
-
-  return {
-    props: { allPosts },
-    revalidate: 10,
-  }
 }

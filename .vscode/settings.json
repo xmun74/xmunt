@@ -1,4 +1,6 @@
 {
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.prettierPath": "./node_modules/prettier/index.cjs",
   "pasteImage.defaultName": "YYMMDD-HHmmss",
   "pasteImage.basePath": "${projectRoot}/public",
   "pasteImage.path": "${projectRoot}/public/images/posts/${currentFileNameWithoutExt}",

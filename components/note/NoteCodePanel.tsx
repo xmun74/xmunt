@@ -1,11 +1,8 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { PanelBlock } from '@lib/notes'
-
-export interface PanelBlockWithMdx extends PanelBlock {
-  mdx: MDXRemoteSerializeResult
-}
 
 /* ── Desktop: right-fixed panel ──────────────────────────── */
 const PanelShell = styled.aside`
@@ -59,7 +56,9 @@ const Tab = styled.button<{ $active: boolean }>`
   cursor: pointer;
   font-family: Consolas, 'Courier New', monospace;
   white-space: nowrap;
-  transition: color 200ms, background 200ms;
+  transition:
+    color 200ms,
+    background 200ms;
   &:hover {
     color: #e4e4e7;
   }
@@ -76,7 +75,9 @@ const CopyBtn = styled.button`
   border-radius: 5px;
   cursor: pointer;
   font-family: Consolas, monospace;
-  transition: color 200ms, border-color 200ms;
+  transition:
+    color 200ms,
+    border-color 200ms;
   &:hover {
     color: #e4e4e7;
     border-color: rgba(255, 255, 255, 0.25);
@@ -94,12 +95,15 @@ const CodeArea = styled.div`
     background: rgba(255, 255, 255, 0.1);
     border-radius: 4px;
   }
-  pre[class*='language-'] {
-    margin: 0 !important;
-    background: transparent !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
+  pre {
+    margin: 0;
     font-size: 0.8rem;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  code {
+    font-family: Consolas, 'Courier New', monospace;
   }
 `
 
@@ -126,11 +130,7 @@ const MobileFileLabel = styled.div`
   display: inline-block;
 `
 
-export default function NoteCodePanel({
-  blocks,
-}: {
-  blocks: PanelBlockWithMdx[]
-}) {
+export default function NoteCodePanel({ blocks }: { blocks: PanelBlock[] }) {
   const [activeIdx, setActiveIdx] = useState(0)
   const [copied, setCopied] = useState(false)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -179,7 +179,9 @@ export default function NoteCodePanel({
             </CopyBtn>
           </TabBar>
           <CodeArea>
-            <MDXRemote {...active.mdx} />
+            <pre>
+              <code>{active.code}</code>
+            </pre>
           </CodeArea>
         </PanelCore>
       </PanelShell>
@@ -189,7 +191,11 @@ export default function NoteCodePanel({
         {blocks.map((b) => (
           <div key={`${b.filename}-${b.code.length}`}>
             <MobileFileLabel>{b.filename}</MobileFileLabel>
-            <MDXRemote {...b.mdx} />
+            <CodeArea>
+              <pre>
+                <code>{b.code}</code>
+              </pre>
+            </CodeArea>
           </div>
         ))}
       </MobilePanel>

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-function PlanetIcon(props: React.SVGProps<SVGSVGElement>) {
+function PlanetIcon() {
   return (
     <Image
       src="/images/icons/planet.png"

@@ -1,10 +1,10 @@
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
+import type { ReactElement } from 'react'
 import styled from 'styled-components'
 import PlanetIcon from '@components/icons/PlanetIcon'
-import { useRecoilValue } from 'recoil'
-import themeState from '@states/atoms/theme'
+import { useThemeContext } from '@lib/theme-context'
 import BlogIcon from '@components/icons/BlogIcon'
 import NoteIcon from '@components/icons/NoteIcon'
 import PacmanIcon from '@components/icons/PacmanIcon'
@@ -218,7 +218,7 @@ function IconWrapper({
   IconComponent,
   theme,
   isActive,
-}: IconWrapperProps): JSX.Element {
+}: IconWrapperProps): ReactElement {
   let fillColor: string
   if (isActive) {
     fillColor = theme === 'dark' ? '#E0E0E0' : '#505050'
@@ -230,9 +230,10 @@ function IconWrapper({
 
 export default function NavItem({ children, href, label, idx }: NavProps) {
   const router = useRouter()
+  const pathname = usePathname()
   const [curHoveredIdx, setCurHoveredIdx] = useState(-1)
-  const theme = useRecoilValue(themeState)
-  const isActive = router.asPath === href
+  const { theme } = useThemeContext()
+  const isActive = pathname === href
   const isHovered = curHoveredIdx === idx
 
   const NavGuideHoverStyle = {

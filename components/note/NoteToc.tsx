@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
@@ -44,7 +46,8 @@ const TocAnchor = styled(Link)<{ $active: boolean; $level: number }>`
   opacity: ${({ $active }) => ($active ? 1 : 0.45)};
   color: ${themeColor.text3};
   line-height: 1.4;
-  transition: opacity 300ms cubic-bezier(0.32, 0.72, 0, 1),
+  transition:
+    opacity 300ms cubic-bezier(0.32, 0.72, 0, 1),
     border-color 300ms cubic-bezier(0.32, 0.72, 0, 1);
   &:hover {
     opacity: 0.75;
