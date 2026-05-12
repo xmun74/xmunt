@@ -1,21 +1,37 @@
-import { useRouter } from 'next/router'
+'use client'
+
+import { usePathname, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
 export const GA_TRACKING_ID = `G-ZK3Y3LT3RD`
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void
+  }
+}
+
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
-export const pageview = (url: URL) => {
-  window.gtag('config', GA_TRACKING_ID, {
+export const pageview = (url: string) => {
+  window.gtag?.('config', GA_TRACKING_ID, {
     page_path: url,
   })
 }
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
 export const event = (
-  action: Gtag.EventNames,
-  { event_category, event_label, value }: Gtag.EventParams
+  action: string,
+  {
+    event_category,
+    event_label,
+    value,
+  }: {
+    event_category?: string
+    event_label?: string
+    value?: number
+  }
 ) => {
-  window.gtag('event', action, {
+  window.gtag?.('event', action, {
     event_category,
     event_label,
     value,
@@ -24,16 +40,13 @@ export const event = (
 
 // page view
 export const useGtag = () => {
-  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+
   useEffect(() => {
-    const handleRouteChange = (url: URL) => {
-      pageview(url)
-    }
-    router.events.on('routeChangeComplete', handleRouteChange)
-    router.events.on('hashChangeComplete', handleRouteChange)
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-      router.events.off('hashChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
+    if (!pathname) return
+
+    const query = searchParams?.toString() ?? ''
+    pageview(query ? `${pathname}?${query}` : pathname)
+  }, [pathname, searchParams])
 }

@@ -1,4 +1,4 @@
-import { SetStateAction, useCallback, useEffect, useMemo } from 'react'
+import { SetStateAction, useCallback, useEffect } from 'react'
 
 export interface HotKeysProps {
   comboKeys: string
@@ -134,7 +134,7 @@ export default function useHotkey(hotkeys: HotKeysProps[]) {
 /** Search Hotkey : cmd + k (or Ctrl + k), ESC */
 
 export interface HotKeyProps {
-  inputRef: React.RefObject<HTMLInputElement>
+  inputRef: React.RefObject<HTMLInputElement | null>
   setQuery: React.Dispatch<SetStateAction<string>>
   active?: boolean
   setActive: React.Dispatch<SetStateAction<boolean>>
@@ -145,23 +145,29 @@ export default function useHotkey({
   active,
   setActive,
 }: HotKeyProps) {
-  const PlusOnKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.key === 'k' && inputRef?.current !== null) {
-      console.log(e.key)
-      inputRef?.current.focus()
-    }
-  }, [])
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.key === 'Meta' || e.key === 'Control') {
-      console.log(e.key)
-      document.addEventListener('keydown', PlusOnKeyDown)
-    } else if (e.key === 'Escape') {
-      console.log(active, e.key)
-      setQuery('')
-      setActive(false)
-      if (inputRef?.current !== null) inputRef?.current.blur()
-    }
-  }, [])
+  const PlusOnKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === 'k' && inputRef?.current !== null) {
+        console.log(e.key)
+        inputRef?.current.focus()
+      }
+    },
+    [inputRef]
+  )
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === 'Meta' || e.key === 'Control') {
+        console.log(e.key)
+        document.addEventListener('keydown', PlusOnKeyDown)
+      } else if (e.key === 'Escape') {
+        console.log(active, e.key)
+        setQuery('')
+        setActive(false)
+        if (inputRef?.current !== null) inputRef?.current.blur()
+      }
+    },
+    [PlusOnKeyDown, active, inputRef, setActive, setQuery]
+  )
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown)

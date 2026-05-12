@@ -1,7 +1,8 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import styled from 'styled-components'
-import Seo from '@components/Seo'
 import Heading from '@components/common/Heading'
 
 const ProjectContainer = styled.div`
@@ -52,14 +53,7 @@ const ProjectLists: Array<{
   href: string
   imgSrc: string
   description: string
-}> = [
-  // {
-  //   title: 'biblical',
-  //   href: 'https://github.com/xmun74/biblical/blob/master/apps/web/README.md',
-  //   imgSrc: '/images/projects/biblical-preview.gif',
-  //   description: '개인 사이드 프로젝트 (운영 중단)',
-  // },
-]
+}> = []
 
 const TitleWrapper = styled.div`
   position: relative;
@@ -75,11 +69,10 @@ const HeadingWrapper = styled.div`
   top: 6px;
   left: 60px;
 `
-export default function Projects() {
+
+export default function ProjectsPage() {
   return (
     <ProjectContainer>
-      <Seo mode="default" />
-
       <TitleWrapper>
         <ImageWrapper>
           <Image

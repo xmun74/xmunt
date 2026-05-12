@@ -1,11 +1,11 @@
-import { useState, useMemo } from 'react'
+'use client'
+
+import { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import Image from 'next/image'
-import Seo from '@components/Seo'
 import Heading from '@components/common/Heading'
 import PostDate from '@components/PostDate'
-import { getAllNotes } from '@lib/notes'
 import { NoteType } from '@lib/types'
 import { themeColor } from '@styles/theme'
 
@@ -85,7 +85,7 @@ const EmptyMsg = styled.p`
 
 type Props = { allNotes: NoteType[] }
 
-export default function Note({ allNotes }: Props) {
+export default function NotePage({ allNotes }: Props) {
   const [activeTag, setActiveTag] = useState<string | null>(null)
 
   const allTags = useMemo(() => {
@@ -104,7 +104,6 @@ export default function Note({ allNotes }: Props) {
 
   return (
     <div>
-      <Seo mode="default" />
       <TitleWrapper>
         <ImageWrapper>
           <Image
@@ -171,9 +170,4 @@ export default function Note({ allNotes }: Props) {
       </Body>
     </div>
   )
-}
-
-export const getStaticProps = async () => {
-  const allNotes = getAllNotes(['slug', 'title', 'date', 'tags'])
-  return { props: { allNotes } }
 }

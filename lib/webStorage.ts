@@ -1,4 +1,6 @@
-const storageType = 'local' || 'session'
+type StorageType = 'local' | 'session'
+
+const storageType: StorageType = 'local'
 export const getLocalStorage = (key: string) => {
   try {
     const localStorageValue = JSON.parse(localStorage.getItem(key) as string)
@@ -14,7 +16,10 @@ export const setLocalStorage = <T>(key: string, value: T): void => {
     console.log(error)
   }
 }
-export const removeWebStorage = (key: string, type = storageType): void => {
+export const removeWebStorage = (
+  key: string,
+  type: StorageType = storageType
+): void => {
   if (type === 'local') localStorage.removeItem(key)
   else sessionStorage.removeItem(key)
 }

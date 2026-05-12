@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import { getMdxRenderOptions } from '../../lib/mdx-render-options.mjs'
 import { themeColor } from '../../styles/theme'
 
 const Content = styled.article`
@@ -113,7 +114,8 @@ const Content = styled.article`
     margin-bottom: -0.7rem;
     padding: 0.18em 0.8em;
     font-size: 0.9rem;
-    font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console',
+    font-family:
+      Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console',
       'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
       'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier,
       monospace;
@@ -136,10 +138,10 @@ const Content = styled.article`
   }
 `
 
-export default function NoteBody({ mdx }: { mdx: MDXRemoteSerializeResult }) {
+export default function NoteBody({ source }: { source: string }) {
   return (
     <Content>
-      <MDXRemote {...mdx} />
+      <MDXRemote source={source} options={getMdxRenderOptions()} />
     </Content>
   )
 }

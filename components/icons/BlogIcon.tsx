@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-function BlogIcon(props: React.SVGProps<SVGSVGElement>) {
+function BlogIcon() {
   return (
     <Image
       src="/images/icons/blog.png"

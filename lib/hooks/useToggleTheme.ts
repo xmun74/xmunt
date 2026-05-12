@@ -1,19 +1,7 @@
-import { useRecoilState } from 'recoil'
-import themeState, { ThemeMode } from '../../states/atoms/theme'
-import { setLocalStorage } from '../webStorage'
+import { useThemeContext } from '../theme-context'
 
 const useToggleTheme = () => {
-  const [theme, setTheme] = useRecoilState(themeState)
-
-  const saveThemeMode = (mode: ThemeMode) => {
-    setLocalStorage('theme', mode) // CSR
-    document.cookie = `theme=${mode}; path=/;` // SSR
-    setTheme(mode) // recoil
-  }
-
-  const toggleThemeMode = () => {
-    return theme === 'light' ? saveThemeMode('dark') : saveThemeMode('light')
-  }
+  const { theme, toggleThemeMode } = useThemeContext()
 
   return [theme, toggleThemeMode] as const
 }

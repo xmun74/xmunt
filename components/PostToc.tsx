@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import styled from 'styled-components'
 import { themeColor } from '../styles/theme'
@@ -68,7 +70,7 @@ export default function PostToc({ postToc }: { postToc: PostTocProps[] }) {
     <TocContainer>
       <TocContent>
         {postToc &&
-          postToc.map((el: any) => (
+          postToc.map((el) => (
             <TocAnchor key={el.text} href={`#${el.href}`} level={el.level}>
               {el.text}
             </TocAnchor>

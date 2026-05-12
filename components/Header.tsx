@@ -1,10 +1,11 @@
+'use client'
+
 import Link from 'next/link'
 import styled from 'styled-components'
-import { useRecoilValue } from 'recoil'
 import AnimatedLogo from '@components/AnimatedLogo'
+import { useThemeContext } from '@lib/theme-context'
 import { themeColor } from '../styles/theme'
 import ThemeToggleBtn from './button/ThemeToggleBtn'
-import themeState from '../states/atoms/theme'
 import Nav from './Nav'
 import SearchBar from './SearchBar'
 
@@ -50,7 +51,7 @@ const LogoBtn = styled.button`
   }
 `
 export default function Header() {
-  const theme = useRecoilValue(themeState)
+  const { theme } = useThemeContext()
   const isDarkMode = theme === 'dark'
 
   return (

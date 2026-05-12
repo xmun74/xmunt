@@ -15,7 +15,6 @@ export function getNoteBySlug(slug: string, fields: string[] = []) {
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const items: { [key: string]: any } = {}
 
   fields.forEach((field) => {
@@ -46,7 +45,6 @@ export function getNoteToc(content: string) {
       text = textOnly
     }
     let href = text.toLowerCase().replaceAll(' ', '-')
-    /* eslint-disable-next-line */
     const hrefRegex = /[`~!@#$%^&*()|+\=?;:'",.<>\{\}\[\]\\\/ ]/gi
     href = href.replace(hrefRegex, '')
     let level = 2

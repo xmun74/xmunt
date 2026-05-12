@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "es2017",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -9,29 +13,47 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
-
-    "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"],
-      "@cache/*": ["cache/*"],
-      "@constants/*": ["constants/*"],
-      "@lib/*": ["lib/*"],
-      "@pages/*": ["pages/*"],
-      "@states/*": ["states/*"],
-      "@styles/*": ["styles/*"]
-    }
+      "@components/*": [
+        "./components/*"
+      ],
+      "@cache/*": [
+        "./cache/*"
+      ],
+      "@constants/*": [
+        "./constants/*"
+      ],
+      "@lib/*": [
+        "./lib/*"
+      ],
+      "@states/*": [
+        "./states/*"
+      ],
+      "@styles/*": [
+        "./styles/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "**/*.d.ts",
-    "next-sitemap.config.js"
+    "next-sitemap.config.js",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
