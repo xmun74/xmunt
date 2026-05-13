@@ -2,8 +2,8 @@ import { useState } from 'react'
 import type { ReactElement } from 'react'
 import styled, { CSSProperties } from 'styled-components'
 
-const Outer = styled.div<{ windowHeight: number }>`
-  max-height: ${(props) => props.windowHeight}px;
+const Outer = styled.div<{ $windowHeight: number }>`
+  max-height: ${(props) => props.$windowHeight}px;
   overflow-y: auto;
   overscroll-behavior-y: contain;
 
@@ -58,7 +58,7 @@ function VirtualizedList({
   }
 
   return (
-    <Outer className="outer" onScroll={onScroll} windowHeight={windowHeight}>
+    <Outer className="outer" onScroll={onScroll} $windowHeight={windowHeight}>
       <Inner
         className="innerWrapper"
         style={{ position: 'relative', minHeight: `${innerHeight}px` }}
