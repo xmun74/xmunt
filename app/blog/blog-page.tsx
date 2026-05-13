@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import useIntersect from '@lib/hooks/useIntersect'
@@ -51,11 +51,21 @@ const PostWrapper = styled.div`
   align-items: center;
 `
 
-export default function BlogPage() {
-  const [blogs, setBlogs] = useState<PostType[]>([])
+type BlogPageProps = {
+  initialBlogs: PostType[]
+  initialPage: number
+  initialHasNextPage: boolean
+}
+
+export default function BlogPage({
+  initialBlogs,
+  initialPage,
+  initialHasNextPage,
+}: BlogPageProps) {
+  const [blogs, setBlogs] = useState<PostType[]>(initialBlogs)
   const [isLoading, setIsLoading] = useState(false)
-  const pageRef = useRef(0)
-  const nextPageRef = useRef(true)
+  const pageRef = useRef(initialPage)
+  const nextPageRef = useRef(initialHasNextPage)
   const isLoadingRef = useRef(false)
   const PAGE_SIZE = 8
 
@@ -77,10 +87,6 @@ export default function BlogPage() {
     setIsLoading(false)
   }, [])
 
-  useEffect(() => {
-    void fetchNextData()
-  }, [fetchNextData])
-
   const target = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target)
     if (nextPageRef.current && !isLoadingRef.current) {
@@ -91,18 +97,17 @@ export default function BlogPage() {
   return (
     <>
       <PostContainer>
-        {blogs &&
-          blogs?.map(({ slug, title, description, date }) => (
-            <Link as={`/blog/${slug}`} href={`/blog/${slug}`} key={title}>
-              <PostItem>
-                <PostWrapper>
-                  <PostTitle>{title}</PostTitle>
-                  <PostDate date={date} />
-                </PostWrapper>
-                <PostDesc>{description}</PostDesc>
-              </PostItem>
-            </Link>
-          ))}
+        {blogs.map(({ slug, title, description, date }) => (
+          <Link as={`/blog/${slug}`} href={`/blog/${slug}`} key={slug}>
+            <PostItem>
+              <PostWrapper>
+                <PostTitle>{title}</PostTitle>
+                <PostDate date={date} />
+              </PostWrapper>
+              <PostDesc>{description}</PostDesc>
+            </PostItem>
+          </Link>
+        ))}
       </PostContainer>
       <div ref={target}>{isLoading && <div>Loading...</div>}</div>
     </>

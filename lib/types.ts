@@ -26,3 +26,12 @@ export type CachedPost = {
   description?: string
   content?: string
 }
+
+export type PaginatedResponse<T> = {
+  contents: T[]
+  pageNumber: number
+  totalCount: number
+  totalPages: number
+  isLastPage: boolean
+  isFirstPage: boolean
+}

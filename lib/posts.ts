@@ -1,6 +1,7 @@
 import { join } from 'path'
 import fs from 'fs'
 import matter from 'gray-matter'
+import type { PaginatedResponse } from './types'
 
 /** _posts 폴더 path
  * @returns /Users/username/Documents/xmunt/_posts
@@ -108,4 +109,27 @@ export function getRecentPosts(fields: string[] = []) {
     // 날짜 내림차순 정렬
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
   return posts.slice(0, 4)
+}
+
+export function getPaginatedPosts<T>(
+  fields: string[] = [],
+  page: number,
+  size: number
+) {
+  const posts = getAllPosts(fields) as T[]
+  const safePage = Number.isNaN(page) || page < 0 ? 0 : page
+  const safeSize = Number.isNaN(size) || size <= 0 ? 1 : size
+  const totalCount = posts.length
+  const totalPages = Math.ceil(totalCount / safeSize)
+  const lastPageIndex = Math.max(totalPages - 1, 0)
+  const contents = posts.slice(safePage * safeSize, (safePage + 1) * safeSize)
+
+  return {
+    contents,
+    pageNumber: safePage,
+    totalCount,
+    totalPages,
+    isLastPage: totalPages === 0 || safePage >= lastPageIndex,
+    isFirstPage: safePage === 0,
+  } satisfies PaginatedResponse<T>
 }
