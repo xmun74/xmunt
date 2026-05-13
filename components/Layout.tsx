@@ -6,12 +6,16 @@ import Header from './Header'
 import Footer from './Footer'
 
 const LayoutDiv = styled.div`
-  /* height: 100%; */
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 `
 const Content = styled.main`
+  flex: 1;
   margin: 60px auto 0 auto;
   max-width: 720px;
   padding-top: 4rem;
+  width: 100%;
   @media screen and (max-width: 767px) {
     width: 90%;
   }

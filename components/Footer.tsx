@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
 const Container = styled.footer`
-  margin-top: 120px;
-  margin-bottom: 40px;
+  padding: 120px 0 40px;
   text-align: center;
 `
 

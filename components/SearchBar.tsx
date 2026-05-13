@@ -34,7 +34,7 @@ const SearchTrigger = styled.button`
 
   @media screen and (max-width: 767px) {
     width: 58px;
-    padding: 12px;
+    padding: 0px 8px;
     justify-content: center;
   }
 `
@@ -48,7 +48,7 @@ const TriggerLabel = styled.span`
   font-weight: 200;
 
   @media screen and (max-width: 767px) {
-    display: none;
+    font-size: 10px;
   }
 `
 
