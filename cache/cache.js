@@ -2,8 +2,9 @@
 const fs = require('fs')
 const { join } = require('path')
 const matter = require('gray-matter')
+const prettier = require('prettier')
 
-function postData() {
+async function postData() {
   const postsDirectory = join(process.cwd(), '_posts')
   const fileNames = fs.readdirSync(postsDirectory)
   const posts = fileNames.map((fileName) => {
@@ -17,13 +18,23 @@ function postData() {
       content, // cache 미사용시 주석
     }
   })
-  return `export const cachedPosts = ${JSON.stringify(posts)}`
+  return prettier.format(
+    `export const cachedPosts = ${JSON.stringify(posts)}`,
+    {
+      parser: 'babel',
+      singleQuote: true,
+      semi: false,
+    }
+  )
 }
 
-function createPostCache() {
-  fs.writeFile('./cache/post.js', postData(), (err) => {
-    if (err) console.log(err)
-    console.log('Posts cached')
-  })
+async function createPostCache() {
+  const content = await postData()
+  fs.writeFileSync('./cache/post.js', content)
+  console.log('Posts cached')
 }
-createPostCache()
+
+createPostCache().catch((error) => {
+  console.error(error)
+  process.exit(1)
+})
