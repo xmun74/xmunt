@@ -85,7 +85,7 @@ export default function NoteDetailPage({
         <NoteHeader>
           <NoteTitle>{note.title}</NoteTitle>
           <NoteMeta>
-            <NoteDate>{note.date}</NoteDate>
+            <NoteDate>{note.date.replace(/-/g, '.')}</NoteDate>
             {note.tags?.map((t) => (
               <TagBadge key={t}>#{t}</TagBadge>
             ))}

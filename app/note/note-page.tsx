@@ -34,9 +34,14 @@ const FilterBar = styled.div`
   margin-bottom: 2rem;
 `
 const FilterPill = styled.button<{ $active: boolean }>`
-  padding: 4px 14px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 8px;
   border-radius: 999px;
-  font-size: 0.78rem;
   border: 1px solid
     ${({ $active }) => ($active ? themeColor.accent2 : themeColor.text3)};
   background: ${({ $active }) =>
