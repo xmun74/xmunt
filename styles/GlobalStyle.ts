@@ -13,7 +13,22 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${themeColor.bg1};
     color: ${themeColor.text1};
     height: 100%;
-    font-family: 'Inter', sans-serif;
+    font-family:
+      'Pretendard Variable',
+      Pretendard,
+      -apple-system,
+      BlinkMacSystemFont,
+      system-ui,
+      Roboto,
+      'Helvetica Neue',
+      'Segoe UI',
+      'Apple SD Gothic Neo',
+      'Noto Sans KR',
+      'Malgun Gothic',
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol',
+      sans-serif;
     line-height: normal;
   }
   body, html{
@@ -61,6 +76,11 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration:none;
     color:inherit;
+  }
+  /* 언어 클래스 없는 코드블록도 모노스페이스 유지 (styled-reset의 font: inherit 방어) */
+  pre,
+  pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
   }
   :not(pre) > code {
     font-family: Consolas, Monaco, 'Andale Mono', monospace;

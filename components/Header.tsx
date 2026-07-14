@@ -12,17 +12,14 @@ import SearchBar from './SearchBar'
 const Container = styled.header`
   position: fixed;
   z-index: 10;
-  top: 0;
+  top: 0.9rem;
   width: 100%;
   height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  box-shadow: 0px 3px 20px -10px #6666664b;
-  background-color: ${themeColor.gnbBackDrop};
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  pointer-events: none;
 `
 const HeaderContent = styled.div`
   min-width: 590px;
@@ -38,18 +35,42 @@ const HeaderContent = styled.div`
     justify-content: space-between;
   }
 `
-const HeaderWrap = styled.div`
-  display: flex;
-`
 const LogoBtn = styled.button`
   position: relative;
   border: none;
   width: 60px;
   height: 60px;
+  pointer-events: auto;
   @media screen and (max-width: 767px) {
     width: 46px;
   }
 `
+const PillNav = styled.div`
+  pointer-events: auto;
+  max-width: 94vw;
+  display: flex;
+  align-items: center;
+  padding: 0.35rem;
+  border: 1px solid ${themeColor.inlineCode};
+  border-radius: 999px;
+  background-color: ${themeColor.gnbBackDrop};
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px -12px #6666664b;
+`
+const Divider = styled.span`
+  width: 1px;
+  height: 1.375rem;
+  margin: 0 0.45rem;
+  flex: none;
+  background: ${themeColor.inlineCode};
+`
+const RightGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+`
+
 export default function Header() {
   const { theme } = useThemeContext()
   const isDarkMode = theme === 'dark'
@@ -62,11 +83,14 @@ export default function Header() {
             <AnimatedLogo isDarkMode={isDarkMode} />
           </LogoBtn>
         </Link>
-        <HeaderWrap>
-          <SearchBar />
+        <PillNav>
           <Nav />
-          <ThemeToggleBtn />
-        </HeaderWrap>
+          <Divider />
+          <RightGroup>
+            <SearchBar />
+            <ThemeToggleBtn />
+          </RightGroup>
+        </PillNav>
       </HeaderContent>
     </Container>
   )

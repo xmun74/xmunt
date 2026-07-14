@@ -27,18 +27,15 @@ const navConfig: {
 
 const NavContainer = styled.nav`
   display: flex;
-  font-weight: 300;
-  font-size: 20px;
-  @media screen and (max-width: 767px) {
-    font-size: 16px;
-  }
+  align-items: center;
+  gap: 0.125rem;
 `
 
 export default function Nav() {
   return (
     <NavContainer>
-      {navConfig.map((nav, idx) => (
-        <NavItem key={nav.label} href={nav.path} label={nav.label} idx={idx}>
+      {navConfig.map((nav) => (
+        <NavItem key={nav.label} href={nav.path} label={nav.label}>
           {nav.label}
         </NavItem>
       ))}

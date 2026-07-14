@@ -15,56 +15,22 @@ import VirtualizedList from './VirtualizedList'
 
 const SearchBarContainer = styled.div`
   position: relative;
-  margin-right: 0.8rem;
 `
 
 const SearchTrigger = styled.button`
-  position: relative;
-  width: 120px;
-  height: 32px;
+  width: 2.25rem;
+  height: 2.25rem;
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.9rem;
-  padding: 0px 8px;
-  border: none;
-  border-radius: 0.375rem;
-  background: ${themeColor.hoverBg};
-  color: ${themeColor.text2};
-
-  @media screen and (max-width: 767px) {
-    width: 58px;
-    padding: 0px 8px;
-    justify-content: center;
-  }
-`
-
-const TriggerLabel = styled.span`
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 0.875rem;
-  font-weight: 200;
-
-  @media screen and (max-width: 767px) {
-    font-size: 10px;
-  }
-`
-
-const ShortcutKeycap = styled.div`
-  height: 20px;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 0px 5px;
-  border-radius: 0.375rem;
-  background: ${themeColor.bg1};
-  color: ${themeColor.text3};
-  font-size: 0.775rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: ${themeColor.text1};
+  transition: background 160ms ease;
 
-  @media screen and (max-width: 767px) {
-    display: none;
+  &:hover {
+    background: ${themeColor.hoverBg};
   }
 `
 
@@ -130,7 +96,6 @@ const SearchInput = styled.input`
   outline: none;
   background: transparent;
   color: ${themeColor.text1};
-  font-family: 'Noto Sans KR', sans-serif;
   font-size: clamp(0.875rem, 1.5vw, 1rem);
   caret-color: ${themeColor.accent2};
 
@@ -179,7 +144,6 @@ const SearchResultLink = styled(Link)`
   gap: 0.6rem;
   border-radius: 0.375rem;
   color: ${themeColor.text1};
-  font-family: 'Noto Sans KR', sans-serif;
   font-size: 0.8rem;
 
   &:hover {
@@ -210,9 +174,28 @@ const SearchResultsNotFound = styled.div`
   padding: 12px;
   text-align: center;
   color: ${themeColor.text3};
-  font-family: 'Noto Sans KR', sans-serif;
   font-size: 0.8rem;
 `
+
+function SearchGlyph() {
+  return (
+    <svg
+      width="17"
+      height="17"
+      viewBox="0 0 18 18"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="8" cy="8" r="5.25" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M12 12L15.5 15.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
 
 function DocGlyph() {
   return (
@@ -347,8 +330,7 @@ export default function SearchBar() {
         onClick={openSearch}
         aria-label="Open search"
       >
-        <TriggerLabel>Search...</TriggerLabel>
-        <ShortcutKeycap>⌘&nbsp;K</ShortcutKeycap>
+        <SearchGlyph />
       </SearchTrigger>
 
       {mounted &&
