@@ -23,3 +23,7 @@ export const blogsApi = {
 export const postsApi = {
   searchPosts: (text: string) => get(`/search?q=${text}`),
 }
+
+export const analyticsApi = {
+  getDailyStats: () => get('/analytics'),
+}

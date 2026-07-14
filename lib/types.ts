@@ -35,3 +35,17 @@ export type PaginatedResponse<T> = {
   isLastPage: boolean
   isFirstPage: boolean
 }
+
+export type DailyStat = {
+  date: string
+  visitors: number
+  views: number
+}
+
+export type AnalyticsSummary = {
+  daily: DailyStat[]
+  totals: {
+    visitors: number
+    views: number
+  }
+}

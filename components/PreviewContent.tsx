@@ -6,40 +6,47 @@ import { themeColor } from '../styles/theme'
 const PostWrap = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 60px 24px;
+  gap: 1.5rem;
   @media screen and (max-width: 767px) {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 1.25rem;
   }
 `
 
 const PostItem = styled.div`
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid ${themeColor.inlineCode};
+  border-radius: 0.75rem;
+  background: ${themeColor.bg1};
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.25);
+  }
 `
 
 const PostContent = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 10px 0px;
-  gap: 5px;
-
-  @media screen and (max-width: 767px) {
-    padding: 16px 0px;
-  }
+  padding: 0.9rem 1.1rem 1.1rem;
+  gap: 0.3rem;
 `
 
 const PreviewImg = styled.div`
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 180px;
   background: linear-gradient(
     135deg,
     ${themeColor.accent1} 0%,
     ${themeColor.bg1} 100%
   );
   overflow: hidden;
+  border-bottom: 1px solid ${themeColor.inlineCode};
 
   img {
     object-fit: cover;
@@ -51,12 +58,12 @@ const PreviewImg = styled.div`
   }
 
   @media screen and (max-width: 767px) {
-    height: 180px;
+    height: 170px;
   }
 `
 
 const PreviewTitle = styled.h3`
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1.5;
   color: ${themeColor.text1};
@@ -66,29 +73,29 @@ const PreviewTitle = styled.h3`
   -webkit-line-clamp: 2;
   overflow: hidden;
   letter-spacing: -0.01em;
-
-  @media screen and (max-width: 767px) {
-    font-size: 16px;
-    -webkit-line-clamp: 2;
-  }
 `
 
 const PreviewDate = styled.div`
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 400;
+  font-variant-numeric: tabular-nums;
   color: ${themeColor.text4};
   margin-top: auto;
   padding-top: 4px;
 `
 const PreviewDescription = styled.div`
-  font-size: 14px;
+  font-size: 0.8rem;
   color: ${themeColor.text4};
   line-height: 1.7;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 `
 
 const EmptyImagePlaceholder = styled.div`
   width: 100%;
-  height: 200px;
+  height: 180px;
   background: linear-gradient(
     135deg,
     ${themeColor.accent1} 0%,
@@ -98,6 +105,7 @@ const EmptyImagePlaceholder = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  border-bottom: 1px solid ${themeColor.inlineCode};
 
   &::after {
     content: '';
@@ -110,7 +118,7 @@ const EmptyImagePlaceholder = styled.div`
   }
 
   @media screen and (max-width: 767px) {
-    height: 180px;
+    height: 170px;
   }
 `
 

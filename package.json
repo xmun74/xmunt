@@ -12,6 +12,7 @@
     "pre-commit": "npm run cache-posts && git add cache/post.js"
   },
   "dependencies": {
+    "@google-analytics/data": "^6.1.0",
     "@next/third-parties": "16.2.6",
     "@types/node": "^25.7.0",
     "@types/react": "19.2.14",
@@ -23,6 +24,7 @@
     "next-mdx-remote": "^6.0.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",
+    "recharts": "^3.9.2",
     "styled-components": "^6.4.1",
     "styled-reset": "^4.4.5",
     "typescript": "^6.0.3"
