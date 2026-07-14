@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 import Layout from '@components/Layout'
-import AboutPage from './about-page'
+import GalleryPage from './gallery-page'
 
 export const metadata: Metadata = {
-  title: 'About',
+  title: 'Gallery',
 }
 
-export default function About() {
+export default function Gallery() {
   return (
     <Layout>
-      <AboutPage />
+      <GalleryPage />
     </Layout>
   )
 }

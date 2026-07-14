@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import PlanetIcon from '@components/icons/PlanetIcon'
 import BlogIcon from '@components/icons/BlogIcon'
 import NoteIcon from '@components/icons/NoteIcon'
-import PacmanIcon from '@components/icons/PacmanIcon'
+import GalleryIcon from '@components/icons/GalleryIcon'
 import { themeColor } from '@styles/theme'
 
 const StyledLink = styled(Link)<{ $isActive: boolean }>`
@@ -57,7 +57,7 @@ const Label = styled.span`
   }
 `
 
-type IconKey = 'About' | 'Projects' | 'Blog' | 'Note'
+type IconKey = 'Gallery' | 'Projects' | 'Blog' | 'Note'
 
 interface NavProps {
   children: React.ReactNode | React.ReactNode[]
@@ -66,7 +66,7 @@ interface NavProps {
 }
 
 const types: Record<IconKey, React.FC<React.SVGProps<SVGSVGElement>>> = {
-  About: PacmanIcon,
+  Gallery: GalleryIcon,
   Projects: PlanetIcon,
   Blog: BlogIcon,
   Note: NoteIcon,

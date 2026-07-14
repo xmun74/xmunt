@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import NavItem from './common/NavItem'
 
-type IconKey = 'About' | 'Projects' | 'Blog' | 'Note'
+type IconKey = 'Gallery' | 'Projects' | 'Blog' | 'Note'
 
 const navConfig: {
   label: IconKey
@@ -20,8 +20,8 @@ const navConfig: {
     path: '/projects',
   },
   {
-    label: 'About',
-    path: '/about',
+    label: 'Gallery',
+    path: '/gallery',
   },
 ]
 
