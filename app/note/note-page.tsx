@@ -3,62 +3,64 @@
 import { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
-import Image from 'next/image'
-import Heading from '@components/common/Heading'
 import PostDate from '@components/PostDate'
 import { NoteType } from '@lib/types'
 import { themeColor } from '@styles/theme'
 
-const TitleWrapper = styled.div`
-  position: relative;
+const SectionHeader = styled.div`
+  margin-bottom: 1.25rem;
 `
-const HeadingWrapper = styled.div`
-  position: absolute;
-  top: 6px;
-  left: 60px;
+const SectionTitle = styled.h1`
+  font-size: 1rem;
+  font-weight: 600;
+  color: ${themeColor.text1};
 `
-const ImageWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 60px;
-  height: 60px;
-`
-const Body = styled.div`
-  padding-top: 80px;
+const SectionDesc = styled.p`
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  color: ${themeColor.text4};
 `
 const FilterBar = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 2rem;
+  gap: 0.35rem;
+  margin-bottom: 1.5rem;
 `
 const FilterPill = styled.button<{ $active: boolean }>`
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  height: 30px;
+  height: 1.9rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0px 8px;
+  padding: 0 0.7rem;
   border-radius: 999px;
-  border: 1px solid
-    ${({ $active }) => ($active ? themeColor.accent2 : themeColor.text3)};
+  border: 1px solid ${themeColor.inlineCode};
   background: ${({ $active }) =>
-    $active ? themeColor.accent2 : 'transparent'};
-  color: ${({ $active }) => ($active ? themeColor.bg1 : themeColor.text3)};
+    $active ? themeColor.inlineCode : 'transparent'};
+  color: ${({ $active }) => ($active ? themeColor.text1 : themeColor.text4)};
   cursor: pointer;
-  transition: all 300ms cubic-bezier(0.32, 0.72, 0, 1);
+  transition:
+    background 160ms ease,
+    color 160ms ease;
+
+  &:hover {
+    color: ${themeColor.text1};
+  }
 `
 const NoteList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
 `
 const NoteItem = styled.div`
-  padding: 14px 16px;
-  border-radius: 8px;
-  transition: background 150ms ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  transition: background 160ms ease;
   &:hover {
     background: ${themeColor.hoverBg};
   }
@@ -66,26 +68,28 @@ const NoteItem = styled.div`
 const NoteTitle = styled.h2`
   font-size: 1rem;
   font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
   color: ${themeColor.text1};
-  margin-bottom: 6px;
 `
 const NoteMeta = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   flex-wrap: wrap;
 `
 const TagBadge = styled.span`
   font-size: 0.72rem;
-  color: ${themeColor.text3};
+  color: ${themeColor.text4};
   background: ${themeColor.inlineCode};
   padding: 2px 8px;
   border-radius: 999px;
 `
 const EmptyMsg = styled.p`
-  color: ${themeColor.text3};
-  font-size: 0.9rem;
+  color: ${themeColor.text4};
+  font-size: 0.8rem;
   padding: 2rem 0;
+  text-align: center;
 `
 
 type Props = { allNotes: NoteType[] }
@@ -109,20 +113,11 @@ export default function NotePage({ allNotes }: Props) {
 
   return (
     <div>
-      <TitleWrapper>
-        <ImageWrapper>
-          <Image
-            src="/images/icons/memo.png"
-            alt="Note Icon"
-            width={60}
-            height={60}
-          />
-        </ImageWrapper>
-        <HeadingWrapper>
-          <Heading title="Note" />
-        </HeadingWrapper>
-      </TitleWrapper>
-      <Body>
+      <SectionHeader>
+        <SectionTitle>노트</SectionTitle>
+        <SectionDesc>짧게 정리한 기록 {allNotes.length}개</SectionDesc>
+      </SectionHeader>
+      <div>
         {allTags.length > 0 && (
           <FilterBar>
             <FilterPill
@@ -172,7 +167,7 @@ export default function NotePage({ allNotes }: Props) {
             </Link>
           ))}
         </NoteList>
-      </Body>
+      </div>
     </div>
   )
 }

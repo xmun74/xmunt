@@ -24,6 +24,7 @@ export default function Blog() {
         initialBlogs={initialData.contents}
         initialPage={initialData.pageNumber + 1}
         initialHasNextPage={!initialData.isLastPage}
+        totalCount={initialData.totalCount}
       />
     </Layout>
   )

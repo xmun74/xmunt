@@ -9,58 +9,88 @@ import { blogsApi } from '@lib/apis'
 import { PostType } from '@lib/types'
 import { themeColor } from '@styles/theme'
 
+const SectionHeader = styled.div`
+  margin-bottom: 1.25rem;
+`
+
+const SectionTitle = styled.h1`
+  font-size: 1rem;
+  font-weight: 600;
+  color: ${themeColor.text1};
+`
+
+const SectionDesc = styled.p`
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  color: ${themeColor.text4};
+`
+
 const PostContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 30px;
-
-  @media screen and (max-width: 767px) {
-    grid-template-columns: 1fr;
-  }
+  gap: 1rem;
 `
 
 const PostItem = styled.div`
-  position: relative;
-  height: 110px;
-  border-radius: 5px;
-  padding: 16px 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.4rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  transition: background 160ms ease;
+
   &:hover {
-    background-color: ${themeColor.hoverBg};
-    transition: 0.1s ease-in-out;
+    background: ${themeColor.hoverBg};
   }
 `
-const PostTitle = styled.h1`
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1.7rem;
+const PostTitle = styled.h2`
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
   color: ${themeColor.text1};
+  letter-spacing: -0.01em;
 `
 const PostDesc = styled.div`
-  color: ${themeColor.text2};
-  opacity: 0.5;
+  color: ${themeColor.text4};
   font-size: 0.8rem;
   font-weight: 400;
-  line-height: 1.3rem;
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 `
 const PostWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
+  gap: 1rem;
+
+  > div:last-child {
+    flex: none;
+  }
+`
+
+const LoadingText = styled.div`
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: ${themeColor.text4};
 `
 
 type BlogPageProps = {
   initialBlogs: PostType[]
   initialPage: number
   initialHasNextPage: boolean
+  totalCount: number
 }
 
 export default function BlogPage({
   initialBlogs,
   initialPage,
   initialHasNextPage,
+  totalCount,
 }: BlogPageProps) {
   const [blogs, setBlogs] = useState<PostType[]>(initialBlogs)
   const [isLoading, setIsLoading] = useState(false)
@@ -96,6 +126,10 @@ export default function BlogPage({
 
   return (
     <>
+      <SectionHeader>
+        <SectionTitle>블로그</SectionTitle>
+        <SectionDesc>기록한 글 {totalCount}개</SectionDesc>
+      </SectionHeader>
       <PostContainer>
         {blogs.map(({ slug, title, description, date }) => (
           <Link as={`/blog/${slug}`} href={`/blog/${slug}`} key={slug}>
@@ -109,7 +143,9 @@ export default function BlogPage({
           </Link>
         ))}
       </PostContainer>
-      <div ref={target}>{isLoading && <div>Loading...</div>}</div>
+      <div ref={target}>
+        {isLoading && <LoadingText>불러오는 중…</LoadingText>}
+      </div>
     </>
   )
 }
