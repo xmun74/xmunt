@@ -31,6 +31,11 @@ const GlobalStyle = createGlobalStyle`
       sans-serif;
     line-height: normal;
   }
+  /* 페이지 높이에 따라 스크롤바가 생겼다 사라지며 레이아웃이 흔들리지 않도록 항상 공간 확보 */
+  html {
+    overflow-y: scroll;
+  }
+
   body, html{
     @media screen and (max-width: 767px) {
       overflow-x: hidden;

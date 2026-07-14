@@ -1,4 +1,8 @@
 import styled from 'styled-components'
+import formatPostDate from '@lib/formatDate'
+import getReadingMinutes from '@lib/readingTime'
+import CalendarIcon from '@components/icons/CalendarIcon'
+import ClockIcon from '@components/icons/ClockIcon'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
 import NoteBody from '@components/note/NoteBody'
@@ -30,35 +34,53 @@ const NoteHeader = styled.div`
 `
 
 const NoteTitle = styled.h1`
-  font-weight: 800;
-  font-size: 2rem;
-  line-height: 1.3;
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
   margin-bottom: 1.25rem;
   color: ${themeColor.text1};
   @media screen and (max-width: 767px) {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 `
 
 const NoteMeta = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid ${themeColor.hoverBg};
+  border-bottom: 1px solid ${themeColor.inlineCode};
 `
 
-const NoteDate = styled.span`
-  font-size: 0.82rem;
-  color: ${themeColor.text3};
+const TagList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+`
+
+const MetaRight = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: none;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: ${themeColor.text4};
+`
+const MetaItem = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
 `
 
 const TagBadge = styled.span`
-  font-size: 0.72rem;
-  color: ${themeColor.text3};
+  font-size: 0.75rem;
+  color: ${themeColor.text4};
   background: ${themeColor.inlineCode};
-  padding: 2px 10px;
+  padding: 4px 10px;
   border-radius: 999px;
 `
 
@@ -76,6 +98,7 @@ export default function NoteDetailPage({
   noteToc,
 }: Props) {
   const hasCodePanel = panelBlocks.length > 0
+  const readingMinutes = getReadingMinutes(content)
 
   return (
     <PageWrapper>
@@ -85,10 +108,21 @@ export default function NoteDetailPage({
         <NoteHeader>
           <NoteTitle>{note.title}</NoteTitle>
           <NoteMeta>
-            <NoteDate>{note.date.replace(/-/g, '.')}</NoteDate>
-            {note.tags?.map((t) => (
-              <TagBadge key={t}>#{t}</TagBadge>
-            ))}
+            <TagList>
+              {note.tags?.map((t) => (
+                <TagBadge key={t}>#{t}</TagBadge>
+              ))}
+            </TagList>
+            <MetaRight>
+              <MetaItem>
+                <CalendarIcon />
+                {formatPostDate(note.date)}
+              </MetaItem>
+              <MetaItem>
+                <ClockIcon />
+                {readingMinutes}분 분량
+              </MetaItem>
+            </MetaRight>
           </NoteMeta>
         </NoteHeader>
         <NoteBody source={content} />

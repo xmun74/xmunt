@@ -29,19 +29,29 @@ const TocContainer = styled.div`
 `
 const TocContent = styled.div`
   display: none;
-  font-size: 0.8rem;
   margin-bottom: 1.5rem;
   @media screen and (min-width: 1150px) {
     display: flex;
     flex-direction: column;
+    padding-left: 0.9rem;
+    border-left: 1px solid ${themeColor.inlineCode};
   }
+`
+const TocLabel = styled.span`
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: ${themeColor.text1};
+  margin-bottom: 0.75rem;
 `
 const TocAnchor = styled(Link)<{ level: number }>`
   display: block;
-  margin-bottom: 1rem;
-  opacity: 0.55;
+  margin-bottom: 0.7rem;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: ${themeColor.text4};
+  transition: color 160ms ease;
   &:hover {
-    opacity: 1;
+    color: ${themeColor.text1};
   }
   padding-left: ${({ level }) => (level > 1 ? '10px' : '0')};
 `
@@ -49,13 +59,16 @@ const BtnContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 15px;
-  background-color: ${themeColor.inlineCode};
-  padding: 0.3rem;
+  gap: 0.15rem;
+  width: fit-content;
+  padding: 0.25rem;
+  border: 1px solid ${themeColor.inlineCode};
+  border-radius: 999px;
+  background-color: ${themeColor.gnbBackDrop};
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   @media screen and (min-width: 1150px) {
     flex-direction: row;
-    justify-content: space-around;
-    padding: 0.5rem;
   }
 `
 
@@ -69,6 +82,7 @@ export default function PostToc({ postToc }: { postToc: PostTocProps[] }) {
   return (
     <TocContainer>
       <TocContent>
+        <TocLabel>목차</TocLabel>
         {postToc &&
           postToc.map((el) => (
             <TocAnchor key={el.text} href={`#${el.href}`} level={el.level}>

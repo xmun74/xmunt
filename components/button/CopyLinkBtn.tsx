@@ -9,7 +9,7 @@ import CopyLinkIcon from '../icons/CopyLinkIcon'
 export default function CopyLinkBtn() {
   const [copied, setCopied] = useState(false)
   const [tooltipMessage, setTooltipMessage] = useState('')
-  const [tooltipEmoji, setTooltipEmoji] = useState<string | undefined>()
+  const [tooltipSuccess, setTooltipSuccess] = useState(false)
   const [showTooltip, setShowTooltip] = useState(false)
 
   useTimeout(copied, () => setCopied(false), 1500)
@@ -19,13 +19,13 @@ export default function CopyLinkBtn() {
     try {
       await navigator.clipboard.writeText(url)
       setCopied(true)
-      setTooltipMessage('링크가 복사됐습니다.')
-      setTooltipEmoji('✅')
+      setTooltipMessage('링크를 복사했습니다')
+      setTooltipSuccess(true)
       setShowTooltip(true)
     } catch (err) {
       console.log(err)
-      setTooltipMessage('링크 복사에 실패했습니다.')
-      setTooltipEmoji(undefined)
+      setTooltipMessage('복사에 실패했습니다. 다시 시도해주세요')
+      setTooltipSuccess(false)
       setShowTooltip(true)
     }
   }
@@ -48,7 +48,7 @@ export default function CopyLinkBtn() {
         show={showTooltip}
         duration={2000}
         onHide={handleTooltipHide}
-        emoji={tooltipEmoji}
+        icon={tooltipSuccess ? <CheckIcon width={15} height={15} /> : undefined}
       />
     </>
   )

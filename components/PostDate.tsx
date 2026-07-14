@@ -1,8 +1,5 @@
 import styled from 'styled-components'
-import dayjs from 'dayjs'
-import 'dayjs/locale/ko'
-
-dayjs.locale('ko')
+import formatPostDate from '@lib/formatDate'
 
 const Container = styled.div`
   text-align: end;
@@ -12,7 +9,5 @@ const Container = styled.div`
 `
 
 export default function PostDate({ date }: { date: string }) {
-  const result = dayjs(date).format('YYYY.MM.DD ddd')
-
-  return <Container>{result}</Container>
+  return <Container>{formatPostDate(date)}</Container>
 }

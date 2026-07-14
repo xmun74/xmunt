@@ -75,9 +75,12 @@ const Content = styled.article`
     pointer-events: none;
   }
   blockquote {
-    padding-left: 10px;
-    border-left: 10px solid;
-    border-left-color: ${themeColor.accent2};
+    margin: 1.25em 0;
+    padding: 0.8em 1.2em;
+    border-left: 3px solid ${themeColor.text4};
+    border-radius: 0 0.5rem 0.5rem 0;
+    background: ${themeColor.hoverBg};
+    color: ${themeColor.text4};
   }
   ul,
   ol {

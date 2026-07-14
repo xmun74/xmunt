@@ -1,73 +1,61 @@
 import Image from 'next/image'
 import styled from 'styled-components'
 import pageConfig from '../../lib/config'
+import { themeColor } from '../../styles/theme'
 import AuthorContacts from './AuthorContacts'
 
 const InfoContainer = styled.div`
   display: flex;
   align-items: center;
-  margin: 5rem 0;
+  gap: 1.25rem;
+  margin: 3rem 0;
+  padding-top: 2.5rem;
+  border-top: 1px solid ${themeColor.inlineCode};
 `
 const ImgWrap = styled.div`
   position: relative;
-  width: 150px;
-  height: 150px;
+  width: 72px;
+  height: 72px;
+  flex: none;
   img {
     border-radius: 50%;
-  }
-  @media screen and (max-width: 767px) {
-    width: 70px;
-    height: 70px;
+    object-fit: cover;
   }
 `
 const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 1em;
+  gap: 0.4rem;
 `
 const AuthorName = styled.div`
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 1rem;
-  @media screen and (max-width: 767px) {
-    font-size: 1rem;
-  }
+  letter-spacing: -0.01em;
+  color: ${themeColor.text1};
 `
 const AuthorBio = styled.div`
-  font-weight: 200;
-  margin-bottom: 1rem;
-  @media screen and (max-width: 767px) {
-    font-size: 0.8rem;
-  }
-`
-
-const Hr = styled.hr`
-  border: none;
-  border-top: thin dashed gray;
-  margin-bottom: 5rem;
+  font-size: 0.8rem;
+  color: ${themeColor.text4};
 `
 
 export default function AuthorInfo() {
   return (
-    <>
-      <InfoContainer>
-        <ImgWrap>
-          <Image
-            src={pageConfig.author.img}
-            alt="프로필 이미지"
-            fill
-            priority
-            draggable={false}
-            sizes="320 640 750"
-          />
-        </ImgWrap>
-        <InfoWrapper>
-          <AuthorName>{pageConfig.author.name}</AuthorName>
-          <AuthorBio>{pageConfig.author.bio}</AuthorBio>
-          <AuthorContacts />
-        </InfoWrapper>
-      </InfoContainer>
-      <Hr />
-    </>
+    <InfoContainer>
+      <ImgWrap>
+        <Image
+          src={pageConfig.author.img}
+          alt="프로필 이미지"
+          fill
+          priority
+          draggable={false}
+          sizes="72px"
+        />
+      </ImgWrap>
+      <InfoWrapper>
+        <AuthorName>{pageConfig.author.name}</AuthorName>
+        <AuthorBio>{pageConfig.author.bio}</AuthorBio>
+        <AuthorContacts />
+      </InfoWrapper>
+    </InfoContainer>
   )
 }
