@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import DOMAIN from '@constants/domain'
 import pageConfig from '@lib/config'
+import isDev from '@lib/isDev'
 import Providers from './providers'
 
 export const metadata: Metadata = {
@@ -60,6 +62,7 @@ export default function RootLayout({
       <body>
         <Providers>{children}</Providers>
       </body>
+      {!isDev && <GoogleAnalytics gaId="G-ZK3Y3LT3RD" />}
     </html>
   )
 }
