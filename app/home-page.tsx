@@ -1,8 +1,8 @@
 'use client'
 
+import type { ReactNode } from 'react'
 import styled from 'styled-components'
 import PreviewContent from '@components/PreviewContent'
-import VisitorsChart from '@components/chart/VisitorsChart'
 import { PostType } from '@lib/types'
 import { themeColor } from '@styles/theme'
 
@@ -26,9 +26,11 @@ const SectionDesc = styled.p`
 
 type Props = {
   recentPosts: PostType[]
+  // 서버에서 GA 데이터를 받아 렌더한 차트 섹션(Suspense 포함)을 슬롯으로 주입
+  chart: ReactNode
 }
 
-export default function HomePage({ recentPosts }: Props) {
+export default function HomePage({ recentPosts, chart }: Props) {
   const converted = recentPosts?.map(
     ({ slug, title, date, coverImage, description }) => ({
       href: `/blog/${slug}`,
@@ -43,7 +45,7 @@ export default function HomePage({ recentPosts }: Props) {
 
   return (
     <HomeContainer>
-      <VisitorsChart />
+      {chart}
       <SectionHeader>
         <SectionTitle>최근 포스트</SectionTitle>
         <SectionDesc>새로 올라온 글</SectionDesc>

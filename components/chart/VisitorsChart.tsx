@@ -221,14 +221,24 @@ function ChartTooltip({ active, label, payload }: ChartTooltipProps) {
   )
 }
 
-export default function VisitorsChart() {
-  const [summary, setSummary] = useState<AnalyticsSummary | null>(null)
+type Props = {
+  // 서버에서 미리 받아 주입하면 클라이언트 fetch 워터폴을 건너뛴다
+  initialSummary?: AnalyticsSummary | null
+}
+
+export default function VisitorsChart({ initialSummary = null }: Props) {
+  const [summary, setSummary] = useState<AnalyticsSummary | null>(
+    initialSummary
+  )
   const [hasError, setHasError] = useState(false)
   const [rangeDays, setRangeDays] = useState<number>(RANGES[0].days)
   const { theme } = useThemeContext()
   const palette = PALETTE[theme]
 
   useEffect(() => {
+    // 서버에서 이미 주입됐으면 재요청 불필요
+    if (initialSummary) return
+
     let cancelled = false
 
     analyticsApi
@@ -243,7 +253,7 @@ export default function VisitorsChart() {
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [initialSummary])
 
   const visibleData = summary?.daily.slice(-rangeDays) ?? []
   // 하단 범례에 표시하는 기간 내 합계 (상단은 GA 전체 누적)

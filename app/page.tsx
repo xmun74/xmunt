@@ -1,4 +1,7 @@
+import { Suspense } from 'react'
 import Layout from '@components/Layout'
+import VisitorsChartSection from '@components/chart/VisitorsChartSection'
+import VisitorsChartSkeleton from '@components/chart/VisitorsChartSkeleton'
 import { getRecentPosts } from '@lib/posts'
 import { PostType } from '@lib/types'
 import HomePage from './home-page'
@@ -18,7 +21,14 @@ export default function Home() {
 
   return (
     <Layout>
-      <HomePage recentPosts={recentPosts} />
+      <HomePage
+        recentPosts={recentPosts}
+        chart={
+          <Suspense fallback={<VisitorsChartSkeleton />}>
+            <VisitorsChartSection />
+          </Suspense>
+        }
+      />
     </Layout>
   )
 }
