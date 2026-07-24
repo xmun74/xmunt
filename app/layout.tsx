@@ -1,9 +1,13 @@
 import type { Metadata, Viewport } from 'next'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import WebVitalsReporter from '@components/WebVitalsReporter'
 import DOMAIN from '@constants/domain'
 import pageConfig from '@lib/config'
 import isDev from '@lib/isDev'
 import Providers from './providers'
+
+const isGaDebug = process.env.GA_DEBUG === 'true'
+const shouldLoadGa = !isDev || isGaDebug
 
 export const metadata: Metadata = {
   metadataBase: new URL(DOMAIN),
@@ -69,7 +73,12 @@ export default function RootLayout({
       <body>
         <Providers>{children}</Providers>
       </body>
-      {!isDev && <GoogleAnalytics gaId="G-ZK3Y3LT3RD" />}
+      {shouldLoadGa ? (
+        <>
+          <GoogleAnalytics gaId="G-ZK3Y3LT3RD" debugMode={isGaDebug} />
+          <WebVitalsReporter />
+        </>
+      ) : null}
     </html>
   )
 }
