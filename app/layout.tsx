@@ -32,6 +32,13 @@ export const metadata: Metadata = {
       'naver-site-verification': ['886ea33410ff08e87a821b62d4754e453e38d8cd'],
     },
   },
+  icons: {
+    icon: {
+      url: '/favicon.ico',
+      sizes: '50x50',
+      type: 'image/x-icon',
+    },
+  },
 }
 
 export const viewport: Viewport = {
